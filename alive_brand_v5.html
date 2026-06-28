@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="vi" data-mode="dark" data-lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alive. — Brand Guidelines v5</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ══════════════════════════════
+   TOKENS — Jewel palette
+   ══════════════════════════════ */
+[data-mode="dark"] {
+  --bg:            #0A0512;
+  --bg2:           #120724;
+  --bg3:           #1A0E33;
+  --text:          #F8F4FF;
+  --muted:         rgba(248,244,255,.62);
+  --hint:          rgba(248,244,255,.38);
+  --faint:         rgba(248,244,255,.18);
+  --border:        rgba(255,255,255,.08);
+  --border-s:      rgba(255,255,255,.16);
+  --glass:         rgba(255,255,255,.04);
+  --glass-s:       rgba(255,255,255,.08);
+
+  /* Jewel accents — five gemstones */
+  --plum:          #7B1FA2;       /* primary signature */
+  --plum-2:        #9333EA;
+  --plum-light:    #C084FC;
+  --sapphire:      #1E40AF;       /* deep blue */
+  --sapphire-2:    #3B82F6;
+  --sapphire-light:#60A5FA;
+  --emerald:       #059669;       /* signature accent green */
+  --emerald-2:     #10B981;
+  --emerald-light: #34D399;
+  --gold:          #B45309;       /* old gold */
+  --gold-2:        #D97706;
+  --gold-light:    #F59E0B;
+  --ruby:          #9F1239;       /* chiều sâu, sparingly */
+  --ruby-2:        #BE123C;
+  --ruby-light:    #FB7185;
+
+  /* Tinted glass backgrounds */
+  --gp:            rgba(123,31,162,.16);
+  --gs-tint:       rgba(30,64,175,.14);
+  --ge:            rgba(5,150,105,.14);
+  --gg:            rgba(180,83,9,.14);
+
+  /* The signature gradient — used everywhere */
+  --wm:            linear-gradient(135deg,#C084FC 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  --wm-dot:        #9333EA;
+  --wm-alt:        #F8F4FF;
+  --wm-alt-dot:    #C084FC;
+
+  /* Mockup tokens */
+  --mock-bg:       rgba(255,255,255,.05);
+  --mock-border:   rgba(255,255,255,.10);
+  --mock-bar:      rgba(255,255,255,.03);
+  --mock-bar-bdr:  rgba(255,255,255,.07);
+  --mock-nav-bg:   rgba(255,255,255,.06);
+  --mock-nav-clr:  rgba(255,255,255,.4);
+  --mock-nav-bdr:  rgba(255,255,255,.1);
+  --mock-title:    #F8F4FF;
+  --mock-sub:      rgba(248,244,255,.5);
+  --mock-lbl:      rgba(248,244,255,.4);
+  --mock-bp:       rgba(123,31,162,.22); --mock-bpc: #C084FC;
+  --mock-bs:       rgba(30,64,175,.18);  --mock-bsc: #60A5FA;
+  --mock-be:       rgba(5,150,105,.18);  --mock-bec: #34D399;
+  --mock-bg-tint:  rgba(180,83,9,.18);   --mock-bgc:  #F59E0B;
+
+  --sw-base:       rgba(255,255,255,.08);
+  --tgl-bg:        rgba(255,255,255,.07);
+  --tgl-bdr:       rgba(255,255,255,.13);
+  --tgl-clr:       rgba(248,244,255,.6);
+  --act-bg:        rgba(123,31,162,.3);
+  --act-clr:       #E9D5FF;
+  --wave-clr:      rgba(123,31,162,.2);
+}
+[data-mode="light"] {
+  --bg:            #F4EFF9;
+  --bg2:           #EBE3F2;
+  --bg3:           #DCD0E8;
+  --text:          #1A0E33;
+  --muted:         rgba(26,14,51,.62);
+  --hint:          rgba(26,14,51,.38);
+  --faint:         rgba(26,14,51,.16);
+  --border:        rgba(123,31,162,.16);
+  --border-s:      rgba(123,31,162,.28);
+  --glass:         rgba(255,255,255,.55);
+  --glass-s:       rgba(255,255,255,.8);
+
+  --plum:          #7B1FA2;
+  --plum-2:        #6B21A8;
+  --plum-light:    #9333EA;
+  --sapphire:      #1E40AF;
+  --sapphire-2:    #1D4ED8;
+  --sapphire-light:#3B82F6;
+  --emerald:       #047857;
+  --emerald-2:     #059669;
+  --emerald-light: #10B981;
+  --gold:          #92400E;
+  --gold-2:        #B45309;
+  --gold-light:    #D97706;
+  --ruby:          #881337;
+  --ruby-2:        #9F1239;
+  --ruby-light:    #BE123C;
+
+  --gp:            rgba(123,31,162,.14);
+  --gs-tint:       rgba(30,64,175,.12);
+  --ge:            rgba(5,150,105,.12);
+  --gg:            rgba(180,83,9,.12);
+
+  --wm:            linear-gradient(135deg,#7B1FA2 0%,#6B21A8 30%,#1E40AF 65%,#059669 100%);
+  --wm-dot:        #7B1FA2;
+  --wm-alt:        #1A0E33;
+  --wm-alt-dot:    #7B1FA2;
+
+  --mock-bg:       rgba(255,255,255,.7);
+  --mock-border:   rgba(123,31,162,.22);
+  --mock-bar:      rgba(255,255,255,.55);
+  --mock-bar-bdr:  rgba(123,31,162,.14);
+  --mock-nav-bg:   rgba(123,31,162,.1);
+  --mock-nav-clr:  rgba(26,14,51,.55);
+  --mock-nav-bdr:  rgba(123,31,162,.2);
+  --mock-title:    #1A0E33;
+  --mock-sub:      rgba(26,14,51,.6);
+  --mock-lbl:      rgba(26,14,51,.45);
+  --mock-bp:       rgba(123,31,162,.16); --mock-bpc: #6B21A8;
+  --mock-bs:       rgba(30,64,175,.12);  --mock-bsc: #1E40AF;
+  --mock-be:       rgba(5,150,105,.12);  --mock-bec: #047857;
+  --mock-bg-tint:  rgba(180,83,9,.12);   --mock-bgc:  #92400E;
+
+  --sw-base:       rgba(123,31,162,.14);
+  --tgl-bg:        rgba(255,255,255,.65);
+  --tgl-bdr:       rgba(123,31,162,.22);
+  --tgl-clr:       rgba(26,14,51,.6);
+  --act-bg:        rgba(123,31,162,.16);
+  --act-clr:       #6B21A8;
+  --wave-clr:      rgba(123,31,162,.25);
+}
+
+/* ══════════════════════════════
+   BASE
+   ══════════════════════════════ */
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background .4s, color .4s;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ══════════════════════════════
+   ATMOSPHERE — jewel mesh (less Instagram, more jewelry box)
+   ══════════════════════════════ */
+.mesh { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+[data-mode="dark"] .mesh::before {
+  content: ''; position: absolute; inset: -40%;
+  background:
+    radial-gradient(ellipse 55% 50% at 18% 15%, rgba(123,31,162,.35) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 55% at 85% 8%, rgba(30,64,175,.22) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 45% at 65% 88%, rgba(5,150,105,.22) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 42% at 8% 78%, rgba(180,83,9,.16) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 92% 58%, rgba(123,31,162,.18) 0%, transparent 50%);
+  animation: mesh 22s ease-in-out infinite alternate;
+}
+[data-mode="light"] .mesh::before {
+  content: ''; position: absolute; inset: -40%;
+  background:
+    radial-gradient(ellipse 55% 50% at 15% 15%, rgba(147,51,234,.32) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 55% at 88% 8%, rgba(59,130,246,.26) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 45% at 65% 88%, rgba(16,185,129,.26) 0%, transparent 50%),
+    radial-gradient(ellipse 42% 42% at 8% 78%, rgba(217,119,6,.2) 0%, transparent 48%);
+  animation: mesh 22s ease-in-out infinite alternate;
+}
+@keyframes mesh { 0%{transform: translate(0,0) scale(1) rotate(0deg)} 100%{transform: translate(1.5%,1.5%) scale(1.03) rotate(1.5deg)} }
+
+/* ══════════════════════════════
+   GLASS
+   ══════════════════════════════ */
+.g  { background: var(--glass);   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border);   border-radius: 20px; transition: background .4s, border-color .4s; }
+.gs { background: var(--glass-s); backdrop-filter: blur(32px); -webkit-backdrop-filter: blur(32px); border: 1px solid var(--border-s); border-radius: 20px; transition: background .4s, border-color .4s; }
+.gp { background: var(--gp);      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(123,31,162,.22); border-radius: 20px; transition: background .4s; }
+.gs-tint { background: var(--gs-tint); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(30,64,175,.22); border-radius: 20px; transition: background .4s; }
+.ge { background: var(--ge);      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(5,150,105,.22); border-radius: 20px; transition: background .4s; }
+.gg { background: var(--gg);      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(180,83,9,.22); border-radius: 20px; transition: background .4s; }
+
+/* ══════════════════════════════
+   LAYOUT
+   ══════════════════════════════ */
+.page { position: relative; z-index: 1; padding: 0 40px 72px; max-width: 1040px; margin: 0 auto; }
+
+/* ══════════════════════════════
+   TOPBAR
+   ══════════════════════════════ */
+.topbar { position: sticky; top: 0; z-index: 100; padding: 16px 0 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--bg); transition: background .4s; }
+.top-logo { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 24px; letter-spacing: -.6px; color: var(--text); }
+.top-logo span { background: var(--wm); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.top-controls { display: flex; gap: 8px; align-items: center; }
+.tgl { display: flex; background: var(--tgl-bg); backdrop-filter: blur(20px); border: 1px solid var(--tgl-bdr); border-radius: 40px; padding: 3px; gap: 2px; transition: background .3s, border-color .3s; }
+.tgl-btn { padding: 6px 16px; border-radius: 36px; border: none; background: none; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--tgl-clr); cursor: pointer; transition: all .25s; letter-spacing: .2px; }
+.tgl-btn.active { background: var(--act-bg); color: var(--act-clr); }
+.top-meta { font-size: 10px; color: var(--hint); letter-spacing: 1px; font-family: 'DM Mono', monospace; font-weight: 500; }
+
+/* ══════════════════════════════
+   HEADER
+   ══════════════════════════════ */
+.header { text-align: center; padding: 56px 0 48px; }
+.wm-hero {
+  font-family: 'Cormorant Garamond', serif; font-weight: 500;
+  font-size: clamp(80px, 13vw, 140px); letter-spacing: -4px; line-height: .9;
+  background: var(--wm); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 18px; filter: drop-shadow(0 4px 32px rgba(123,31,162,.3)); transition: filter .4s;
+}
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif; font-weight: 400; font-style: italic;
+  font-size: 22px; letter-spacing: -.3px; color: var(--text);
+  margin-bottom: 10px;
+}
+.hero-meta { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--hint); font-weight: 600; }
+.gbar { height: 1.5px; background: linear-gradient(90deg, transparent, var(--plum-light), var(--sapphire-light), var(--emerald-light), var(--gold-light), transparent); margin: 40px 0; opacity: .8; }
+
+/* ══════════════════════════════
+   SECTION
+   ══════════════════════════════ */
+.section { margin-bottom: 36px; }
+.sl { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--hint); font-weight: 600; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.sl::after { content: ''; flex: 1; height: .5px; background: var(--border-s); }
+.sl-num { font-family: 'DM Mono', monospace; font-weight: 500; opacity: .6; }
+
+/* ══════════════════════════════
+   LOGO
+   ══════════════════════════════ */
+.logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.logo-card { padding: 28px 24px; border-radius: 20px; display: flex; flex-direction: column; gap: 12px; }
+.wm-d { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 48px; letter-spacing: -1.2px; line-height: 1; }
+.wm-grad { background: var(--wm); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.wm-plain { color: var(--wm-alt); }
+.wm-plain .dot { color: var(--wm-dot); }
+.wm-inv { color: #F8F4FF; }
+.wm-inv .dot { color: var(--plum-light); }
+.lc-sub { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--hint); font-weight: 600; }
+
+/* ══════════════════════════════
+   COLORS
+   ══════════════════════════════ */
+.grad-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.grad-card { border-radius: 16px; padding: 24px; }
+.grad-card-lbl { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,.75); font-weight: 600; margin-bottom: 6px; }
+.grad-card-spec { font-size: 10px; font-family: 'DM Mono', monospace; color: rgba(255,255,255,.5); font-weight: 500; }
+.pal-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.sw { display: flex; flex-direction: column; gap: 8px; }
+.sw-b { height: 72px; border-radius: 14px; }
+.sw-n { font-size: 12px; font-weight: 600; color: var(--text); }
+.sw-h { font-size: 10px; color: var(--hint); font-family: 'DM Mono', monospace; font-weight: 500; }
+.sw-role { font-size: 9px; color: var(--hint); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+/* ══════════════════════════════
+   TYPOGRAPHY
+   ══════════════════════════════ */
+.type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.type-card { padding: 26px; }
+.type-tag { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--hint); font-weight: 600; margin-bottom: 14px; }
+
+/* ══════════════════════════════
+   BRAND VOICE
+   ══════════════════════════════ */
+.voice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.voice-card { padding: 24px; border-radius: 20px; }
+.voice-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; letter-spacing: -.3px; }
+.voice-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; font-weight: 500; }
+.voice-eg { font-size: 12px; color: var(--hint); font-family: 'DM Mono', monospace; border-left: 2px solid var(--border-s); padding-left: 12px; line-height: 1.7; font-weight: 500; }
+
+/* ══════════════════════════════
+   COMPONENTS
+   ══════════════════════════════ */
+.badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 11px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .3px; }
+.bp { background: rgba(123,31,162,.16); color: var(--act-clr); border: 1px solid rgba(123,31,162,.3); }
+.bs { background: rgba(30,64,175,.16); color: var(--sapphire-light); border: 1px solid rgba(30,64,175,.3); }
+.be { background: rgba(5,150,105,.14); color: var(--emerald-light); border: 1px solid rgba(5,150,105,.3); }
+.bg-gold { background: rgba(180,83,9,.14); color: var(--gold-light); border: 1px solid rgba(180,83,9,.3); }
+
+.btn-p { display: inline-flex; align-items: center; gap: 6px; padding: 10px 22px; border-radius: 40px; background: linear-gradient(135deg, var(--plum), var(--plum-2)); font-size: 13px; font-weight: 600; color: #fff; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; box-shadow: 0 6px 20px rgba(123,31,162,.4); transition: transform .15s ease, box-shadow .15s ease; }
+.btn-p:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(123,31,162,.55); }
+.btn-g { display: inline-flex; align-items: center; gap: 6px; padding: 9px 22px; border-radius: 40px; background: var(--glass-s); backdrop-filter: blur(20px); font-size: 13px; font-weight: 600; color: var(--text); border: 1px solid var(--border-s); cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+.input-d { width: 100%; padding: 11px 16px; border-radius: 12px; background: var(--glass-s); backdrop-filter: blur(20px); border: 1px solid var(--border-s); font-size: 13px; font-weight: 500; color: var(--text); font-family: 'DM Sans', sans-serif; outline: none; margin-top: 10px; transition: background .4s, border-color .4s; }
+.input-d::placeholder { color: var(--hint); }
+.input-d:focus { border-color: var(--plum-light); }
+
+.stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat-c { padding: 16px; border-radius: 14px; }
+.stat-n { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; letter-spacing: -1px; line-height: 1; }
+.stat-l { font-size: 11px; color: var(--muted); margin-top: 6px; font-weight: 500; }
+.stat-ch { font-size: 10px; margin-top: 6px; font-family: 'DM Mono', monospace; font-weight: 600; }
+
+/* ══════════════════════════════
+   WAVEFORM
+   ══════════════════════════════ */
+.wave-wrap { padding: 32px; overflow: hidden; border-radius: 20px; }
+.wave-row { display: flex; align-items: center; gap: 3px; height: 72px; justify-content: center; }
+.wave-bar { border-radius: 3px; background: linear-gradient(180deg, var(--plum-2), var(--sapphire-2), var(--emerald-2)); opacity: .75; animation: waveanim 1.4s ease-in-out infinite alternate; }
+@keyframes waveanim { 0%{transform: scaleY(.2)} 100%{transform: scaleY(1)} }
+.wave-usage { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
+.wave-use-card { padding: 18px; border-radius: 14px; text-align: center; }
+.wave-mini { display: flex; align-items: center; gap: 2px; justify-content: center; margin-bottom: 12px; height: 32px; }
+.wave-mini-bar { border-radius: 1px; }
+
+/* ══════════════════════════════
+   ICON SYSTEM
+   ══════════════════════════════ */
+.icon-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.icon-card { padding: 20px 12px; border-radius: 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.icon-svg { width: 30px; height: 30px; }
+.icon-lbl { font-size: 10px; color: var(--hint); text-align: center; letter-spacing: .3px; font-weight: 600; }
+
+/* ══════════════════════════════
+   MOTION
+   ══════════════════════════════ */
+.motion-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.motion-card { padding: 24px; }
+.motion-demo { height: 52px; display: flex; align-items: center; justify-content: flex-start; margin: 16px 0 10px; overflow: hidden; border-radius: 10px; background: var(--glass); padding: 0 14px; }
+.motion-dot { width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg, var(--plum-2), var(--sapphire-2)); }
+.motion-ease { animation: motionEase 2s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+.motion-linear { animation: motionEase 2s linear infinite; }
+@keyframes motionEase { 0%, 10%{transform: translateX(0)} 80%, 100%{transform: translateX(160px)} }
+
+/* ══════════════════════════════
+   SPACING
+   ══════════════════════════════ */
+.space-row { display: flex; align-items: flex-end; gap: 18px; flex-wrap: wrap; }
+.space-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.space-block { background: linear-gradient(135deg, var(--plum), var(--sapphire), var(--emerald)); border-radius: 4px; opacity: .85; }
+.space-lbl { font-size: 10px; color: var(--hint); font-family: 'DM Mono', monospace; font-weight: 500; }
+
+/* ══════════════════════════════
+   MOCKUP
+   ══════════════════════════════ */
+.mock-wrap { background: var(--mock-bg); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); border: 1px solid var(--mock-border); border-radius: 24px; overflow: hidden; box-shadow: 0 12px 48px rgba(8,4,20,.2), inset 0 1px 0 rgba(255,255,255,.08); transition: background .4s, border-color .4s; }
+
+/* ══════════════════════════════
+   BCARD
+   ══════════════════════════════ */
+.bcard { background: linear-gradient(135deg, rgba(20,8,40,.92) 0%, rgba(10,16,40,.92) 100%); border: 1px solid rgba(123,31,162,.32); border-radius: 18px; padding: 26px; height: 180px; display: flex; flex-direction: column; justify-content: space-between; backdrop-filter: blur(24px); box-shadow: 0 12px 40px rgba(123,31,162,.15); }
+
+/* ══════════════════════════════
+   TAGLINES
+   ══════════════════════════════ */
+.tl-item { padding: 16px 20px; border-radius: 16px; margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; font-style: italic; letter-spacing: -.4px; color: var(--text); }
+
+/* ══════════════════════════════
+   FOOTER
+   ══════════════════════════════ */
+.brand-footer { text-align: center; padding: 56px 0 36px; border-top: 1px solid var(--border); margin-top: 56px; }
+.footer-mark { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 40px; letter-spacing: -1.2px; margin-bottom: 10px; background: var(--wm); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block; filter: drop-shadow(0 4px 16px rgba(123,31,162,.3)); }
+.footer-copy { font-size: 11px; color: var(--hint); letter-spacing: 1px; font-weight: 500; }
+
+/* ══════════════════════════════
+   I18N
+   ══════════════════════════════ */
+[data-lang="vi"] .en { display: none; }
+[data-lang="en"] .vi { display: none; }
+
+/* ══════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════ */
+@media (max-width: 768px) {
+  .page { padding: 0 20px 48px; }
+  .logo-grid, .grad-row, .voice-grid, .motion-grid, .type-grid { grid-template-columns: 1fr; }
+  .pal-grid { grid-template-columns: repeat(2, 1fr); }
+  .icon-grid { grid-template-columns: repeat(3, 1fr); }
+  .wm-hero { font-size: clamp(60px, 14vw, 100px); letter-spacing: -3px; }
+}
+</style>
+</head>
+<body>
+<div class="mesh"></div>
+<div class="page">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="top-logo">Alive<span>.</span></div>
+  <div class="top-controls">
+    <div class="tgl">
+      <button class="tgl-btn active" id="btn-dark"  onclick="setMode('dark')">Dark</button>
+      <button class="tgl-btn"        id="btn-light" onclick="setMode('light')">Light</button>
+    </div>
+    <div class="tgl">
+      <button class="tgl-btn active" id="btn-vi" onclick="setLang('vi')">VI</button>
+      <button class="tgl-btn"        id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+  <div class="top-meta">Brand Guidelines · v5</div>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="wm-hero">Alive<span>.</span></div>
+  <div class="hero-tagline vi">Nơi âm nhạc tạo dấu ấn.</div>
+  <div class="hero-tagline en">Say it with sound.</div>
+  <p class="hero-meta">alivemusic.asia · 2026</p>
+</div>
+
+<div class="gbar"></div>
+
+<!-- 1. WORDMARK -->
+<div class="section">
+  <p class="sl"><span class="sl-num">01</span><span class="vi">Wordmark</span><span class="en">Wordmark</span></p>
+  <div class="logo-grid">
+    <div class="logo-card gs">
+      <div class="wm-d wm-grad">Alive<span>.</span></div>
+      <span class="lc-sub vi">Gradient — chính</span>
+      <span class="lc-sub en">Gradient — primary</span>
+    </div>
+    <div class="logo-card gp">
+      <div class="wm-d wm-plain">Alive<span class="dot">.</span></div>
+      <span class="lc-sub vi">Trên nền plum</span>
+      <span class="lc-sub en">On plum glass</span>
+    </div>
+    <div class="logo-card" style="background:rgba(10,5,18,.88);backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.08);border-radius:20px">
+      <div class="wm-d wm-inv">Alive<span class="dot">.</span></div>
+      <span class="lc-sub" style="color:rgba(255,255,255,.32)"><span class="vi">Nền tối</span><span class="en">Dark invert</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- 2. COLORS -->
+<div class="section">
+  <p class="sl"><span class="sl-num">02</span><span class="vi">Hệ màu — năm viên ngọc</span><span class="en">Color system — five jewels</span></p>
+  <div class="grad-row">
+    <div class="grad-card" style="background:linear-gradient(135deg,#7B1FA2 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%)">
+      <p class="grad-card-lbl">Aurora — <span class="vi">chính</span><span class="en">primary</span></p>
+      <p class="grad-card-spec">Plum → Sapphire → Emerald · 135°</p>
+    </div>
+    <div class="grad-card" style="background:linear-gradient(135deg,#B45309,#D97706)">
+      <p class="grad-card-lbl">Heritage — <span class="vi">phụ</span><span class="en">accent</span></p>
+      <p class="grad-card-spec">Old Gold #B45309 → #D97706 · 135°</p>
+    </div>
+  </div>
+  <div class="pal-grid">
+    <div class="sw">
+      <div class="sw-b" style="background:linear-gradient(160deg,#7B1FA2,#9333EA);box-shadow:0 6px 20px rgba(123,31,162,.4)"></div>
+      <span class="sw-role"><span class="vi">Chính</span><span class="en">Primary</span></span>
+      <span class="sw-n">Plum</span>
+      <span class="sw-h">#7B1FA2</span>
+    </div>
+    <div class="sw">
+      <div class="sw-b" style="background:linear-gradient(160deg,#1E40AF,#3B82F6);box-shadow:0 6px 20px rgba(30,64,175,.35)"></div>
+      <span class="sw-role"><span class="vi">Phụ</span><span class="en">Secondary</span></span>
+      <span class="sw-n">Sapphire</span>
+      <span class="sw-h">#1E40AF</span>
+    </div>
+    <div class="sw">
+      <div class="sw-b" style="background:linear-gradient(160deg,#059669,#10B981);box-shadow:0 6px 20px rgba(5,150,105,.35)"></div>
+      <span class="sw-role"><span class="vi">Nhấn</span><span class="en">Accent</span></span>
+      <span class="sw-n">Emerald</span>
+      <span class="sw-h">#059669</span>
+    </div>
+    <div class="sw">
+      <div class="sw-b" style="background:linear-gradient(160deg,#B45309,#D97706);box-shadow:0 6px 20px rgba(180,83,9,.35)"></div>
+      <span class="sw-role"><span class="vi">Ấm</span><span class="en">Warmth</span></span>
+      <span class="sw-n">Old Gold</span>
+      <span class="sw-h">#B45309</span>
+    </div>
+    <div class="sw">
+      <div class="sw-b" style="background:var(--sw-base);border:1px solid var(--border-s)"></div>
+      <span class="sw-role"><span class="vi">Nền</span><span class="en">Surface</span></span>
+      <span class="sw-n">Base</span>
+      <span class="sw-h" id="base-hex">#0A0512</span>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:18px;line-height:1.7;font-weight:500;max-width:680px">
+    <span class="vi">Mỗi màu là một viên đá quý — đặt cạnh nhau tạo nên cảm giác của một hộp trang sức Á Đông. Không "vibrant" theo kiểu social media; sâu, ấm, và có chiều.</span>
+    <span class="en">Each color is a gemstone. Together they evoke an East-Asian jewelry box: deep, warm, and considered. Not social-media vibrant.</span>
+  </p>
+</div>
+
+<!-- 3. TYPOGRAPHY -->
+<div class="section">
+  <p class="sl"><span class="sl-num">03</span><span class="vi">Kiểu chữ</span><span class="en">Typography</span></p>
+  <div class="type-grid">
+    <div class="gs type-card">
+      <p class="type-tag">Display — Cormorant Garamond 500</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:40px;letter-spacing:-1.5px;line-height:1.1;margin-bottom:14px;color:var(--text)">
+        <span class="vi">Âm nhạc<br><em>tạo dấu ấn.</em></span>
+        <span class="en">Sound<br><em>shapes feeling.</em></span>
+      </div>
+      <p style="font-size:11px;color:var(--hint);font-family:'DM Mono',monospace;font-weight:500">40–140px · weight 500 (hero) · 400 (body display)</p>
+    </div>
+    <div class="gs type-card">
+      <p class="type-tag">Body — DM Sans 500 / 600</p>
+      <p style="font-size:15px;line-height:1.7;color:var(--text);margin-bottom:16px;font-weight:500">
+        <span class="vi">Âm nhạc bản quyền, biên tập chuyên nghiệp — cho chuỗi cafe, thời trang, khách sạn tại Việt Nam.</span>
+        <span class="en">Licensed, professionally curated music — for cafe chains, retail and hotels in Vietnam.</span>
+      </p>
+      <p class="type-tag">Mono — DM Mono 500</p>
+      <p style="font-size:11px;font-family:'DM Mono',monospace;color:var(--muted);letter-spacing:1px;font-weight:500">ALIVEMUSIC.ASIA · 2026</p>
+    </div>
+  </div>
+  <p style="font-size:12px;color:var(--muted);margin-top:18px;line-height:1.7;font-weight:500;max-width:680px">
+    <span class="vi">Nét chữ đủ dày để đọc dễ dàng nhưng vẫn giữ được vẻ thanh lịch. Tránh weight 300 (quá mỏng) và 700 (quá nặng).</span>
+    <span class="en">Strokes weighty enough to read clearly while keeping elegance. Avoid 300 (too thin) and 700 (too heavy).</span>
+  </p>
+</div>
+
+<!-- 4. BRAND VOICE -->
+<div class="section">
+  <p class="sl"><span class="sl-num">04</span><span class="vi">Giọng điệu thương hiệu</span><span class="en">Brand voice</span></p>
+  <div class="voice-grid">
+    <div class="voice-card gs">
+      <div class="voice-title">Confident</div>
+      <p class="voice-desc vi">Nói ít, nói chắc. Không giải thích dài dòng.</p>
+      <p class="voice-desc en">Say less, mean more. No over-explaining.</p>
+      <p class="voice-eg vi">✓ "Âm nhạc đúng. Lúc nào cũng vậy."<br>✗ "Chúng tôi cung cấp giải pháp âm nhạc toàn diện..."</p>
+      <p class="voice-eg en">✓ "The right music. Every time."<br>✗ "We provide comprehensive music solutions..."</p>
+    </div>
+    <div class="voice-card gs">
+      <div class="voice-title">Refined</div>
+      <p class="voice-desc vi">Ngôn ngữ có chọn lọc. Không dùng buzzword rẻ tiền.</p>
+      <p class="voice-desc en">Deliberate language. No cheap buzzwords.</p>
+      <p class="voice-eg vi">✓ "Âm thanh được thiết kế."<br>✗ "Giải pháp âm nhạc 4.0 đột phá!"</p>
+      <p class="voice-eg en">✓ "Sound by design."<br>✗ "Disruptive next-gen audio solution!"</p>
+    </div>
+    <div class="voice-card gs">
+      <div class="voice-title">Warm</div>
+      <p class="voice-desc vi">Gần gũi với người vận hành. Không lạnh như SaaS.</p>
+      <p class="voice-desc en">Close to operators. Not cold like typical SaaS.</p>
+      <p class="voice-eg vi">✓ "Cài một lần, nghe mãi."<br>✗ "Triển khai nền tảng trong 3 bước."</p>
+      <p class="voice-eg en">✓ "Set once. Sounds right forever."<br>✗ "Deploy the platform in 3 steps."</p>
+    </div>
+    <div class="voice-card gs">
+      <div class="voice-title">Purposeful</div>
+      <p class="voice-desc vi">Mỗi câu có lý do tồn tại. Không padding.</p>
+      <p class="voice-desc en">Every sentence earns its place. No filler.</p>
+      <p class="voice-eg vi">✓ "Khách ở lại lâu hơn."<br>✗ "Tạo trải nghiệm tốt hơn cho khách hàng."</p>
+      <p class="voice-eg en">✓ "Guests stay longer."<br>✗ "Create better experiences for customers."</p>
+    </div>
+  </div>
+</div>
+
+<!-- 5. GLASS -->
+<div class="section">
+  <p class="sl"><span class="sl-num">05</span><span class="vi">Hệ glass</span><span class="en">Glassmorphism</span></p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+    <div class="gs" style="padding:22px;text-align:center;border-radius:20px">
+      <p style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:12px;font-weight:600"><span class="vi">Glass mạnh</span><span class="en">Strong glass</span></p>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;letter-spacing:-1px;margin-bottom:8px;color:var(--text)">Alive<span style="background:var(--wm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">.</span></div>
+      <p style="font-size:9px;font-family:'DM Mono',monospace;color:var(--muted);font-weight:500">rgba(255,255,255,.08) · blur 32</p>
+    </div>
+    <div class="gp" style="padding:22px;text-align:center;border-radius:20px">
+      <p style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:12px;font-weight:600">Plum tinted</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;letter-spacing:-1px;margin-bottom:8px;color:var(--text)">Alive<span style="color:var(--plum-light)">.</span></div>
+      <p style="font-size:9px;font-family:'DM Mono',monospace;color:var(--muted);font-weight:500">rgba(123,31,162,.16) · blur 24</p>
+    </div>
+    <div class="gs-tint" style="padding:22px;text-align:center;border-radius:20px">
+      <p style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:12px;font-weight:600">Sapphire tinted</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;letter-spacing:-1px;margin-bottom:8px;color:var(--text)">Alive<span style="color:var(--sapphire-light)">.</span></div>
+      <p style="font-size:9px;font-family:'DM Mono',monospace;color:var(--muted);font-weight:500">rgba(30,64,175,.14) · blur 24</p>
+    </div>
+    <div class="ge" style="padding:22px;text-align:center;border-radius:20px">
+      <p style="font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:12px;font-weight:600">Emerald tinted</p>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;letter-spacing:-1px;margin-bottom:8px;color:var(--text)">Alive<span style="color:var(--emerald-light)">.</span></div>
+      <p style="font-size:9px;font-family:'DM Mono',monospace;color:var(--muted);font-weight:500">rgba(5,150,105,.14) · blur 24</p>
+    </div>
+  </div>
+</div>
+
+<!-- 6. COMPONENTS -->
+<div class="section">
+  <p class="sl"><span class="sl-num">06</span><span class="vi">Components</span><span class="en">Components</span></p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="gs type-card">
+      <p class="type-tag"><span class="vi">Nút & badge</span><span class="en">Buttons & badges</span></p>
+      <div style="display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap">
+        <button class="btn-p"><span class="vi">Bắt đầu</span><span class="en">Get started</span></button>
+        <button class="btn-g"><span class="vi">Tìm hiểu</span><span class="en">Learn more</span></button>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+        <span class="badge bp">Curated</span>
+        <span class="badge bs">Licensed</span>
+        <span class="badge be">Multi-store</span>
+        <span class="badge bg-gold">Premium</span>
+      </div>
+      <input class="input-d" placeholder="hello@alivemusic.asia" type="email">
+    </div>
+    <div class="gp type-card">
+      <p class="type-tag"><span class="vi">Số liệu</span><span class="en">Stats</span></p>
+      <div class="stat-row">
+        <div class="stat-c gs">
+          <div class="stat-n" style="background:linear-gradient(135deg,var(--plum-light),var(--plum-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">12</div>
+          <div class="stat-l"><span class="vi">Địa điểm</span><span class="en">Venues</span></div>
+          <div class="stat-ch" style="color:var(--plum-light)">↑ +3</div>
+        </div>
+        <div class="stat-c gs">
+          <div class="stat-n" style="background:linear-gradient(135deg,var(--sapphire-light),var(--sapphire-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">98%</div>
+          <div class="stat-l">Uptime</div>
+          <div class="stat-ch" style="color:var(--sapphire-light)">Stable</div>
+        </div>
+        <div class="stat-c gs">
+          <div class="stat-n" style="background:linear-gradient(135deg,var(--emerald-light),var(--emerald-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">4k</div>
+          <div class="stat-l"><span class="vi">Bài hôm nay</span><span class="en">Today</span></div>
+          <div class="stat-ch" style="color:var(--emerald-light)">↑</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. WAVEFORM PATTERN -->
+<div class="section">
+  <p class="sl"><span class="sl-num">07</span><span class="vi">Họa tiết sóng âm</span><span class="en">Waveform pattern</span></p>
+  <div class="wave-wrap gs">
+    <div class="wave-row" id="wave-row"></div>
+  </div>
+  <div class="wave-usage">
+    <div class="wave-use-card g">
+      <div class="wave-mini" id="wave-mini-1"></div>
+      <p style="font-size:11px;color:var(--hint);text-align:center;font-weight:600">Divider</p>
+    </div>
+    <div class="wave-use-card g">
+      <div class="wave-mini" id="wave-mini-2"></div>
+      <p style="font-size:11px;color:var(--hint);text-align:center;font-weight:600">Background</p>
+    </div>
+    <div class="wave-use-card g">
+      <div class="wave-mini" id="wave-mini-3"></div>
+      <p style="font-size:11px;color:var(--hint);text-align:center;font-weight:600">Icon mark</p>
+    </div>
+  </div>
+</div>
+
+<!-- 8. ICON SYSTEM -->
+<div class="section">
+  <p class="sl"><span class="sl-num">08</span><span class="vi">Hệ icon</span><span class="en">Icon system</span></p>
+  <div class="icon-grid">
+    <div class="icon-card gs">
+      <svg class="icon-svg" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="9" stroke="url(#ig)" stroke-width="1.8"/><path d="M11 10.5v7l6-3.5-6-3.5z" fill="url(#ig)"/><defs><linearGradient id="ig" x1="0" y1="0" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop stop-color="#9333EA"/><stop offset=".55" stop-color="#3B82F6"/><stop offset="1" stop-color="#10B981"/></linearGradient></defs></svg>
+      <span class="icon-lbl vi">Phát</span><span class="icon-lbl en">Play</span>
+    </div>
+    <div class="icon-card gs">
+      <svg class="icon-svg" viewBox="0 0 28 28" fill="none"><rect x="5" y="8" width="18" height="2" rx="1" fill="url(#ig2)"/><rect x="5" y="13" width="13" height="2" rx="1" fill="url(#ig2)"/><rect x="5" y="18" width="16" height="2" rx="1" fill="url(#ig2)"/><defs><linearGradient id="ig2" x1="0" y1="0" x2="28" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#9333EA"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+      <span class="icon-lbl">Playlist</span>
+    </div>
+    <div class="icon-card gs">
+      <svg class="icon-svg" viewBox="0 0 28 28" fill="none"><path d="M14 5C9 5 5 9 5 14s4 9 9 9 9-4 9-9-4-9-9-9z" stroke="url(#ig3)" stroke-width="1.8"/><path d="M14 10v4l3 3" stroke="url(#ig3)" stroke-width="1.8" stroke-linecap="round"/><defs><linearGradient id="ig3" x1="5" y1="5" x2="23" y2="23" gradientUnits="userSpaceOnUse"><stop stop-color="#9333EA"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+      <span class="icon-lbl vi">Lịch</span><span class="icon-lbl en">Schedule</span>
+    </div>
+    <div class="icon-card gs">
+      <svg class="icon-svg" viewBox="0 0 28 28" fill="none"><path d="M7 21l4-4m0 0l3-7 3 7m0 0l4 4M11 17h6" stroke="url(#ig4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="ig4" x1="7" y1="7" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#10B981"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+      <span class="icon-lbl">Analytics</span>
+    </div>
+    <div class="icon-card gs">
+      <svg class="icon-svg" viewBox="0 0 28 28" fill="none"><path d="M9 14a5 5 0 1010 0 5 5 0 00-10 0z" stroke="url(#ig5)" stroke-width="1.8"/><path d="M14 6v2M14 20v2M6 14H4M24 14h-2M8.5 8.5l-1.4-1.4M20.9 20.9l-1.4-1.4M8.5 19.5l-1.4 1.4M20.9 7.1l-1.4 1.4" stroke="url(#ig5)" stroke-width="1.8" stroke-linecap="round"/><defs><linearGradient id="ig5" x1="4" y1="4" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#D97706"/><stop offset="1" stop-color="#9333EA"/></linearGradient></defs></svg>
+      <span class="icon-lbl">Mood</span>
+    </div>
+    <div class="icon-card gs">
+      <svg class="icon-svg" viewBox="0 0 28 28" fill="none"><path d="M14 4c-3.5 0-6 2.5-6 6 0 5 6 12 6 12s6-7 6-12c0-3.5-2.5-6-6-6z" stroke="url(#ig6)" stroke-width="1.8"/><circle cx="14" cy="10" r="2" stroke="url(#ig6)" stroke-width="1.8"/><defs><linearGradient id="ig6" x1="8" y1="4" x2="20" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#9333EA"/><stop offset="1" stop-color="#3B82F6"/></linearGradient></defs></svg>
+      <span class="icon-lbl vi">Địa điểm</span><span class="icon-lbl en">Location</span>
+    </div>
+  </div>
+</div>
+
+<!-- 9. MOTION -->
+<div class="section">
+  <p class="sl"><span class="sl-num">09</span><span class="vi">Chuyển động</span><span class="en">Motion principles</span></p>
+  <div class="motion-grid">
+    <div class="gs motion-card">
+      <p class="type-tag">Alive. Easing — cubic-bezier(0.16, 1, 0.3, 1)</p>
+      <div class="motion-demo"><div class="motion-dot motion-ease"></div></div>
+      <p style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;font-weight:500">
+        <span class="vi">Bắt đầu nhanh, kết thúc mềm. Duration 300–500ms.</span>
+        <span class="en">Fast start, soft landing. Duration 300–500ms.</span>
+      </p>
+    </div>
+    <div class="gs motion-card">
+      <p class="type-tag"><span class="vi">Không dùng</span><span class="en">Avoid</span> — linear</p>
+      <div class="motion-demo"><div class="motion-dot motion-linear" style="opacity:.35"></div></div>
+      <p style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;font-weight:500">
+        <span class="vi">Linear cảm giác cứng nhắc, máy móc.</span>
+        <span class="en">Linear feels mechanical. Never use for UI.</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- 10. SPACING -->
+<div class="section">
+  <p class="sl"><span class="sl-num">10</span><span class="vi">Hệ khoảng cách</span><span class="en">Spacing</span></p>
+  <div class="gs" style="padding:26px">
+    <p class="type-tag" style="margin-bottom:22px">Base unit: 8px</p>
+    <div class="space-row">
+      <div class="space-item"><div class="space-block" style="width:8px;height:8px"></div><span class="space-lbl">8</span></div>
+      <div class="space-item"><div class="space-block" style="width:16px;height:16px"></div><span class="space-lbl">16</span></div>
+      <div class="space-item"><div class="space-block" style="width:24px;height:24px"></div><span class="space-lbl">24</span></div>
+      <div class="space-item"><div class="space-block" style="width:32px;height:32px"></div><span class="space-lbl">32</span></div>
+      <div class="space-item"><div class="space-block" style="width:48px;height:48px"></div><span class="space-lbl">48</span></div>
+      <div class="space-item"><div class="space-block" style="width:64px;height:64px"></div><span class="space-lbl">64</span></div>
+      <div class="space-item"><div class="space-block" style="width:96px;height:96px"></div><span class="space-lbl">96</span></div>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:18px;font-family:'DM Mono',monospace;font-weight:500">
+      <span class="vi">Radius: 8px nhỏ / 14px vừa / 20px lớn / 40px pill</span>
+      <span class="en">Radius: 8px sm · 14px md · 20px lg · 40px pill</span>
+    </p>
+  </div>
+</div>
+
+<!-- 11. MOCKUP -->
+<div class="section">
+  <p class="sl"><span class="sl-num">11</span><span class="vi">Giao diện thực tế</span><span class="en">In application</span></p>
+  <div class="mock-wrap">
+    <div style="padding:14px 22px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--mock-bar-bdr);background:var(--mock-bar);transition:all .4s">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;letter-spacing:-.5px;color:var(--mock-title)">Alive<span style="background:var(--wm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">.</span></div>
+      <div style="display:flex;gap:6px">
+        <a href="#" style="font-size:11px;padding:5px 12px;border-radius:20px;background:var(--mock-nav-bg);color:var(--mock-nav-clr);text-decoration:none;border:1px solid var(--mock-nav-bdr);font-weight:600;transition:all .4s"><span class="vi">Tính năng</span><span class="en">Features</span></a>
+        <a href="#" style="font-size:11px;padding:5px 12px;border-radius:20px;background:var(--mock-nav-bg);color:var(--mock-nav-clr);text-decoration:none;border:1px solid var(--mock-nav-bdr);font-weight:600;transition:all .4s"><span class="vi">Giá</span><span class="en">Pricing</span></a>
+        <a href="#" style="font-size:11px;padding:5px 12px;border-radius:20px;background:var(--mock-nav-bg);color:var(--mock-nav-clr);text-decoration:none;border:1px solid var(--mock-nav-bdr);font-weight:600;transition:all .4s">Docs</a>
+      </div>
+      <button class="btn-p" style="font-size:11px;padding:8px 16px"><span class="vi">Dùng thử</span><span class="en">Start trial</span></button>
+    </div>
+    <div style="padding:32px 24px">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;background:var(--mock-bp);color:var(--mock-bpc);border:1px solid rgba(123,31,162,.32);margin-bottom:18px;transition:all .4s"><span class="vi">Nền tảng âm nhạc thương hiệu</span><span class="en">Brand Music Platform</span></span>
+      <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:42px;letter-spacing:-1.5px;line-height:1.05;margin-bottom:14px;color:var(--mock-title);transition:color .4s">
+        <span class="vi">Nơi âm nhạc<br><em style="background:var(--wm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">tạo dấu ấn.</em></span>
+        <span class="en">Say it<br><em style="background:var(--wm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">with sound.</em></span>
+      </div>
+      <p style="font-size:14px;color:var(--mock-sub);line-height:1.75;margin-bottom:20px;font-weight:500;transition:color .4s">
+        <span class="vi">Âm nhạc bản quyền, biên tập chuyên nghiệp.<br>Cài một lần — chuẩn mọi nơi.</span>
+        <span class="en">Licensed music, professionally curated.<br>Set once — sounds perfect everywhere.</span>
+      </p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px">
+        <span style="padding:4px 11px;border-radius:20px;font-size:10px;font-weight:600;background:var(--mock-bp);color:var(--mock-bpc);border:1px solid rgba(123,31,162,.3);transition:all .4s">40,000+ tracks</span>
+        <span style="padding:4px 11px;border-radius:20px;font-size:10px;font-weight:600;background:var(--mock-be);color:var(--mock-bec);border:1px solid rgba(5,150,105,.3);transition:all .4s">100% licensed</span>
+        <span style="padding:4px 11px;border-radius:20px;font-size:10px;font-weight:600;background:var(--mock-bs);color:var(--mock-bsc);border:1px solid rgba(30,64,175,.3);transition:all .4s">AI scheduling</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+        <div style="padding:18px;border-radius:14px;background:rgba(123,31,162,.14);border:1px solid rgba(123,31,162,.25);backdrop-filter:blur(16px)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;letter-spacing:-1px;background:linear-gradient(135deg,var(--plum-light),var(--plum-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">200+</div>
+          <div style="font-size:11px;color:var(--mock-lbl);margin-top:4px;font-weight:500;transition:color .4s"><span class="vi">Địa điểm</span><span class="en">Venues</span></div>
+        </div>
+        <div style="padding:18px;border-radius:14px;background:rgba(30,64,175,.12);border:1px solid rgba(30,64,175,.25);backdrop-filter:blur(16px)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;letter-spacing:-1px;background:linear-gradient(135deg,var(--sapphire-light),var(--sapphire-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">40k</div>
+          <div style="font-size:11px;color:var(--mock-lbl);margin-top:4px;font-weight:500;transition:color .4s"><span class="vi">Bài hát</span><span class="en">Tracks</span></div>
+        </div>
+        <div style="padding:18px;border-radius:14px;background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.25);backdrop-filter:blur(16px)">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;letter-spacing:-1px;background:linear-gradient(135deg,var(--emerald-light),var(--emerald-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">24/7</div>
+          <div style="font-size:11px;color:var(--mock-lbl);margin-top:4px;font-weight:500;transition:color .4s"><span class="vi">Vận hành</span><span class="en">Always-on</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 12. COLLATERAL -->
+<div class="section">
+  <p class="sl"><span class="sl-num">12</span>Collateral</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="bcard">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:28px;letter-spacing:-.6px;color:#F8F4FF">Alive<span style="background:var(--wm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">.</span></div>
+          <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:4px;font-weight:600"><span class="vi">Nền tảng âm nhạc thương hiệu</span><span class="en">Brand Music Platform</span></div>
+        </div>
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--wm);box-shadow:0 4px 16px rgba(123,31,162,.5)"></div>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:#F8F4FF;margin-bottom:3px">Nguyễn Văn A</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px;font-weight:500"><span class="vi">Đồng sáng lập</span><span class="en">Co-founder</span></div>
+        <div style="font-size:10px;color:rgba(255,255,255,.32);font-family:'DM Mono',monospace;font-weight:500">hello@alivemusic.asia · alivemusic.asia</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div class="tl-item gs">
+        <span class="vi">Nơi âm nhạc <em style="background:var(--wm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">tạo dấu ấn.</em></span>
+        <span class="en">Say it <em style="background:var(--wm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">with sound.</em></span>
+      </div>
+      <div class="tl-item gp">
+        <span class="vi"><em style="background:linear-gradient(135deg,var(--gold-2),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">Âm thanh</em> định hình cảm xúc.</span>
+        <span class="en"><em style="background:linear-gradient(135deg,var(--gold-2),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">Sound</em> shapes feeling.</span>
+      </div>
+      <div class="tl-item ge">
+        <span class="vi"><em style="background:linear-gradient(135deg,var(--emerald-2),var(--sapphire-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">Đúng nhạc.</em> Đúng lúc.</span>
+        <span class="en">The right music. <em style="background:linear-gradient(135deg,var(--emerald-2),var(--sapphire-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:italic;font-weight:500">Every time.</em></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="brand-footer">
+  <div class="footer-mark">Alive.</div>
+  <p class="footer-copy">Alive Music · Brand Guidelines v5 · alivemusic.asia</p>
+</div>
+
+</div>
+
+<script>
+function setMode(m) {
+  document.documentElement.setAttribute('data-mode',m);
+  document.getElementById('btn-dark').classList.toggle('active',m==='dark');
+  document.getElementById('btn-light').classList.toggle('active',m==='light');
+  document.getElementById('base-hex').textContent = m==='dark' ? '#0A0512' : '#F4EFF9';
+}
+function setLang(l) {
+  document.documentElement.setAttribute('data-lang',l);
+  document.getElementById('btn-vi').classList.toggle('active',l==='vi');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+}
+
+/* WAVEFORM */
+const heights = [12,20,32,44,56,48,36,52,40,28,16,24,44,60,52,40,28,20,36,48,56,44,32,20,12,24,40,52,44,32,20,28,44,56,48,36,24,16,28,40];
+const wr = document.getElementById('wave-row');
+heights.forEach((h,i) => {
+  const b = document.createElement('div');
+  b.className = 'wave-bar';
+  b.style.cssText = `width:4px;height:${h}px;animation-delay:${(i*0.04).toFixed(2)}s`;
+  wr.appendChild(b);
+});
+
+const minis = [[16,24,14,20,12],[20,12,18,24,16],[12,20,16,24,14]];
+minis.forEach((arr,idx) => {
+  const el = document.getElementById(`wave-mini-${idx+1}`);
+  arr.forEach((h,i) => {
+    const b = document.createElement('div');
+    b.className = 'wave-mini-bar';
+    b.style.cssText = `width:3px;height:${h}px;animation:waveanim 1.2s ease-in-out ${(i*0.12).toFixed(2)}s infinite alternate;border-radius:1px;background:linear-gradient(180deg,#9333EA,#10B981);opacity:.7`;
+    el.appendChild(b);
+  });
+});
+</script>
+</body>
+</html>
