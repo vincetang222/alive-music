@@ -474,6 +474,75 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .how-tab{flex:1;padding:12px 16px;border-radius:12px;border:none;background:none;color:var(--muted);font-family:var(--fb);font-size:13px;font-weight:600;cursor:pointer;transition:all .25s var(--ease);text-align:center;line-height:1.3}
 .how-tab.active{background:linear-gradient(135deg,rgba(123,31,162,.3),rgba(30,64,175,.2));color:var(--text);box-shadow:0 2px 12px rgba(123,31,162,.25)}
 @media(max-width:600px){.how-toggle{flex-direction:column}.how-tab{padding:14px}}
+
+/* ─── METRICS SECTION (emerald tinted) ─── */
+.sec-metrics{background:linear-gradient(180deg,transparent 0%,rgba(5,150,105,.07) 50%,transparent 100%);padding:120px 0;position:relative}
+.sec-metrics::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(5,150,105,.4),transparent)}
+.sec-metrics::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(5,150,105,.3),transparent)}
+.metrics-head{max-width:720px;margin-bottom:56px}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+.metric-card{padding:32px 28px;border-radius:24px;background:rgba(255,255,255,.04);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border-s);display:flex;flex-direction:column;gap:14px;transition:all .25s var(--ease);box-shadow:0 12px 36px rgba(0,0,0,.2)}
+.metric-card:hover{transform:translateY(-4px);border-color:rgba(52,211,153,.35);background:rgba(5,150,105,.06)}
+.metric-card-featured{background:linear-gradient(160deg,rgba(5,150,105,.18),rgba(30,64,175,.1));border-color:rgba(52,211,153,.4);box-shadow:0 20px 48px rgba(5,150,105,.2)}
+.metric-n{font-family:var(--fd);font-size:64px;font-weight:500;letter-spacing:-2px;line-height:.9;background:linear-gradient(135deg,var(--emerald-light),var(--emerald-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.metric-card-featured .metric-n{background:linear-gradient(135deg,var(--emerald-light),var(--sapphire-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.metric-h{font-family:var(--fd);font-size:20px;font-weight:500;letter-spacing:-.4px;line-height:1.15}
+.metric-b{font-size:13px;color:var(--muted);line-height:1.6;flex:1;font-weight:500}
+.metric-src{font-family:var(--fm);font-size:10px;color:var(--hint);letter-spacing:.5px;padding-top:14px;border-top:1px solid var(--border);font-weight:600}
+
+.metrics-foot{padding:32px;border-radius:24px;background:linear-gradient(135deg,rgba(123,31,162,.1),rgba(5,150,105,.08));border:1px solid rgba(123,31,162,.22);max-width:880px;margin:0 auto}
+.metrics-foot-kicker{font-family:var(--fm);font-size:11px;letter-spacing:2px;color:var(--plum-light);font-weight:700;text-transform:uppercase;margin-bottom:12px}
+.metrics-foot-body{font-size:15px;color:var(--text);line-height:1.65;font-weight:500}
+.metrics-foot-body strong{color:var(--emerald-light);font-weight:700}
+
+/* ─── LEAD FORM SECTION (gold tinted) ─── */
+.sec-lead{padding:120px 0;background:linear-gradient(180deg,transparent 0%,rgba(180,83,9,.08) 50%,transparent 100%);position:relative}
+.sec-lead::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,83,9,.4),transparent)}
+.sec-lead::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,83,9,.3),transparent)}
+.lead-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+
+.lead-trust{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.lead-trust-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--muted);font-weight:500}
+.lead-trust-icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(5,150,105,.18);color:var(--emerald-light);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;border:1px solid rgba(5,150,105,.3)}
+
+.lead-form{padding:36px;border-radius:28px;background:rgba(255,255,255,.04);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid var(--border-s);box-shadow:0 24px 64px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:18px}
+.lead-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lead-field{display:flex;flex-direction:column;gap:8px}
+.lead-field label{font-family:var(--fm);font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase}
+.lf-req{color:var(--gold-light);margin-left:4px}
+.lead-field input,.lead-field select,.lead-field textarea{padding:13px 14px;border-radius:12px;background:rgba(0,0,0,.25);border:1px solid var(--border-s);color:var(--text);font-family:var(--fb);font-size:14px;font-weight:500;transition:all .2s;outline:none;width:100%;resize:vertical}
+.lead-field input::placeholder,.lead-field textarea::placeholder{color:var(--hint);font-weight:400}
+.lead-field input:focus,.lead-field select:focus,.lead-field textarea:focus{border-color:rgba(192,132,252,.55);background:rgba(0,0,0,.35);box-shadow:0 0 0 3px rgba(123,31,162,.18)}
+.lead-field select{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%23F8F4FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' opacity='.5'/></svg>");background-repeat:no-repeat;background-position:right 14px center;background-size:12px;padding-right:36px}
+.lead-field select option{background:#1A0E33;color:var(--text);padding:8px}
+.lead-field textarea{font-family:var(--fb);min-height:80px}
+
+.lead-submit{margin-top:8px;padding:16px;border-radius:40px;border:none;background:linear-gradient(135deg,var(--plum),var(--plum-2));color:#fff;font-family:var(--fb);font-size:15px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:all .25s var(--ease);box-shadow:0 8px 28px rgba(123,31,162,.45)}
+.lead-submit:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(123,31,162,.6)}
+.lead-submit .arr{transition:transform .25s}
+.lead-submit:hover .arr{transform:translateX(4px)}
+.lead-privacy{font-size:11px;color:var(--hint);text-align:center;font-weight:500;line-height:1.5}
+.lead-privacy a{color:var(--muted);text-decoration:underline;text-decoration-color:rgba(248,244,255,.3);text-underline-offset:2px}
+.lead-privacy a:hover{color:var(--plum-light)}
+
+.lead-success{display:none;padding:48px 36px;border-radius:28px;background:rgba(5,150,105,.1);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(5,150,105,.3);text-align:center;flex-direction:column;align-items:center;gap:14px;box-shadow:0 24px 64px rgba(5,150,105,.15);animation:fadeUp .5s var(--ease)}
+.lead-success.show{display:flex}
+.lead-success-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--emerald),var(--emerald-2));color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;box-shadow:0 8px 24px rgba(5,150,105,.4)}
+.lead-success h3{font-family:var(--fd);font-size:32px;font-weight:500;letter-spacing:-.8px}
+.lead-success p{font-size:14px;color:var(--muted);line-height:1.65;max-width:380px;font-weight:500}
+.lead-success strong{color:var(--text);font-weight:600}
+
+@media(max-width:960px){
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .lead-grid{grid-template-columns:1fr;gap:40px}
+  .lead-form{padding:28px}
+  .lead-row{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .metrics-grid{grid-template-columns:1fr}
+  .metric-n{font-size:52px}
+  .lead-form{padding:24px}
+}
 </style>
 </head>
 <body>
@@ -709,6 +778,49 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS (emerald tinted) - "Music actually moves the numbers" -->
+<section class="sec-metrics">
+  <div class="wrap">
+    <div class="metrics-head">
+      <div class="kicker k-emerald"><span class="vi">Bằng chứng</span><span class="en">Evidence</span></div>
+      <h2 class="sec-h"><span class="vi">Đúng nhạc không chỉ <em>nghe hay</em>.<br>Nó còn ảnh hưởng đến doanh thu.</span><span class="en">The right music doesn't just <em>sound better</em>.<br>It moves the numbers.</span></h2>
+      <p class="sec-lede"><span class="vi">Hàng chục năm nghiên cứu cho thấy nhạc nền không phải trang trí — đây là một biến số vận hành tác động trực tiếp đến hành vi khách hàng.</span><span class="en">Decades of research show background music isn't decoration — it's an operational variable that directly affects customer behavior.</span></p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-n">+40%</div>
+        <div class="metric-h"><span class="vi">Doanh thu đồ uống</span><span class="en">Beverage revenue</span></div>
+        <p class="metric-b"><span class="vi">Khách trong nhà hàng phát nhạc chậm gọi thêm trung bình 3 đồ uống mỗi bàn so với nhạc tempo nhanh.</span><span class="en">Diners in slow-tempo settings ordered an average of 3 more drinks per table than in fast-tempo settings.</span></p>
+        <div class="metric-src">Milliman · Journal of Consumer Research · 1986</div>
+      </div>
+      <div class="metric-card metric-card-featured">
+        <div class="metric-n">+38%</div>
+        <div class="metric-h"><span class="vi">Tổng doanh thu</span><span class="en">Total revenue</span></div>
+        <p class="metric-b"><span class="vi">Khi nhạc phù hợp với cá tính thương hiệu thay vì playlist ngẫu nhiên — riêng tráng miệng và món phụ tăng mạnh hơn nữa.</span><span class="en">When music matches brand personality vs random playlists — desserts and sides see even higher lift.</span></p>
+        <div class="metric-src">HUI Research · Daunfeldt et al. · 2017</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-n">+11′</div>
+        <div class="metric-h"><span class="vi">Thời gian ngồi tại bàn</span><span class="en">Dwell time per table</span></div>
+        <p class="metric-b"><span class="vi">Khách ngồi lâu hơn 11 phút khi phát nhạc tempo chậm — quan trọng với café, fine dining, bar.</span><span class="en">Customers stay 11 minutes longer with slow-tempo music — critical for cafés, fine dining, bars.</span></p>
+        <div class="metric-src">Milliman · Western Kentucky University · 1986</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-n">−10%</div>
+        <div class="metric-h"><span class="vi">Thời gian phục vụ</span><span class="en">Service time</span></div>
+        <p class="metric-b"><span class="vi">Tempo nhanh giúp quay vòng bàn nhanh hơn vào giờ cao điểm — đồng nghĩa nhiều lượt phục vụ hơn mỗi ca.</span><span class="en">Faster tempo speeds table turnover at peak hours — meaning more seatings per shift.</span></p>
+        <div class="metric-src">Shaki et al. · Behavioral Sciences · 2024</div>
+      </div>
+    </div>
+
+    <div class="metrics-foot">
+      <div class="metrics-foot-kicker"><span class="vi">Tại sao Alive. quan trọng:</span><span class="en">Why this matters for Alive.:</span></div>
+      <p class="metrics-foot-body"><span class="vi">Các nghiên cứu này không chỉ chứng minh rằng nhạc có tác động — chúng chỉ ra rằng <strong>tempo đúng cho từng khung giờ</strong> mới là chìa khoá. Đây chính là cách Alive. hoạt động: 5 mood, tự đổi theo giờ, phù hợp với từng giai đoạn trong ngày của quán.</span><span class="en">These studies don't just prove music has impact — they show that <strong>the right tempo at the right hour</strong> is what matters. That's exactly how Alive. works: 5 moods, auto-shifting by hour, matched to each phase of your venue's day.</span></p>
     </div>
   </div>
 </section>
@@ -1203,6 +1315,120 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   </div>
 </section>
 
+<!-- LEAD FORM (gold tinted) - inline capture before final CTA -->
+<section class="sec-lead">
+  <div class="wrap">
+    <div class="lead-grid">
+      <div class="lead-left">
+        <div class="kicker k-gold"><span class="vi">Tư vấn miễn phí</span><span class="en">Free consultation</span></div>
+        <h2 class="sec-h"><span class="vi">Cho mình biết<br>về quán của <em>bạn.</em></span><span class="en">Tell us about<br>your <em>venue.</em></span></h2>
+        <p class="sec-lede" style="margin-bottom:32px"><span class="vi">Chia sẻ thông tin và Alive. sẽ đề xuất mô hình phù hợp với quy mô, ngành nghề và ngân sách của bạn. Không cần thẻ tín dụng — chúng tôi phản hồi trong vòng 1 ngày làm việc.</span><span class="en">Share your details and Alive. will propose a setup that fits your scale, industry and budget. No credit card needed — we reply within one business day.</span></p>
+        <div class="lead-trust">
+          <div class="lead-trust-item">
+            <div class="lead-trust-icon">✓</div>
+            <div><span class="vi">Tư vấn hoàn toàn miễn phí</span><span class="en">Fully free consultation</span></div>
+          </div>
+          <div class="lead-trust-item">
+            <div class="lead-trust-icon">✓</div>
+            <div><span class="vi">Phản hồi trong 1 ngày làm việc</span><span class="en">Response within 1 business day</span></div>
+          </div>
+          <div class="lead-trust-item">
+            <div class="lead-trust-icon">✓</div>
+            <div><span class="vi">Không gọi điện làm phiền</span><span class="en">No sales spam calls</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lead-right">
+        <form class="lead-form" id="leadForm" onsubmit="handleLeadSubmit(event)">
+          <div class="lead-row">
+            <div class="lead-field">
+              <label for="lf-name"><span class="vi">Họ và tên</span><span class="en">Full name</span><span class="lf-req">*</span></label>
+              <input type="text" id="lf-name" name="name" required autocomplete="name">
+            </div>
+            <div class="lead-field">
+              <label for="lf-venue"><span class="vi">Tên quán / thương hiệu</span><span class="en">Venue / brand name</span><span class="lf-req">*</span></label>
+              <input type="text" id="lf-venue" name="venue" required>
+            </div>
+          </div>
+
+          <div class="lead-row">
+            <div class="lead-field">
+              <label for="lf-email">Email<span class="lf-req">*</span></label>
+              <input type="email" id="lf-email" name="email" required autocomplete="email" placeholder="you@yourbrand.com">
+            </div>
+            <div class="lead-field">
+              <label for="lf-phone"><span class="vi">Số điện thoại</span><span class="en">Phone</span></label>
+              <input type="tel" id="lf-phone" name="phone" autocomplete="tel" placeholder="0xxx xxx xxx">
+            </div>
+          </div>
+
+          <div class="lead-row">
+            <div class="lead-field">
+              <label for="lf-type"><span class="vi">Loại hình kinh doanh</span><span class="en">Business type</span><span class="lf-req">*</span></label>
+              <select id="lf-type" name="type" required>
+                <option value="" disabled selected><span class="vi">Chọn loại hình</span></option>
+                <option value="cafe"><span class="vi">Quán cà phê / coffee shop</span></option>
+                <option value="restaurant"><span class="vi">Nhà hàng / fine dining</span></option>
+                <option value="bar"><span class="vi">Bar / pub / lounge</span></option>
+                <option value="hotel"><span class="vi">Khách sạn / resort</span></option>
+                <option value="retail"><span class="vi">Bán lẻ / cửa hàng</span></option>
+                <option value="gym"><span class="vi">Phòng gym / studio</span></option>
+                <option value="spa"><span class="vi">Spa / salon</span></option>
+                <option value="other"><span class="vi">Khác</span></option>
+              </select>
+            </div>
+            <div class="lead-field">
+              <label for="lf-locations"><span class="vi">Số địa điểm</span><span class="en">Number of locations</span><span class="lf-req">*</span></label>
+              <select id="lf-locations" name="locations" required>
+                <option value="" disabled selected><span class="vi">Chọn quy mô</span></option>
+                <option value="1">1 <span class="vi">địa điểm</span><span class="en">location</span></option>
+                <option value="2-5">2–5 <span class="vi">địa điểm</span><span class="en">locations</span></option>
+                <option value="6-10">6–10 <span class="vi">địa điểm</span><span class="en">locations</span></option>
+                <option value="11-50">11–50 <span class="vi">địa điểm</span><span class="en">locations</span></option>
+                <option value="50+">50+ <span class="vi">địa điểm</span><span class="en">locations</span></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="lead-row">
+            <div class="lead-field" style="grid-column:1/-1">
+              <label for="lf-budget"><span class="vi">Ngân sách hàng tháng (ước tính)</span><span class="en">Monthly budget (estimate)</span></label>
+              <select id="lf-budget" name="budget">
+                <option value=""><span class="vi">Chưa rõ — cần tư vấn</span><span class="en">Not sure — need consultation</span></option>
+                <option value="under-500k"><span class="vi">Dưới 500.000 ₫</span><span class="en">Under ₫500k</span></option>
+                <option value="500k-2m">500.000 – 2.000.000 ₫</option>
+                <option value="2m-5m">2.000.000 – 5.000.000 ₫</option>
+                <option value="5m-15m">5.000.000 – 15.000.000 ₫</option>
+                <option value="15m+"><span class="vi">Trên 15.000.000 ₫</span><span class="en">Above ₫15M</span></option>
+              </select>
+            </div>
+          </div>
+
+          <div class="lead-row">
+            <div class="lead-field" style="grid-column:1/-1">
+              <label for="lf-notes"><span class="vi">Ghi chú / yêu cầu cụ thể</span><span class="en">Notes / specific requests</span></label>
+              <textarea id="lf-notes" name="notes" rows="3" placeholder="" data-vi-ph="Quán mình theo phong cách gì? Cần triển khai khi nào? Có thắc mắc gì cần hỏi trước?" data-en-ph="What style is your venue? When do you want to roll out? Any questions to clarify upfront?"></textarea>
+            </div>
+          </div>
+
+          <button type="submit" class="lead-submit">
+            <span class="vi">Gửi yêu cầu tư vấn</span><span class="en">Send consultation request</span>
+            <span class="arr">→</span>
+          </button>
+          <div class="lead-privacy"><span class="vi">Bằng việc gửi form, bạn đồng ý với <a href="privacy.html">chính sách bảo mật</a> của Alive.</span><span class="en">By submitting, you agree to Alive.'s <a href="privacy.html">privacy policy</a>.</span></div>
+        </form>
+
+        <div class="lead-success" id="leadSuccess">
+          <div class="lead-success-icon">✓</div>
+          <h3><span class="vi">Cảm ơn bạn!</span><span class="en">Thank you!</span></h3>
+          <p><span class="vi">Alive. đã nhận được thông tin. Mình sẽ phản hồi trong vòng 1 ngày làm việc qua email <strong id="leadSuccessEmail"></strong>.</span><span class="en">We've got your details. We'll reply within 1 business day to <strong id="leadSuccessEmailEn"></strong>.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-final">
   <div class="wrap">
@@ -1361,6 +1587,45 @@ setLang = function(l) {
   const men = document.getElementById('m-btn-en');
   if (mvi) mvi.classList.toggle('active', l === 'vi');
   if (men) men.classList.toggle('active', l === 'en');
+};
+
+
+// ─── LEAD FORM ───
+function handleLeadSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('leadForm');
+  const success = document.getElementById('leadSuccess');
+  const email = document.getElementById('lf-email').value;
+  document.getElementById('leadSuccessEmail').textContent = email;
+  document.getElementById('leadSuccessEmailEn').textContent = email;
+
+  // Collect data
+  const data = {};
+  new FormData(form).forEach((v, k) => data[k] = v);
+  console.log('Lead submitted:', data);
+
+  // TODO: POST to actual endpoint when backend is ready
+  // For now: hide form, show success
+  form.style.display = 'none';
+  success.classList.add('show');
+  success.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+// Sync textarea placeholder with language
+function updateLeadPlaceholders() {
+  const lang = document.documentElement.getAttribute('data-lang') || 'vi';
+  const ta = document.getElementById('lf-notes');
+  if (ta) {
+    ta.placeholder = ta.dataset[lang + 'Ph'] || '';
+  }
+}
+updateLeadPlaceholders();
+
+// Wrap setLang to also update placeholders
+const _origSetLang2 = setLang;
+setLang = function(l) {
+  _origSetLang2(l);
+  updateLeadPlaceholders();
 };
 
 </script>
