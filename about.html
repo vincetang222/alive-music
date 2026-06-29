@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title class="vi">Giới thiệu — Alive.</title>
+<meta name="description" content="Câu chuyện và đội ngũ đằng sau Alive. — nền tảng âm nhạc bản quyền cho không gian kinh doanh Việt Nam.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   ALIVE. — Shared Styles
+   Brand v5 Jewel Palette · used by all pages
+   ═══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0A0512;
+  --bg2:#120724;
+  --bg3:#1A0E33;
+  --text:#F8F4FF;
+  --muted:rgba(248,244,255,.62);
+  --hint:rgba(248,244,255,.38);
+  --faint:rgba(248,244,255,.18);
+  --border:rgba(255,255,255,.08);
+  --border-s:rgba(255,255,255,.16);
+  --glass:rgba(255,255,255,.04);
+  --glass-s:rgba(255,255,255,.08);
+
+  --plum:#7B1FA2;
+  --plum-2:#9333EA;
+  --plum-light:#C084FC;
+  --sapphire:#1E40AF;
+  --sapphire-2:#3B82F6;
+  --sapphire-light:#60A5FA;
+  --emerald:#059669;
+  --emerald-2:#10B981;
+  --emerald-light:#34D399;
+  --gold:#B45309;
+  --gold-2:#D97706;
+  --gold-light:#F59E0B;
+  --ruby:#9F1239;
+  --ruby-2:#BE123C;
+  --ruby-light:#FB7185;
+
+  --aurora:linear-gradient(135deg,#C084FC 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  --aurora-2:linear-gradient(135deg,#7B1FA2 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  --aurora-warm:linear-gradient(135deg,#F59E0B 0%,#D97706 30%,#9F1239 70%,#BE123C 100%);
+
+  --fd:'Cormorant Garamond',serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'DM Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);font-weight:500;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}
+
+[data-lang="vi"] .en{display:none}
+[data-lang="en"] .vi{display:none}
+
+/* Atmosphere */
+.mesh{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mesh::before{content:'';position:absolute;inset:-30%;
+  background:
+    radial-gradient(ellipse 55% 50% at 18% 15%,rgba(123,31,162,.32) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 55% at 85% 8%,rgba(30,64,175,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 45% at 65% 90%,rgba(5,150,105,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 42% 42% at 8% 75%,rgba(180,83,9,.14) 0%,transparent 50%);
+  animation:atmos 28s ease-in-out infinite alternate}
+@keyframes atmos{0%{transform:translate(0,0) scale(1)}100%{transform:translate(1.5%,1%) scale(1.03)}}
+
+section{position:relative;z-index:1}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.wrap-narrow{max-width:760px;margin:0 auto;padding:0 32px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,5,18,.7);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--border);transition:background .3s}
+nav.scrolled{background:rgba(10,5,18,.94)}
+.nav-logo{font-family:var(--fd);font-weight:500;font-size:26px;letter-spacing:-.6px;color:var(--text);text-decoration:none;display:inline-flex;align-items:baseline}
+.nav-logo span{background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-mid{display:flex;align-items:center;gap:28px}
+.nav-mid a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:600}
+.nav-mid a:hover{color:var(--text)}
+.nav-end{display:flex;gap:10px;align-items:center}
+.lang-toggle{display:flex;background:var(--glass-s);border:1px solid var(--border-s);border-radius:40px;padding:3px;gap:2px}
+.lang-toggle button{padding:6px 14px;border-radius:36px;border:none;background:none;font-family:var(--fb);font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;letter-spacing:.5px;transition:all .2s}
+.lang-toggle button.active{background:rgba(123,31,162,.3);color:#E9D5FF}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fb);text-decoration:none;transition:all .25s var(--ease)}
+.btn-primary{background:linear-gradient(135deg,var(--plum),var(--plum-2));color:#fff;font-weight:600;box-shadow:0 6px 22px rgba(123,31,162,.4)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 32px rgba(123,31,162,.6)}
+
+/* Section labels & headers */
+.kicker{font-family:var(--fm);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--hint);margin-bottom:18px;display:inline-flex;align-items:center;gap:12px;font-weight:700}
+.kicker::before{content:'';width:24px;height:1.5px;background:var(--plum-light)}
+.k-plum::before{background:var(--plum-light)}
+.k-sapphire::before{background:var(--sapphire-light)}
+.k-emerald::before{background:var(--emerald-light)}
+.k-gold::before{background:var(--gold-light)}
+.k-ruby::before{background:var(--ruby-light)}
+
+.sec-h{font-family:var(--fd);font-weight:500;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2.5px;line-height:1.02;margin-bottom:24px}
+.sec-h em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500}
+.sec-lede{font-size:18px;color:var(--muted);max-width:580px;line-height:1.6;font-weight:500}
+
+/* Glass cards */
+.glass{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:20px;transition:all .25s var(--ease)}
+.glass-s{background:var(--glass-s);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid var(--border-s);border-radius:20px}
+.glass-plum{background:rgba(123,31,162,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(123,31,162,.25);border-radius:20px}
+.glass-sapphire{background:rgba(30,64,175,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(30,64,175,.25);border-radius:20px}
+.glass-emerald{background:rgba(5,150,105,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(5,150,105,.25);border-radius:20px}
+.glass-gold{background:rgba(180,83,9,.1);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(180,83,9,.22);border-radius:20px}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--bg2);position:relative;z-index:1}
+.f-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.f-brand-logo{font-family:var(--fd);font-weight:500;font-size:30px;letter-spacing:-.6px;margin-bottom:14px}
+.f-brand-logo span{background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.f-brand p{font-size:13px;color:var(--muted);max-width:280px;line-height:1.6;margin-bottom:18px;font-weight:500}
+.f-brand-meta{font-size:12px;color:var(--hint);font-family:var(--fm);letter-spacing:.5px;font-weight:500}
+.f-col h4{font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--hint);margin-bottom:18px}
+.f-col ul{list-style:none}
+.f-col li{margin-bottom:10px}
+.f-col a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:500}
+.f-col a:hover{color:var(--text)}
+.f-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;font-size:12px;color:var(--hint);font-family:var(--fm);letter-spacing:.3px;font-weight:500}
+
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .nav-mid{display:none}
+  .wrap,.wrap-narrow{padding:0 20px}
+  .f-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .f-grid{grid-template-columns:1fr}
+}
+
+/* Page-specific */
+.page-hero{padding:140px 0 80px;position:relative;z-index:1}
+.page-hero-kicker{font-family:var(--fm);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--hint);margin-bottom:20px;font-weight:700}
+.page-hero-h{font-family:var(--fd);font-weight:500;font-size:clamp(48px,7vw,96px);letter-spacing:-3px;line-height:.95;margin-bottom:28px}
+.page-hero-h em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.page-hero-sub{font-size:18px;color:var(--muted);max-width:600px;line-height:1.6;font-weight:500}
+.page-body{padding:0 0 120px;position:relative;z-index:1}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:100px}
+.about-grid.rev{direction:rtl}.about-grid.rev>*{direction:ltr}
+.about-text h2{font-family:var(--fd);font-size:clamp(32px,4vw,52px);font-weight:500;letter-spacing:-1.5px;line-height:1.05;margin-bottom:20px}
+.about-text h2 em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.about-text p{font-size:16px;color:var(--muted);line-height:1.75;margin-bottom:14px;font-weight:500}
+.about-text p:last-child{margin-bottom:0}
+.about-visual{border-radius:28px;overflow:hidden;position:relative;aspect-ratio:4/3;
+  background:linear-gradient(160deg,rgba(123,31,162,.18),rgba(30,64,175,.12),rgba(5,150,105,.1));
+  backdrop-filter:blur(20px);border:1px solid var(--border-s);display:flex;align-items:center;justify-content:center}
+.about-visual-inner{text-align:center;padding:40px}
+.about-visual-n{font-family:var(--fd);font-size:96px;font-weight:500;letter-spacing:-4px;line-height:1;
+  background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.about-visual-l{font-family:var(--fm);font-size:11px;letter-spacing:2px;color:var(--hint);margin-top:12px;text-transform:uppercase;font-weight:700}
+
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:100px}
+.value-card{padding:32px;border-radius:24px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--border-s);transition:all .25s}
+.value-card:hover{transform:translateY(-4px);border-color:rgba(192,132,252,.35)}
+.value-icon{font-size:32px;margin-bottom:16px}
+.value-h{font-family:var(--fd);font-size:24px;font-weight:500;letter-spacing:-.5px;margin-bottom:10px}
+.value-b{font-size:14px;color:var(--muted);line-height:1.65;font-weight:500}
+
+.team-intro{max-width:640px;margin:0 auto 60px;text-align:center}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:100px}
+.team-card{padding:32px 24px;border-radius:24px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--border-s);text-align:center}
+.team-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;
+  background:var(--aurora);display:flex;align-items:center;justify-content:center;
+  font-family:var(--fd);font-size:28px;font-weight:500;color:#fff}
+.team-name{font-family:var(--fd);font-size:22px;font-weight:500;letter-spacing:-.3px;margin-bottom:4px}
+.team-role{font-size:12px;color:var(--plum-light);font-family:var(--fm);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.team-bio{font-size:13px;color:var(--muted);line-height:1.6;font-weight:500}
+
+.mission-wrap{padding:64px;border-radius:32px;background:linear-gradient(160deg,rgba(123,31,162,.16),rgba(30,64,175,.1),rgba(5,150,105,.08));border:1px solid var(--border-s);text-align:center;margin-bottom:100px;position:relative;overflow:hidden}
+.mission-wrap::before{content:'';position:absolute;inset:-20%;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(123,31,162,.15) 0%,transparent 65%);pointer-events:none}
+.mission-wrap>*{position:relative}
+.mission-h{font-family:var(--fd);font-size:clamp(36px,5vw,64px);font-weight:500;letter-spacing:-2px;line-height:1;margin-bottom:20px}
+.mission-h em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mission-b{font-size:17px;color:var(--muted);max-width:560px;margin:0 auto;line-height:1.65;font-weight:500}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contact-card{padding:32px;border-radius:20px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--border-s)}
+.contact-card h3{font-family:var(--fd);font-size:22px;font-weight:500;letter-spacing:-.3px;margin-bottom:8px}
+.contact-card p{font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.6;font-weight:500}
+.contact-card a{color:var(--plum-light);text-decoration:none;font-weight:600;font-size:15px;border-bottom:1px solid rgba(192,132,252,.4);padding-bottom:2px}
+.contact-card a:hover{border-bottom-color:var(--plum-light)}
+
+@media(max-width:960px){
+  .about-grid,.about-grid.rev{grid-template-columns:1fr;direction:ltr}
+  .values-grid,.team-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .mission-wrap{padding:40px 24px}
+}
+@media(max-width:600px){
+  .values-grid,.team-grid{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+<body>
+<div class="mesh"></div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Alive<span>.</span></a>
+  <div class="nav-mid">
+    <a href="index.html#product"><span class="vi">Sản phẩm</span><span class="en">Product</span></a>
+    <a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html"><span class="vi">Về chúng tôi</span><span class="en">About</span></a>
+  </div>
+  <div class="nav-end">
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('vi')" id="btn-vi">VI</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+    <a href="index.html#pricing" class="btn btn-primary"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span></a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="page-hero">
+    <div class="page-hero-kicker"><span class="vi">Về Alive.</span><span class="en">About Alive.</span></div>
+    <h1 class="page-hero-h"><span class="vi">Âm nhạc đúng nơi,<br><em>đúng lúc.</em></span><span class="en">The right music,<br><em>every time.</em></span></h1>
+    <p class="page-hero-sub"><span class="vi">Alive. được xây dựng từ một quan sát đơn giản: hầu hết không gian kinh doanh tại Việt Nam đang phát nhạc sai — sai bản quyền, sai mood, và không có ai chịu trách nhiệm về điều đó.</span><span class="en">Alive. was built from a simple observation: most commercial spaces in Vietnam are playing the wrong music — wrong license, wrong mood, and nobody taking responsibility for it.</span></p>
+  </div>
+</div>
+
+<div class="page-body">
+  <div class="wrap">
+
+    <!-- Mission -->
+    <div class="mission-wrap">
+      <p style="font-family:var(--fm);font-size:11px;letter-spacing:2.5px;color:var(--hint);margin-bottom:20px;text-transform:uppercase;font-weight:700"><span class="vi">Sứ mệnh</span><span class="en">Mission</span></p>
+      <h2 class="mission-h"><span class="vi">Biến âm nhạc thành<br><em>tài sản thương hiệu.</em></span><span class="en">Turn music into<br><em>a brand asset.</em></span></h2>
+      <p class="mission-b"><span class="vi">Mỗi không gian kinh doanh xứng đáng có một brand sound riêng — nhất quán, hợp pháp, và tự vận hành. Đó là lý do Alive. tồn tại.</span><span class="en">Every commercial space deserves its own brand sound — consistent, licensed, and self-running. That's why Alive. exists.</span></p>
+    </div>
+
+    <!-- Story -->
+    <div class="about-grid" style="margin-bottom:100px">
+      <div class="about-text">
+        <div class="kicker k-plum"><span class="vi">Câu chuyện</span><span class="en">Our story</span></div>
+        <h2><span class="vi">Bắt đầu từ<br>một quán cafe <em>lạc điệu.</em></span><span class="en">Started from a cafe<br>playing <em>the wrong song.</em></span></h2>
+        <p><span class="vi">Năm 2024, founder của Alive. ngồi làm việc tại một quán cafe specialty ở Quận 1. Quán đẹp, cà phê ngon — nhưng đang phát một playlist Spotify cá nhân với quảng cáo bật ngang mỗi 15 phút.</span><span class="en">In 2024, Alive.'s founder was working at a specialty cafe in District 1. Beautiful space, great coffee — but playing a personal Spotify playlist with ads interrupting every 15 minutes.</span></p>
+        <p><span class="vi">Khi hỏi chủ quán, câu trả lời là: "Biết là không đúng, nhưng không biết dùng cái gì khác." Câu trả lời đó xuất hiện ở hầu hết mọi quán mình ghé.</span><span class="en">When asked, the owner said: "I know it's wrong, but I don't know what else to use." That answer came up in almost every venue visited.</span></p>
+        <p><span class="vi">Alive. được xây dựng để trả lời câu hỏi đó — một lần và mãi mãi.</span><span class="en">Alive. was built to answer that question — once and for good.</span></p>
+      </div>
+      <div class="about-visual">
+        <div class="about-visual-inner">
+          <div class="about-visual-n">2024</div>
+          <div class="about-visual-l"><span class="vi">Năm thành lập</span><span class="en">Founded</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Values -->
+    <div class="kicker k-emerald" style="justify-content:center;display:flex;margin-bottom:40px"><span class="vi">Giá trị cốt lõi</span><span class="en">Core values</span></div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">⚖</div>
+        <div class="value-h"><span class="vi">Hợp pháp, không ngoại lệ</span><span class="en">Legal, no exceptions</span></div>
+        <p class="value-b"><span class="vi">Mọi bài nhạc trên Alive. đều có bản quyền thương mại. Không có vùng xám, không có "chắc ổn thôi". Khách hàng của chúng tôi ngủ ngon vì điều đó.</span><span class="en">Every track on Alive. has commercial licensing. No grey areas, no "probably fine." Our customers sleep well because of that.</span></p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <div class="value-h"><span class="vi">Âm nhạc là công cụ, không phải nền</span><span class="en">Music is a tool, not wallpaper</span></div>
+        <p class="value-b"><span class="vi">BPM đúng vào giờ trưa giúp khách ăn nhanh hơn. Acoustic lúc sáng sớm giữ khách lâu hơn. Đây là khoa học, không phải nghệ thuật thuần tuý.</span><span class="en">The right BPM at noon speeds up table turnover. Acoustic in the morning makes customers linger. This is science, not pure art.</span></p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🔗</div>
+        <div class="value-h"><span class="vi">Nhất quán trên toàn chuỗi</span><span class="en">Consistent across the chain</span></div>
+        <p class="value-b"><span class="vi">Brand sound phải giống nhau dù khách vào quán ở Hà Nội hay Cần Thơ. Đó là một phần của brand identity, không kém gì logo hay màu sắc.</span><span class="en">Brand sound must be the same whether a guest visits in Hanoi or Cần Thơ. It's part of brand identity, no less than logo or colors.</span></p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <div class="value-h"><span class="vi">Tự vận hành, không cần trông</span><span class="en">Self-running, no babysitting</span></div>
+        <p class="value-b"><span class="vi">Chủ quán đã đủ bận. Hệ thống tốt là hệ thống họ không cần nghĩ đến — cài một lần, chạy mãi mãi.</span><span class="en">Owners are busy enough. A good system is one they don't need to think about — set it once, runs forever.</span></p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌱</div>
+        <div class="value-h"><span class="vi">Xây cho Việt Nam, nhìn ra thế giới</span><span class="en">Built for Vietnam, looking outward</span></div>
+        <p class="value-b"><span class="vi">Chúng tôi hiểu thị trường VN — cách vận hành chuỗi F&B, cách nhân viên làm việc, và áp lực pháp lý đặc thù. Nhưng catalog và tiêu chuẩn kỹ thuật là quốc tế.</span><span class="en">We understand the VN market — how F&B chains operate, how staff work, the specific legal pressures. But our catalog and technical standards are international.</span></p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-h"><span class="vi">Đối tác, không phải nhà cung cấp</span><span class="en">Partner, not vendor</span></div>
+        <p class="value-b"><span class="vi">Khi brand sound của khách hàng hoạt động tốt, Alive. thành công. Vì vậy chúng tôi đầu tư vào việc hiểu từng thương hiệu, không chỉ giao thiết bị rồi biến mất.</span><span class="en">When our customers' brand sound works well, Alive. succeeds. So we invest in understanding each brand deeply, not just shipping a device and disappearing.</span></p>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="team-intro">
+      <div class="kicker k-sapphire" style="justify-content:center;display:flex;margin-bottom:20px"><span class="vi">Đội ngũ</span><span class="en">Team</span></div>
+      <h2 class="sec-h" style="text-align:center;font-size:clamp(32px,4vw,52px)"><span class="vi">Những người xây <em>Alive.</em></span><span class="en">The people <em>behind Alive.</em></span></h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">A</div>
+        <div class="team-name"><span class="vi">[Tên Founder]</span><span class="en">[Founder Name]</span></div>
+        <div class="team-role">Co-founder & CEO</div>
+        <p class="team-bio"><span class="vi">Background F&B operations và product. Từng quản lý chuỗi 12 địa điểm trước khi nhận ra khoảng trống về nhạc nền thương mại.</span><span class="en">Background in F&B operations and product. Previously managed a 12-location chain before spotting the gap in commercial background music.</span></p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">B</div>
+        <div class="team-name"><span class="vi">[Tên Co-founder]</span><span class="en">[Co-founder Name]</span></div>
+        <div class="team-role">Co-founder & CTO</div>
+        <p class="team-bio"><span class="vi">Software engineer với 8 năm kinh nghiệm build SaaS. Chịu trách nhiệm toàn bộ hạ tầng kỹ thuật và tích hợp API.</span><span class="en">Software engineer with 8 years building SaaS. Responsible for all technical infrastructure and API integrations.</span></p>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">C</div>
+        <div class="team-name"><span class="vi">[Tên Head of Music]</span><span class="en">[Head of Music Name]</span></div>
+        <div class="team-role">Head of Music & Curation</div>
+        <p class="team-bio"><span class="vi">Nhạc sĩ và curator với hơn 10 năm trong ngành âm nhạc thương mại. Xây dựng toàn bộ hệ thống phân loại mood và brand sound của Alive.</span><span class="en">Musician and curator with 10+ years in commercial music. Built Alive.'s entire mood classification and brand sound system.</span></p>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="kicker k-gold" style="margin-bottom:32px"><span class="vi">Liên hệ</span><span class="en">Get in touch</span></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3><span class="vi">Hợp tác kinh doanh</span><span class="en">Business partnerships</span></h3>
+        <p><span class="vi">Chuỗi F&B, khách sạn, retail — hoặc đối tác muốn tích hợp Alive. vào hệ thống của mình.</span><span class="en">F&B chains, hotels, retail — or partners wanting to integrate Alive. into their systems.</span></p>
+        <a href="mailto:hello@alivemusic.asia">hello@alivemusic.asia</a>
+      </div>
+      <div class="contact-card">
+        <h3><span class="vi">Báo chí & Truyền thông</span><span class="en">Press & Media</span></h3>
+        <p><span class="vi">Thông tin về công ty, số liệu, và tài nguyên truyền thông. Phản hồi trong 24 giờ làm việc.</span><span class="en">Company information, data, and media resources. Response within 24 business hours.</span></p>
+        <a href="mailto:press@alivemusic.asia">press@alivemusic.asia</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <div class="f-brand-logo">Alive<span>.</span></div>
+        <p><span class="vi">Âm nhạc bản quyền cho không gian kinh doanh tại Việt Nam.</span><span class="en">Licensed commercial music for Vietnamese business spaces.</span></p>
+        <div class="f-brand-meta">alivemusic.asia</div>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Sản phẩm</span><span class="en">Product</span></h4>
+        <ul>
+          <li><a href="index.html#product"><span class="vi">Tính năng</span><span class="en">Features</span></a></li>
+          <li><a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a></li>
+          <li><a href="alive_with_es.html"><span class="vi">Demo</span><span class="en">Demo</span></a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Công ty</span><span class="en">Company</span></h4>
+        <ul>
+          <li><a href="about.html"><span class="vi">Giới thiệu</span><span class="en">About</span></a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="mailto:hello@alivemusic.asia"><span class="vi">Liên hệ</span><span class="en">Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Pháp lý</span><span class="en">Legal</span></h4>
+        <ul>
+          <li><a href="terms.html"><span class="vi">Điều khoản</span><span class="en">Terms</span></a></li>
+          <li><a href="privacy.html"><span class="vi">Bảo mật</span><span class="en">Privacy</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div>© 2026 ALIVE. MUSIC CO., LTD · HO CHI MINH CITY, VIETNAM</div>
+      <div>HELLO@ALIVEMUSIC.ASIA</div>
+    </div>
+  </div>
+</footer>
+<script>
+function setLang(l){
+  document.documentElement.setAttribute('data-lang',l);
+  document.getElementById('btn-vi').classList.toggle('active',l==='vi');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  try{localStorage.setItem('alive-lang',l);}catch(e){}
+}
+try{const s=localStorage.getItem('alive-lang');if(s==='en'||s==='vi')setLang(s);}catch(e){}
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>40);
+},{passive:true});
+</script>
+</body>
+</html>

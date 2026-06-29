@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Blog — Alive.</title>
+<meta name="description" content="Kiến thức về âm nhạc thương mại, pháp lý bản quyền và vận hành không gian kinh doanh tại Việt Nam.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   ALIVE. — Shared Styles
+   Brand v5 Jewel Palette · used by all pages
+   ═══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0A0512;
+  --bg2:#120724;
+  --bg3:#1A0E33;
+  --text:#F8F4FF;
+  --muted:rgba(248,244,255,.62);
+  --hint:rgba(248,244,255,.38);
+  --faint:rgba(248,244,255,.18);
+  --border:rgba(255,255,255,.08);
+  --border-s:rgba(255,255,255,.16);
+  --glass:rgba(255,255,255,.04);
+  --glass-s:rgba(255,255,255,.08);
+
+  --plum:#7B1FA2;
+  --plum-2:#9333EA;
+  --plum-light:#C084FC;
+  --sapphire:#1E40AF;
+  --sapphire-2:#3B82F6;
+  --sapphire-light:#60A5FA;
+  --emerald:#059669;
+  --emerald-2:#10B981;
+  --emerald-light:#34D399;
+  --gold:#B45309;
+  --gold-2:#D97706;
+  --gold-light:#F59E0B;
+  --ruby:#9F1239;
+  --ruby-2:#BE123C;
+  --ruby-light:#FB7185;
+
+  --aurora:linear-gradient(135deg,#C084FC 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  --aurora-2:linear-gradient(135deg,#7B1FA2 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  --aurora-warm:linear-gradient(135deg,#F59E0B 0%,#D97706 30%,#9F1239 70%,#BE123C 100%);
+
+  --fd:'Cormorant Garamond',serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'DM Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);font-weight:500;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}
+
+[data-lang="vi"] .en{display:none}
+[data-lang="en"] .vi{display:none}
+
+/* Atmosphere */
+.mesh{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mesh::before{content:'';position:absolute;inset:-30%;
+  background:
+    radial-gradient(ellipse 55% 50% at 18% 15%,rgba(123,31,162,.32) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 55% at 85% 8%,rgba(30,64,175,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 45% at 65% 90%,rgba(5,150,105,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 42% 42% at 8% 75%,rgba(180,83,9,.14) 0%,transparent 50%);
+  animation:atmos 28s ease-in-out infinite alternate}
+@keyframes atmos{0%{transform:translate(0,0) scale(1)}100%{transform:translate(1.5%,1%) scale(1.03)}}
+
+section{position:relative;z-index:1}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.wrap-narrow{max-width:760px;margin:0 auto;padding:0 32px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,5,18,.7);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--border);transition:background .3s}
+nav.scrolled{background:rgba(10,5,18,.94)}
+.nav-logo{font-family:var(--fd);font-weight:500;font-size:26px;letter-spacing:-.6px;color:var(--text);text-decoration:none;display:inline-flex;align-items:baseline}
+.nav-logo span{background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-mid{display:flex;align-items:center;gap:28px}
+.nav-mid a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:600}
+.nav-mid a:hover{color:var(--text)}
+.nav-end{display:flex;gap:10px;align-items:center}
+.lang-toggle{display:flex;background:var(--glass-s);border:1px solid var(--border-s);border-radius:40px;padding:3px;gap:2px}
+.lang-toggle button{padding:6px 14px;border-radius:36px;border:none;background:none;font-family:var(--fb);font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;letter-spacing:.5px;transition:all .2s}
+.lang-toggle button.active{background:rgba(123,31,162,.3);color:#E9D5FF}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fb);text-decoration:none;transition:all .25s var(--ease)}
+.btn-primary{background:linear-gradient(135deg,var(--plum),var(--plum-2));color:#fff;font-weight:600;box-shadow:0 6px 22px rgba(123,31,162,.4)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 32px rgba(123,31,162,.6)}
+
+/* Section labels & headers */
+.kicker{font-family:var(--fm);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--hint);margin-bottom:18px;display:inline-flex;align-items:center;gap:12px;font-weight:700}
+.kicker::before{content:'';width:24px;height:1.5px;background:var(--plum-light)}
+.k-plum::before{background:var(--plum-light)}
+.k-sapphire::before{background:var(--sapphire-light)}
+.k-emerald::before{background:var(--emerald-light)}
+.k-gold::before{background:var(--gold-light)}
+.k-ruby::before{background:var(--ruby-light)}
+
+.sec-h{font-family:var(--fd);font-weight:500;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2.5px;line-height:1.02;margin-bottom:24px}
+.sec-h em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500}
+.sec-lede{font-size:18px;color:var(--muted);max-width:580px;line-height:1.6;font-weight:500}
+
+/* Glass cards */
+.glass{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:20px;transition:all .25s var(--ease)}
+.glass-s{background:var(--glass-s);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid var(--border-s);border-radius:20px}
+.glass-plum{background:rgba(123,31,162,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(123,31,162,.25);border-radius:20px}
+.glass-sapphire{background:rgba(30,64,175,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(30,64,175,.25);border-radius:20px}
+.glass-emerald{background:rgba(5,150,105,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(5,150,105,.25);border-radius:20px}
+.glass-gold{background:rgba(180,83,9,.1);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(180,83,9,.22);border-radius:20px}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--bg2);position:relative;z-index:1}
+.f-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.f-brand-logo{font-family:var(--fd);font-weight:500;font-size:30px;letter-spacing:-.6px;margin-bottom:14px}
+.f-brand-logo span{background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.f-brand p{font-size:13px;color:var(--muted);max-width:280px;line-height:1.6;margin-bottom:18px;font-weight:500}
+.f-brand-meta{font-size:12px;color:var(--hint);font-family:var(--fm);letter-spacing:.5px;font-weight:500}
+.f-col h4{font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--hint);margin-bottom:18px}
+.f-col ul{list-style:none}
+.f-col li{margin-bottom:10px}
+.f-col a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:500}
+.f-col a:hover{color:var(--text)}
+.f-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;font-size:12px;color:var(--hint);font-family:var(--fm);letter-spacing:.3px;font-weight:500}
+
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .nav-mid{display:none}
+  .wrap,.wrap-narrow{padding:0 20px}
+  .f-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .f-grid{grid-template-columns:1fr}
+}
+
+/* Page-specific */
+
+.blog-hero{padding:140px 0 60px;position:relative;z-index:1}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:0 0 120px;position:relative;z-index:1}
+.blog-card{border-radius:24px;overflow:hidden;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--border-s);transition:all .3s var(--ease);display:flex;flex-direction:column}
+.blog-card:hover{transform:translateY(-6px);border-color:rgba(192,132,252,.4);box-shadow:0 24px 56px rgba(0,0,0,.4)}
+.blog-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1.2fr 1fr;border-color:rgba(123,31,162,.3);background:linear-gradient(160deg,rgba(123,31,162,.14),rgba(30,64,175,.08))}
+.blog-card-img{aspect-ratio:16/9;position:relative;overflow:hidden;flex-shrink:0}
+.blog-card.featured .blog-card-img{aspect-ratio:auto;min-height:320px}
+.blog-card-img-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.blog-card-img-icon{font-size:64px;opacity:.35}
+.blog-card-body{padding:28px;display:flex;flex-direction:column;flex:1}
+.blog-card.featured .blog-card-body{padding:40px}
+.blog-tag{display:inline-flex;align-items:center;padding:4px 12px;border-radius:20px;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;width:fit-content}
+.tag-law{background:rgba(180,83,9,.16);color:var(--gold-light);border:1px solid rgba(180,83,9,.3)}
+.tag-business{background:rgba(30,64,175,.16);color:var(--sapphire-light);border:1px solid rgba(30,64,175,.3)}
+.tag-music{background:rgba(123,31,162,.16);color:var(--plum-light);border:1px solid rgba(123,31,162,.3)}
+.tag-tech{background:rgba(5,150,105,.16);color:var(--emerald-light);border:1px solid rgba(5,150,105,.3)}
+.blog-card-title{font-family:var(--fd);font-weight:500;letter-spacing:-.5px;line-height:1.15;margin-bottom:12px;color:var(--text)}
+.blog-card.featured .blog-card-title{font-size:clamp(24px,3vw,40px);letter-spacing:-1.2px}
+.blog-card:not(.featured) .blog-card-title{font-size:22px}
+.blog-card-excerpt{font-size:14px;color:var(--muted);line-height:1.65;flex:1;margin-bottom:20px;font-weight:500}
+.blog-card.featured .blog-card-excerpt{font-size:15px}
+.blog-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--hint);font-family:var(--fm);font-weight:500;margin-top:auto}
+.blog-coming{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:11px;color:var(--hint);font-family:var(--fm);font-weight:600;letter-spacing:.5px}
+.blog-cta{padding:64px;border-radius:32px;background:linear-gradient(160deg,rgba(123,31,162,.14),rgba(30,64,175,.08));border:1px solid var(--border-s);text-align:center;position:relative;z-index:1;margin-bottom:80px}
+.blog-cta h2{font-family:var(--fd);font-size:clamp(28px,4vw,48px);font-weight:500;letter-spacing:-1.5px;margin-bottom:14px}
+.blog-cta h2 em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.blog-cta p{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto 28px;line-height:1.6;font-weight:500}
+.blog-subscribe{display:flex;gap:10px;max-width:420px;margin:0 auto}
+.blog-subscribe input{flex:1;padding:13px 16px;border-radius:40px;background:rgba(0,0,0,.25);border:1px solid var(--border-s);color:var(--text);font-family:var(--fb);font-size:14px;outline:none;transition:border-color .2s}
+.blog-subscribe input:focus{border-color:rgba(192,132,252,.55)}
+.blog-subscribe button{padding:13px 24px;border-radius:40px;background:linear-gradient(135deg,var(--plum),var(--plum-2));color:#fff;border:none;font-family:var(--fb);font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
+.blog-subscribe button:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(123,31,162,.5)}
+@media(max-width:960px){
+  .blog-grid{grid-template-columns:1fr 1fr}
+  .blog-card.featured{grid-column:1/-1;grid-template-columns:1fr}
+  .blog-card.featured .blog-card-img{min-height:200px}
+  .blog-subscribe{flex-direction:column}
+}
+@media(max-width:600px){
+  .blog-grid{grid-template-columns:1fr}
+  .blog-cta{padding:40px 24px}
+}
+
+</style>
+</head>
+<body>
+<div class="mesh"></div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Alive<span>.</span></a>
+  <div class="nav-mid">
+    <a href="index.html#product"><span class="vi">Sản phẩm</span><span class="en">Product</span></a>
+    <a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html"><span class="vi">Về chúng tôi</span><span class="en">About</span></a>
+  </div>
+  <div class="nav-end">
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('vi')" id="btn-vi">VI</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+    <a href="index.html#pricing" class="btn btn-primary"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span></a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="blog-hero">
+    <div class="kicker k-plum"><span class="vi">Blog</span><span class="en">Blog</span></div>
+    <h1 class="sec-h"><span class="vi">Kiến thức về<br><em>âm nhạc thương mại.</em></span><span class="en">Insights on<br><em>commercial music.</em></span></h1>
+    <p class="sec-lede"><span class="vi">Pháp lý bản quyền, tâm lý khách hàng, và cách âm nhạc định hình thương hiệu. Viết cho người vận hành không gian kinh doanh tại Việt Nam.</span><span class="en">Copyright law, customer psychology, and how music shapes brands. Written for commercial space operators in Vietnam.</span></p>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="blog-grid">
+
+    <!-- Featured article -->
+    <div class="blog-card featured">
+      <div class="blog-card-img" style="background:linear-gradient(160deg,rgba(180,83,9,.22),rgba(159,18,57,.16))">
+        <div class="blog-card-img-inner"><div class="blog-card-img-icon">⚖</div></div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-tag tag-law"><span class="vi">Pháp lý · Nổi bật</span><span class="en">Legal · Featured</span></div>
+        <h2 class="blog-card-title"><span class="vi">Luật bản quyền âm nhạc 2026 tại Việt Nam: Những điều chủ quán cần biết ngay</span><span class="en">Vietnam's 2026 Music Copyright Law: What venue owners need to know now</span></h2>
+        <p class="blog-card-excerpt"><span class="vi">Nghị định 341, Luật SHTT sửa đổi, và chiến dịch thực thi toàn quốc đang thay đổi hoàn toàn cách các doanh nghiệp F&B phải tiếp cận âm nhạc nền. Bài viết này phân tích từng điểm thay đổi và ý nghĩa thực tế với quán của bạn.</span><span class="en">Decree 341, the amended IP Law, and the nationwide enforcement campaign are completely changing how F&B businesses must approach background music. This article breaks down each change and its practical implications for your venue.</span></p>
+        <div class="blog-card-meta">
+          <span><span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          <span class="blog-coming">✦ <span class="vi">Bài đầu tiên</span><span class="en">First article</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div class="blog-card">
+      <div class="blog-card-img" style="background:linear-gradient(160deg,rgba(123,31,162,.22),rgba(30,64,175,.16))">
+        <div class="blog-card-img-inner"><div class="blog-card-img-icon">🎵</div></div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-tag tag-music"><span class="vi">Tâm lý & Âm nhạc</span><span class="en">Psychology & Music</span></div>
+        <h2 class="blog-card-title"><span class="vi">BPM và doanh thu: Khoa học đằng sau nhạc nền cafe</span><span class="en">BPM and revenue: The science behind cafe background music</span></h2>
+        <p class="blog-card-excerpt"><span class="vi">Nghiên cứu từ Milliman (1986) đến Behavioral Sciences (2024) cho thấy tempo nhạc ảnh hưởng trực tiếp đến thời gian ngồi, số lượng gọi đồ, và mức chi tiêu của khách.</span><span class="en">Research from Milliman (1986) to Behavioral Sciences (2024) shows music tempo directly affects dwell time, order quantity, and customer spending.</span></p>
+        <div class="blog-card-meta">
+          <span><span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          <span class="blog-coming">✦ Q1 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="blog-card">
+      <div class="blog-card-img" style="background:linear-gradient(160deg,rgba(30,64,175,.22),rgba(5,150,105,.16))">
+        <div class="blog-card-img-inner"><div class="blog-card-img-icon">🏪</div></div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-tag tag-business"><span class="vi">Vận hành chuỗi</span><span class="en">Chain operations</span></div>
+        <h2 class="blog-card-title"><span class="vi">Brand Sound là gì và tại sao chuỗi F&B cần nó</span><span class="en">What is Brand Sound and why F&B chains need it</span></h2>
+        <p class="blog-card-excerpt"><span class="vi">McDonald's, Starbucks, và Apple Store đều có brand sound riêng — không phải ngẫu nhiên. Bài viết giải thích tại sao âm thanh là yếu tố thương hiệu bị bỏ quên nhất tại Việt Nam.</span><span class="en">McDonald's, Starbucks, and Apple Store all have distinct brand sounds — not by accident. This article explains why audio is the most overlooked brand element in Vietnam.</span></p>
+        <div class="blog-card-meta">
+          <span><span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          <span class="blog-coming">✦ Q1 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div class="blog-card">
+      <div class="blog-card-img" style="background:linear-gradient(160deg,rgba(5,150,105,.22),rgba(30,64,175,.14))">
+        <div class="blog-card-img-inner"><div class="blog-card-img-icon">📊</div></div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-tag tag-business"><span class="vi">Nghiên cứu thị trường</span><span class="en">Market research</span></div>
+        <h2 class="blog-card-title"><span class="vi">Khảo sát 200 quán cafe tại TP.HCM: Thực trạng nhạc nền thương mại 2026</span><span class="en">Survey of 200 cafes in HCMC: Commercial background music reality 2026</span></h2>
+        <p class="blog-card-excerpt"><span class="vi">Alive. thực hiện khảo sát với 200 chủ quán cafe tại TP.HCM về thực trạng sử dụng nhạc nền. Kết quả: 87% đang vi phạm bản quyền mà không biết.</span><span class="en">Alive. surveyed 200 cafe owners in HCMC about background music practices. Result: 87% are infringing copyright without knowing it.</span></p>
+        <div class="blog-card-meta">
+          <span><span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          <span class="blog-coming">✦ Q2 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Article 5 -->
+    <div class="blog-card">
+      <div class="blog-card-img" style="background:linear-gradient(160deg,rgba(159,18,57,.18),rgba(123,31,162,.16))">
+        <div class="blog-card-img-inner"><div class="blog-card-img-icon">🎙</div></div>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-tag tag-music"><span class="vi">Interview</span><span class="en">Interview</span></div>
+        <h2 class="blog-card-title"><span class="vi">Chuyên gia âm nhạc thương mại: "Nhạc sai giờ còn tệ hơn không có nhạc"</span><span class="en">Commercial music expert: "Wrong music at the wrong time is worse than no music"</span></h2>
+        <p class="blog-card-excerpt"><span class="vi">Phỏng vấn chuyên sâu với một music director đã làm việc cho các chuỗi F&B lớn tại Đông Nam Á. Bài học từ 15 năm thiết kế brand sound.</span><span class="en">In-depth interview with a music director who has worked with major F&B chains across Southeast Asia. Lessons from 15 years designing brand sound.</span></p>
+        <div class="blog-card-meta">
+          <span><span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          <span class="blog-coming">✦ Q2 2026</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Subscribe CTA -->
+  <div class="blog-cta">
+    <h2><span class="vi">Nhận bài viết mới<br><em>qua email.</em></span><span class="en">Get new articles<br><em>in your inbox.</em></span></h2>
+    <p><span class="vi">Mỗi tháng một bài — không spam, không quảng cáo. Chỉ kiến thức thực sự về âm nhạc thương mại và vận hành không gian kinh doanh.</span><span class="en">One article per month — no spam, no ads. Just real knowledge about commercial music and venue operations.</span></p>
+    <div class="blog-subscribe">
+      <input type="email" placeholder="email@yourvenue.com" id="blog-email">
+      <button onclick="handleBlogSubscribe()"><span class="vi">Đăng ký</span><span class="en">Subscribe</span></button>
+    </div>
+    <p id="blog-sub-msg" style="margin-top:14px;font-size:13px;color:var(--emerald-light);display:none"><span class="vi">✓ Đã đăng ký thành công!</span><span class="en">✓ Subscribed successfully!</span></p>
+  </div>
+</div>
+
+<script>
+function handleBlogSubscribe() {
+  const email = document.getElementById('blog-email').value.trim();
+  if (!email || !email.includes('@')) return;
+  document.getElementById('blog-sub-msg').style.display = 'block';
+  document.getElementById('blog-email').value = '';
+  // TODO: POST to /api/subscribe when backend ready
+  console.log('Blog subscribe:', email);
+}
+document.getElementById('blog-email').addEventListener('keydown', e => {
+  if (e.key === 'Enter') handleBlogSubscribe();
+});
+</script>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <div class="f-brand-logo">Alive<span>.</span></div>
+        <p><span class="vi">Âm nhạc bản quyền cho không gian kinh doanh tại Việt Nam.</span><span class="en">Licensed commercial music for Vietnamese business spaces.</span></p>
+        <div class="f-brand-meta">alivemusic.asia</div>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Sản phẩm</span><span class="en">Product</span></h4>
+        <ul>
+          <li><a href="index.html#product"><span class="vi">Tính năng</span><span class="en">Features</span></a></li>
+          <li><a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Công ty</span><span class="en">Company</span></h4>
+        <ul>
+          <li><a href="about.html"><span class="vi">Giới thiệu</span><span class="en">About</span></a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="mailto:hello@alivemusic.asia"><span class="vi">Liên hệ</span><span class="en">Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Pháp lý</span><span class="en">Legal</span></h4>
+        <ul>
+          <li><a href="terms.html"><span class="vi">Điều khoản</span><span class="en">Terms</span></a></li>
+          <li><a href="privacy.html"><span class="vi">Bảo mật</span><span class="en">Privacy</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div>© 2026 ALIVE. MUSIC CO., LTD · HO CHI MINH CITY, VIETNAM</div>
+      <div>HELLO@ALIVEMUSIC.ASIA</div>
+    </div>
+  </div>
+</footer>
+<script>
+function setLang(l){
+  document.documentElement.setAttribute('data-lang',l);
+  document.getElementById('btn-vi').classList.toggle('active',l==='vi');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  try{localStorage.setItem('alive-lang',l);}catch(e){}
+}
+try{const s=localStorage.getItem('alive-lang');if(s==='en'||s==='vi')setLang(s);}catch(e){}
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>40);
+},{passive:true});
+</script>
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="vi" data-lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Chính sách bảo mật — Alive.</title>
+<meta name="description" content="Chính sách bảo mật dữ liệu cá nhân của Alive. Music. Tuân thủ Nghị định 13/2023/NĐ-CP và GDPR.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════
+   ALIVE. — Shared Styles
+   Brand v5 Jewel Palette · used by all pages
+   ═══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#0A0512;
+  --bg2:#120724;
+  --bg3:#1A0E33;
+  --text:#F8F4FF;
+  --muted:rgba(248,244,255,.62);
+  --hint:rgba(248,244,255,.38);
+  --faint:rgba(248,244,255,.18);
+  --border:rgba(255,255,255,.08);
+  --border-s:rgba(255,255,255,.16);
+  --glass:rgba(255,255,255,.04);
+  --glass-s:rgba(255,255,255,.08);
+
+  --plum:#7B1FA2;
+  --plum-2:#9333EA;
+  --plum-light:#C084FC;
+  --sapphire:#1E40AF;
+  --sapphire-2:#3B82F6;
+  --sapphire-light:#60A5FA;
+  --emerald:#059669;
+  --emerald-2:#10B981;
+  --emerald-light:#34D399;
+  --gold:#B45309;
+  --gold-2:#D97706;
+  --gold-light:#F59E0B;
+  --ruby:#9F1239;
+  --ruby-2:#BE123C;
+  --ruby-light:#FB7185;
+
+  --aurora:linear-gradient(135deg,#C084FC 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  --aurora-2:linear-gradient(135deg,#7B1FA2 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  --aurora-warm:linear-gradient(135deg,#F59E0B 0%,#D97706 30%,#9F1239 70%,#BE123C 100%);
+
+  --fd:'Cormorant Garamond',serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'DM Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);font-weight:500;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}
+
+[data-lang="vi"] .en{display:none}
+[data-lang="en"] .vi{display:none}
+
+/* Atmosphere */
+.mesh{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mesh::before{content:'';position:absolute;inset:-30%;
+  background:
+    radial-gradient(ellipse 55% 50% at 18% 15%,rgba(123,31,162,.32) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 55% at 85% 8%,rgba(30,64,175,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 45% at 65% 90%,rgba(5,150,105,.22) 0%,transparent 55%),
+    radial-gradient(ellipse 42% 42% at 8% 75%,rgba(180,83,9,.14) 0%,transparent 50%);
+  animation:atmos 28s ease-in-out infinite alternate}
+@keyframes atmos{0%{transform:translate(0,0) scale(1)}100%{transform:translate(1.5%,1%) scale(1.03)}}
+
+section{position:relative;z-index:1}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.wrap-narrow{max-width:760px;margin:0 auto;padding:0 32px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,5,18,.7);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--border);transition:background .3s}
+nav.scrolled{background:rgba(10,5,18,.94)}
+.nav-logo{font-family:var(--fd);font-weight:500;font-size:26px;letter-spacing:-.6px;color:var(--text);text-decoration:none;display:inline-flex;align-items:baseline}
+.nav-logo span{background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.nav-mid{display:flex;align-items:center;gap:28px}
+.nav-mid a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:600}
+.nav-mid a:hover{color:var(--text)}
+.nav-end{display:flex;gap:10px;align-items:center}
+.lang-toggle{display:flex;background:var(--glass-s);border:1px solid var(--border-s);border-radius:40px;padding:3px;gap:2px}
+.lang-toggle button{padding:6px 14px;border-radius:36px;border:none;background:none;font-family:var(--fb);font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;letter-spacing:.5px;transition:all .2s}
+.lang-toggle button.active{background:rgba(123,31,162,.3);color:#E9D5FF}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:40px;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--fb);text-decoration:none;transition:all .25s var(--ease)}
+.btn-primary{background:linear-gradient(135deg,var(--plum),var(--plum-2));color:#fff;font-weight:600;box-shadow:0 6px 22px rgba(123,31,162,.4)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 10px 32px rgba(123,31,162,.6)}
+
+/* Section labels & headers */
+.kicker{font-family:var(--fm);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--hint);margin-bottom:18px;display:inline-flex;align-items:center;gap:12px;font-weight:700}
+.kicker::before{content:'';width:24px;height:1.5px;background:var(--plum-light)}
+.k-plum::before{background:var(--plum-light)}
+.k-sapphire::before{background:var(--sapphire-light)}
+.k-emerald::before{background:var(--emerald-light)}
+.k-gold::before{background:var(--gold-light)}
+.k-ruby::before{background:var(--ruby-light)}
+
+.sec-h{font-family:var(--fd);font-weight:500;font-size:clamp(40px,5.5vw,72px);letter-spacing:-2.5px;line-height:1.02;margin-bottom:24px}
+.sec-h em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:500}
+.sec-lede{font-size:18px;color:var(--muted);max-width:580px;line-height:1.6;font-weight:500}
+
+/* Glass cards */
+.glass{background:var(--glass);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:20px;transition:all .25s var(--ease)}
+.glass-s{background:var(--glass-s);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid var(--border-s);border-radius:20px}
+.glass-plum{background:rgba(123,31,162,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(123,31,162,.25);border-radius:20px}
+.glass-sapphire{background:rgba(30,64,175,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(30,64,175,.25);border-radius:20px}
+.glass-emerald{background:rgba(5,150,105,.12);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(5,150,105,.25);border-radius:20px}
+.glass-gold{background:rgba(180,83,9,.1);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(180,83,9,.22);border-radius:20px}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--bg2);position:relative;z-index:1}
+.f-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.f-brand-logo{font-family:var(--fd);font-weight:500;font-size:30px;letter-spacing:-.6px;margin-bottom:14px}
+.f-brand-logo span{background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.f-brand p{font-size:13px;color:var(--muted);max-width:280px;line-height:1.6;margin-bottom:18px;font-weight:500}
+.f-brand-meta{font-size:12px;color:var(--hint);font-family:var(--fm);letter-spacing:.5px;font-weight:500}
+.f-col h4{font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--hint);margin-bottom:18px}
+.f-col ul{list-style:none}
+.f-col li{margin-bottom:10px}
+.f-col a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;font-weight:500}
+.f-col a:hover{color:var(--text)}
+.f-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;font-size:12px;color:var(--hint);font-family:var(--fm);letter-spacing:.3px;font-weight:500}
+
+@media(max-width:960px){
+  nav{padding:0 20px}
+  .nav-mid{display:none}
+  .wrap,.wrap-narrow{padding:0 20px}
+  .f-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .f-grid{grid-template-columns:1fr}
+}
+
+/* Page-specific */
+
+.legal-wrap{padding:120px 0 100px;position:relative;z-index:1}
+.legal-header{margin-bottom:64px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+.legal-title{font-family:var(--fd);font-weight:500;font-size:clamp(48px,7vw,88px);letter-spacing:-3px;line-height:.95;margin-bottom:20px}
+.legal-title em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.legal-meta{font-size:13px;color:var(--hint);font-family:var(--fm);font-weight:500}
+.legal-body{display:grid;grid-template-columns:200px 1fr;gap:64px;align-items:start}
+.legal-toc{position:sticky;top:96px}
+.legal-toc h4{font-family:var(--fm);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--hint);font-weight:700;margin-bottom:16px}
+.legal-toc a{display:block;font-size:13px;color:var(--muted);text-decoration:none;padding:6px 0;border-left:2px solid var(--border);padding-left:12px;transition:all .2s;font-weight:500;line-height:1.3}
+.legal-toc a:hover{color:var(--text);border-left-color:var(--plum-2)}
+.legal-content section{margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border)}
+.legal-content section:last-child{border-bottom:none}
+.legal-content h2{font-family:var(--fd);font-size:28px;font-weight:500;letter-spacing:-.8px;margin-bottom:16px;color:var(--text)}
+.legal-content h3{font-size:15px;font-weight:700;margin-bottom:10px;color:var(--text);margin-top:24px}
+.legal-content p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:12px;font-weight:500}
+.legal-content ul,.legal-content ol{padding-left:20px;margin-bottom:12px}
+.legal-content li{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:6px;font-weight:500}
+.legal-content a{color:var(--plum-light);text-decoration:none;border-bottom:1px solid rgba(192,132,252,.35)}
+.legal-content strong{color:var(--text);font-weight:700}
+.legal-highlight{padding:20px 24px;border-radius:16px;background:rgba(123,31,162,.1);border:1px solid rgba(123,31,162,.25);margin:20px 0;font-size:14px;color:var(--muted);line-height:1.65;font-weight:500}
+.legal-highlight strong{color:var(--plum-light)}
+@media(max-width:960px){
+  .legal-body{grid-template-columns:1fr}
+  .legal-toc{display:none}
+}
+
+</style>
+</head>
+<body>
+<div class="mesh"></div>
+<nav id="nav">
+  <a href="index.html" class="nav-logo">Alive<span>.</span></a>
+  <div class="nav-mid">
+    <a href="index.html#product"><span class="vi">Sản phẩm</span><span class="en">Product</span></a>
+    <a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html"><span class="vi">Về chúng tôi</span><span class="en">About</span></a>
+  </div>
+  <div class="nav-end">
+    <div class="lang-toggle">
+      <button class="active" onclick="setLang('vi')" id="btn-vi">VI</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+    <a href="index.html#pricing" class="btn btn-primary"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span></a>
+  </div>
+</nav>
+
+<div class="wrap-narrow">
+  <div class="legal-wrap">
+    <div class="legal-header">
+      <p style="font-family:var(--fm);font-size:11px;letter-spacing:2.5px;color:var(--hint);margin-bottom:16px;text-transform:uppercase;font-weight:700"><span class="vi">Pháp lý</span><span class="en">Legal</span></p>
+      <h1 class="legal-title"><span class="vi">Chính sách<br><em>bảo mật.</em></span><span class="en">Privacy<br><em>Policy.</em></span></h1>
+      <p class="legal-meta"><span class="vi">Cập nhật lần cuối: 01/01/2026 · Tuân thủ Nghị định 13/2023/NĐ-CP và GDPR</span><span class="en">Last updated: January 1, 2026 · Compliant with Decree 13/2023/ND-CP and GDPR</span></p>
+    </div>
+
+    <div class="legal-body">
+      <div class="legal-toc">
+        <h4><span class="vi">Mục lục</span><span class="en">Contents</span></h4>
+        <a href="#p1"><span class="vi">1. Dữ liệu thu thập</span><span class="en">1. Data collected</span></a>
+        <a href="#p2"><span class="vi">2. Mục đích sử dụng</span><span class="en">2. Purpose of use</span></a>
+        <a href="#p3"><span class="vi">3. Chia sẻ dữ liệu</span><span class="en">3. Data sharing</span></a>
+        <a href="#p4"><span class="vi">4. Lưu trữ & bảo mật</span><span class="en">4. Storage & security</span></a>
+        <a href="#p5"><span class="vi">5. Quyền của bạn</span><span class="en">5. Your rights</span></a>
+        <a href="#p6"><span class="vi">6. Cookies</span><span class="en">6. Cookies</span></a>
+        <a href="#p7"><span class="vi">7. Trẻ em</span><span class="en">7. Children</span></a>
+        <a href="#p8"><span class="vi">8. Thay đổi chính sách</span><span class="en">8. Policy changes</span></a>
+        <a href="#p9"><span class="vi">9. Liên hệ</span><span class="en">9. Contact</span></a>
+      </div>
+
+      <div class="legal-content">
+        <div class="legal-highlight">
+          <strong><span class="vi">Cam kết cốt lõi:</span><span class="en">Core commitment:</span></strong>
+          <span class="vi"> Alive. không bán dữ liệu cá nhân của bạn cho bên thứ ba. Không bao giờ. Chúng tôi thu thập chỉ những gì cần thiết để vận hành dịch vụ và cải thiện trải nghiệm của bạn.</span>
+          <span class="en"> Alive. does not sell your personal data to third parties. Ever. We collect only what is necessary to operate the service and improve your experience.</span>
+        </div>
+
+        <section id="p1">
+          <h2><span class="vi">1. Dữ liệu chúng tôi thu thập</span><span class="en">1. Data we collect</span></h2>
+          <h3><span class="vi">1.1 Dữ liệu bạn cung cấp</span><span class="en">1.1 Data you provide</span></h3>
+          <ul>
+            <li><span class="vi"><strong>Thông tin tài khoản:</strong> họ tên, email, số điện thoại, tên doanh nghiệp, địa chỉ kinh doanh</span><span class="en"><strong>Account information:</strong> full name, email, phone number, business name, business address</span></li>
+            <li><span class="vi"><strong>Thông tin thanh toán:</strong> thông tin thẻ tín dụng được mã hóa và xử lý bởi đối tác thanh toán (Alive. không lưu trực tiếp)</span><span class="en"><strong>Payment information:</strong> encrypted credit card information processed by payment partners (Alive. does not store directly)</span></li>
+            <li><span class="vi"><strong>Cấu hình dịch vụ:</strong> cài đặt lịch phát, playlist, thông số thiết bị</span><span class="en"><strong>Service configuration:</strong> schedule settings, playlists, device parameters</span></li>
+          </ul>
+          <h3><span class="vi">1.2 Dữ liệu tự động thu thập</span><span class="en">1.2 Automatically collected data</span></h3>
+          <ul>
+            <li><span class="vi"><strong>Dữ liệu sử dụng:</strong> lịch sử phát nhạc, số lần skip, thời gian hoạt động thiết bị</span><span class="en"><strong>Usage data:</strong> music playback history, skip counts, device uptime</span></li>
+            <li><span class="vi"><strong>Dữ liệu kỹ thuật:</strong> địa chỉ IP, loại thiết bị, phiên bản firmware, log kết nối mạng</span><span class="en"><strong>Technical data:</strong> IP address, device type, firmware version, network connection logs</span></li>
+            <li><span class="vi"><strong>Cookies và dữ liệu phiên làm việc:</strong> để duy trì đăng nhập và phân tích sử dụng (xem mục 6)</span><span class="en"><strong>Cookies and session data:</strong> to maintain login and analyze usage (see section 6)</span></li>
+          </ul>
+        </section>
+
+        <section id="p2">
+          <h2><span class="vi">2. Mục đích sử dụng dữ liệu</span><span class="en">2. Purpose of data use</span></h2>
+          <p><span class="vi">Chúng tôi sử dụng dữ liệu thu thập để:</span><span class="en">We use collected data to:</span></p>
+          <ul>
+            <li><span class="vi">Cung cấp và duy trì Dịch vụ Alive.</span><span class="en">Provide and maintain the Alive. Service</span></li>
+            <li><span class="vi">Xử lý thanh toán và quản lý tài khoản đăng ký</span><span class="en">Process payments and manage subscription accounts</span></li>
+            <li><span class="vi">Gửi thông báo kỹ thuật, cập nhật bảo mật và thông tin hỗ trợ</span><span class="en">Send technical notifications, security updates, and support information</span></li>
+            <li><span class="vi">Phân tích dữ liệu sử dụng để cải thiện tính năng sản phẩm (ẩn danh)</span><span class="en">Analyze usage data to improve product features (anonymized)</span></li>
+            <li><span class="vi">Tuân thủ nghĩa vụ pháp lý theo quy định Việt Nam và quốc tế</span><span class="en">Comply with legal obligations under Vietnamese and international regulations</span></li>
+            <li><span class="vi">Gửi thông tin marketing (chỉ khi bạn đồng ý và có thể hủy bất kỳ lúc nào)</span><span class="en">Send marketing communications (only with your consent and unsubscribable at any time)</span></li>
+          </ul>
+        </section>
+
+        <section id="p3">
+          <h2><span class="vi">3. Chia sẻ dữ liệu</span><span class="en">3. Data sharing</span></h2>
+          <p><span class="vi">Alive. chỉ chia sẻ dữ liệu cá nhân trong các trường hợp sau:</span><span class="en">Alive. only shares personal data in the following cases:</span></p>
+          <h3><span class="vi">Đối tác dịch vụ</span><span class="en">Service partners</span></h3>
+          <p><span class="vi">Chúng tôi chia sẻ dữ liệu cần thiết với các nhà cung cấp dịch vụ bên thứ ba giúp vận hành Dịch vụ, bao gồm: nhà cung cấp hạ tầng đám mây, đối tác xử lý thanh toán, nhà cung cấp email giao dịch. Tất cả đối tác đều ký cam kết bảo mật dữ liệu phù hợp.</span><span class="en">We share necessary data with third-party service providers that help operate the Service, including: cloud infrastructure providers, payment processing partners, transactional email providers. All partners sign appropriate data security agreements.</span></p>
+          <h3><span class="vi">Nhà cấp phép âm nhạc</span><span class="en">Music licensors</span></h3>
+          <p><span class="vi">Chúng tôi chia sẻ dữ liệu sử dụng nhạc (ẩn danh và tổng hợp) với các đối tác âm nhạc để tuân thủ nghĩa vụ báo cáo bản quyền. Dữ liệu này không bao gồm thông tin cá nhân có thể nhận dạng.</span><span class="en">We share anonymized and aggregated music usage data with music partners to comply with copyright reporting obligations. This data does not include personally identifiable information.</span></p>
+          <h3><span class="vi">Yêu cầu pháp lý</span><span class="en">Legal requirements</span></h3>
+          <p><span class="vi">Chúng tôi có thể tiết lộ thông tin khi được yêu cầu bởi cơ quan nhà nước có thẩm quyền theo đúng quy trình pháp lý, hoặc khi cần thiết để bảo vệ quyền lợi hợp pháp của Alive.</span><span class="en">We may disclose information when required by competent government authorities through proper legal process, or when necessary to protect Alive.'s legitimate interests.</span></p>
+        </section>
+
+        <section id="p4">
+          <h2><span class="vi">4. Lưu trữ và bảo mật</span><span class="en">4. Storage & security</span></h2>
+          <p><span class="vi">Dữ liệu cá nhân được lưu trữ trên hạ tầng đám mây bảo mật. Alive. áp dụng các biện pháp kỹ thuật và tổ chức phù hợp để bảo vệ dữ liệu, bao gồm mã hóa khi truyền (TLS 1.3) và khi lưu trữ (AES-256), kiểm soát truy cập theo vai trò, và giám sát bảo mật liên tục.</span><span class="en">Personal data is stored on secure cloud infrastructure. Alive. applies appropriate technical and organizational measures to protect data, including encryption in transit (TLS 1.3) and at rest (AES-256), role-based access controls, and continuous security monitoring.</span></p>
+          <h3><span class="vi">Thời gian lưu trữ</span><span class="en">Retention periods</span></h3>
+          <ul>
+            <li><span class="vi"><strong>Dữ liệu tài khoản:</strong> trong suốt thời gian đăng ký + 30 ngày sau khi hủy</span><span class="en"><strong>Account data:</strong> throughout subscription + 30 days after cancellation</span></li>
+            <li><span class="vi"><strong>Dữ liệu thanh toán:</strong> 5 năm theo yêu cầu pháp lý về kế toán</span><span class="en"><strong>Payment data:</strong> 5 years as required by accounting regulations</span></li>
+            <li><span class="vi"><strong>Log kỹ thuật:</strong> 90 ngày</span><span class="en"><strong>Technical logs:</strong> 90 days</span></li>
+            <li><span class="vi"><strong>Dữ liệu sử dụng (ẩn danh):</strong> không giới hạn thời gian để cải thiện sản phẩm</span><span class="en"><strong>Usage data (anonymized):</strong> indefinitely for product improvement</span></li>
+          </ul>
+        </section>
+
+        <section id="p5">
+          <h2><span class="vi">5. Quyền của bạn</span><span class="en">5. Your rights</span></h2>
+          <p><span class="vi">Theo Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân của Việt Nam và các quy định quốc tế áp dụng, bạn có các quyền sau:</span><span class="en">Under Vietnam's Decree 13/2023/ND-CP on personal data protection and applicable international regulations, you have the following rights:</span></p>
+          <ul>
+            <li><span class="vi"><strong>Quyền truy cập:</strong> yêu cầu bản sao dữ liệu cá nhân chúng tôi đang lưu giữ về bạn</span><span class="en"><strong>Right to access:</strong> request a copy of personal data we hold about you</span></li>
+            <li><span class="vi"><strong>Quyền chỉnh sửa:</strong> yêu cầu sửa đổi dữ liệu không chính xác</span><span class="en"><strong>Right to rectification:</strong> request correction of inaccurate data</span></li>
+            <li><span class="vi"><strong>Quyền xóa:</strong> yêu cầu xóa dữ liệu cá nhân (trong giới hạn nghĩa vụ pháp lý)</span><span class="en"><strong>Right to erasure:</strong> request deletion of personal data (within legal obligation limits)</span></li>
+            <li><span class="vi"><strong>Quyền hạn chế xử lý:</strong> yêu cầu tạm ngừng xử lý dữ liệu trong khi tranh chấp được giải quyết</span><span class="en"><strong>Right to restrict processing:</strong> request suspension of data processing while disputes are resolved</span></li>
+            <li><span class="vi"><strong>Quyền phản đối:</strong> phản đối việc xử lý dữ liệu cho mục đích marketing</span><span class="en"><strong>Right to object:</strong> object to data processing for marketing purposes</span></li>
+            <li><span class="vi"><strong>Quyền chuyển dữ liệu:</strong> nhận dữ liệu của bạn ở định dạng có thể đọc được bằng máy</span><span class="en"><strong>Right to portability:</strong> receive your data in a machine-readable format</span></li>
+          </ul>
+          <p><span class="vi">Để thực hiện bất kỳ quyền nào ở trên, gửi yêu cầu đến <a href="mailto:privacy@alivemusic.asia">privacy@alivemusic.asia</a>. Chúng tôi sẽ phản hồi trong vòng 30 ngày.</span><span class="en">To exercise any of the above rights, send a request to <a href="mailto:privacy@alivemusic.asia">privacy@alivemusic.asia</a>. We will respond within 30 days.</span></p>
+        </section>
+
+        <section id="p6">
+          <h2 id="cookies"><span class="vi">6. Cookies và công nghệ theo dõi</span><span class="en">6. Cookies and tracking technologies</span></h2>
+          <p><span class="vi">Alive. sử dụng cookies và các công nghệ tương tự để:</span><span class="en">Alive. uses cookies and similar technologies to:</span></p>
+          <ul>
+            <li><span class="vi"><strong>Cookies cần thiết:</strong> duy trì phiên đăng nhập và tùy chọn ngôn ngữ. Không thể tắt.</span><span class="en"><strong>Necessary cookies:</strong> maintain login sessions and language preferences. Cannot be disabled.</span></li>
+            <li><span class="vi"><strong>Cookies phân tích:</strong> đo lường lưu lượng truy cập và hành vi người dùng (ẩn danh). Có thể từ chối.</span><span class="en"><strong>Analytics cookies:</strong> measure traffic and user behavior (anonymized). Can be declined.</span></li>
+          </ul>
+          <p><span class="vi">Alive. không sử dụng cookies quảng cáo hoặc theo dõi bên thứ ba cho mục đích nhắm mục tiêu quảng cáo.</span><span class="en">Alive. does not use advertising cookies or third-party tracking for ad targeting purposes.</span></p>
+        </section>
+
+        <section id="p7">
+          <h2><span class="vi">7. Trẻ em</span><span class="en">7. Children</span></h2>
+          <p><span class="vi">Dịch vụ Alive. được thiết kế và cung cấp cho doanh nghiệp, không phải cá nhân dưới 18 tuổi. Alive. không cố ý thu thập dữ liệu cá nhân từ người dưới 18 tuổi. Nếu bạn biết rằng một người dưới 18 tuổi đã cung cấp thông tin cá nhân cho chúng tôi, vui lòng liên hệ để chúng tôi xóa thông tin đó.</span><span class="en">The Alive. Service is designed and provided for businesses, not individuals under 18 years of age. Alive. does not intentionally collect personal data from individuals under 18. If you believe someone under 18 has provided personal information to us, please contact us to have that information deleted.</span></p>
+        </section>
+
+        <section id="p8">
+          <h2><span class="vi">8. Thay đổi chính sách</span><span class="en">8. Policy changes</span></h2>
+          <p><span class="vi">Alive. có thể cập nhật chính sách này theo thời gian để phản ánh thay đổi pháp lý hoặc kinh doanh. Khi có thay đổi quan trọng, chúng tôi sẽ thông báo qua email đã đăng ký ít nhất 30 ngày trước khi có hiệu lực. Việc tiếp tục sử dụng Dịch vụ sau ngày có hiệu lực được coi là đồng ý với chính sách mới.</span><span class="en">Alive. may update this policy from time to time to reflect legal or business changes. For significant changes, we will notify via registered email at least 30 days before the effective date. Continued use of the Service after the effective date constitutes acceptance of the new policy.</span></p>
+        </section>
+
+        <section id="p9">
+          <h2><span class="vi">9. Liên hệ về bảo mật dữ liệu</span><span class="en">9. Data privacy contact</span></h2>
+          <p><span class="vi"><strong>Alive. Music Co., Ltd.</strong><br>Địa chỉ: [Địa chỉ công ty], Thành phố Hồ Chí Minh, Việt Nam<br>Email bảo mật dữ liệu: <a href="mailto:privacy@alivemusic.asia">privacy@alivemusic.asia</a><br>Phản hồi trong: 30 ngày làm việc</span><span class="en"><strong>Alive. Music Co., Ltd.</strong><br>Address: [Company Address], Ho Chi Minh City, Vietnam<br>Data privacy email: <a href="mailto:privacy@alivemusic.asia">privacy@alivemusic.asia</a><br>Response within: 30 business days</span></p>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <div class="f-brand-logo">Alive<span>.</span></div>
+        <p><span class="vi">Âm nhạc bản quyền cho không gian kinh doanh tại Việt Nam.</span><span class="en">Licensed commercial music for Vietnamese business spaces.</span></p>
+        <div class="f-brand-meta">alivemusic.asia</div>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Sản phẩm</span><span class="en">Product</span></h4>
+        <ul>
+          <li><a href="index.html#product"><span class="vi">Tính năng</span><span class="en">Features</span></a></li>
+          <li><a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Công ty</span><span class="en">Company</span></h4>
+        <ul>
+          <li><a href="about.html"><span class="vi">Giới thiệu</span><span class="en">About</span></a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="mailto:hello@alivemusic.asia"><span class="vi">Liên hệ</span><span class="en">Contact</span></a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4><span class="vi">Pháp lý</span><span class="en">Legal</span></h4>
+        <ul>
+          <li><a href="terms.html"><span class="vi">Điều khoản</span><span class="en">Terms</span></a></li>
+          <li><a href="privacy.html"><span class="vi">Bảo mật</span><span class="en">Privacy</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <div>© 2026 ALIVE. MUSIC CO., LTD · HO CHI MINH CITY, VIETNAM</div>
+      <div>HELLO@ALIVEMUSIC.ASIA</div>
+    </div>
+  </div>
+</footer>
+<script>
+function setLang(l){
+  document.documentElement.setAttribute('data-lang',l);
+  document.getElementById('btn-vi').classList.toggle('active',l==='vi');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  try{localStorage.setItem('alive-lang',l);}catch(e){}
+}
+try{const s=localStorage.getItem('alive-lang');if(s==='en'||s==='vi')setLang(s);}catch(e){}
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>40);
+},{passive:true});
+</script>
+</body>
+</html>
