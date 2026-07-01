@@ -721,11 +721,41 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 @media(max-width:600px){
   .f-grid{grid-template-columns:1fr}
 }
+
+/* ═══ EFFECT 4 — Scroll progress bar ═══ */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--aurora);z-index:200;pointer-events:none;transition:width .1s linear}
+
+/* ═══ EFFECT 2 — Cursor spotlight on dark sections ═══ */
+.spotlight-section{position:relative}
+.spotlight-section::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .4s var(--ease);
+  background:radial-gradient(480px circle at var(--sx,50%) var(--sy,50%),rgba(255,255,255,.05),transparent 70%)}
+.spotlight-section:hover::before{opacity:1}
+.spotlight-section > .wrap{position:relative;z-index:1}
+@media(hover:none){.spotlight-section::before{display:none}}
+
+/* ═══ EFFECT 3 — Magnetic CTA buttons ═══ */
+.magnetic-btn{transition:transform .25s cubic-bezier(.16,1,.3,1)}
+@media(hover:none){.magnetic-btn{transition:none}}
+
+/* ═══ EFFECT 5 — Parallax depth on hero elements ═══ */
+#parallaxHv,#parallaxTl{will-change:translate}
+
+/* ═══ EFFECT 6 — Heading line-by-line reveal ═══ */
+.line-reveal{display:block;opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible .line-reveal{opacity:1;transform:none}
+.line-reveal:nth-child(1){transition-delay:.05s}
+.line-reveal:nth-child(2){transition-delay:.16s}
+.line-reveal:nth-child(3){transition-delay:.27s}
+@media(prefers-reduced-motion:reduce){
+  .line-reveal{opacity:1;transform:none;transition:none}
+  .scroll-progress{transition:none}
+}
 </style>
 </head>
 <body>
 <div class="mesh"></div>
 <div class="glass-tint-layer" id="glassTintLayer"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -741,7 +771,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
       <button class="active" onclick="setLang('vi')" id="btn-vi">VI</button>
       <button onclick="setLang('en')" id="btn-en">EN</button>
     </div>
-    <a href="#pricing" class="btn btn-primary nav-cta-desktop"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span></a>
+    <a href="#pricing" class="btn btn-primary nav-cta-desktop magnetic-btn"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span></a>
     <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMobileMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -792,14 +822,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
           <span class="en">Alive. is a licensed music platform for commercial spaces. <strong>Professionally curated, auto-shifting by the hour, synced across every venue.</strong> Set it once — sounds right everywhere.</span>
         </p>
         <div class="hero-actions">
-          <a href="#pricing" class="btn-cta"><span class="vi">Dùng thử 14 ngày miễn phí</span><span class="en">Start 14-day free trial</span> <span class="arr">→</span></a>
+          <a href="#pricing" class="btn-cta magnetic-btn"><span class="vi">Dùng thử 14 ngày miễn phí</span><span class="en">Start 14-day free trial</span> <span class="arr">→</span></a>
           <a href="https://alive-music.vercel.app/alive_with_es.html" class="btn-cta-2"><span class="vi">Xem demo trực tiếp</span><span class="en">See the live demo</span></a>
           <span class="hero-microcopy"><span class="vi">Không cần thẻ tín dụng. Huỷ bất cứ lúc nào.</span><span class="en">No card needed. Cancel anytime.</span></span>
         </div>
       </div>
 
       <!-- HERO WAVEFORM VISUALIZER -->
-      <div class="hero-visualizer reveal reveal-delay-3">
+      <div class="hero-visualizer reveal reveal-delay-3" id="parallaxHv">
         <div class="hv-top">
           <div class="hv-track">
             <div class="hv-track-name" id="hvTrackName">Glass Ceiling — Saga Berlin</div>
@@ -822,7 +852,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
         </div>
       </div>
 
-      <div class="timeline reveal reveal-delay-4">
+      <div class="timeline reveal reveal-delay-4" id="parallaxTl">
         <div class="tl-label">
           <span class="vi">MỘT NGÀY TẠI QUÁN BẠN — 5 TÂM TRẠNG, TỰ CHUYỂN THEO GIỜ</span>
           <span class="en">A FULL DAY AT YOUR VENUE — 5 MOODS, AUTO-SHIFTING</span>
@@ -1005,31 +1035,31 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
     <div class="metrics-bento" id="metricsBento">
       <div class="metric-card metric-card-hero reveal">
-        <div class="metric-n">+38%</div>
+        <div class="metric-n" data-count="38" data-prefix="+" data-suffix="%">+0%</div>
         <div class="metric-h"><span class="vi">Tổng doanh thu</span><span class="en">Total revenue</span></div>
         <p class="metric-b"><span class="vi">Khi nhạc phù hợp với cá tính thương hiệu thay vì playlist ngẫu nhiên — riêng tráng miệng và món phụ tăng mạnh hơn nữa.</span><span class="en">When music matches brand personality vs random playlists — desserts and sides see even higher lift.</span></p>
         <div class="metric-src">HUI Research · Daunfeldt et al. · 2017</div>
       </div>
       <div class="metric-card reveal reveal-delay-1">
-        <div class="metric-n">+40%</div>
+        <div class="metric-n" data-count="40" data-prefix="+" data-suffix="%">+0%</div>
         <div class="metric-h"><span class="vi">Doanh thu đồ uống</span><span class="en">Beverage revenue</span></div>
         <p class="metric-b"><span class="vi">Khách trong nhà hàng phát nhạc chậm gọi thêm trung bình 3 đồ uống mỗi bàn so với nhạc tempo nhanh.</span><span class="en">Diners in slow-tempo settings ordered an average of 3 more drinks per table than in fast-tempo settings.</span></p>
         <div class="metric-src">Milliman · JCR · 1986</div>
       </div>
       <div class="metric-card reveal reveal-delay-2">
-        <div class="metric-n">+11′</div>
+        <div class="metric-n" data-count="11" data-prefix="+" data-suffix="′">+0′</div>
         <div class="metric-h"><span class="vi">Thời gian ngồi tại bàn</span><span class="en">Dwell time per table</span></div>
         <p class="metric-b"><span class="vi">Khách ngồi lâu hơn khi phát nhạc tempo chậm — quan trọng với café, fine dining.</span><span class="en">Customers stay 11 minutes longer with slow-tempo music — critical for cafés and fine dining.</span></p>
         <div class="metric-src">Milliman · WKU · 1986</div>
       </div>
       <div class="metric-card mc-pos-2 reveal reveal-delay-1">
-        <div class="metric-n">−10%</div>
+        <div class="metric-n" data-count="10" data-prefix="−" data-suffix="%">−0%</div>
         <div class="metric-h"><span class="vi">Thời gian phục vụ</span><span class="en">Service time</span></div>
         <p class="metric-b"><span class="vi">Tempo nhanh giúp quay vòng bàn nhanh hơn vào giờ cao điểm — nhiều lượt phục vụ hơn mỗi ca.</span><span class="en">Faster tempo speeds table turnover at peak hours — more seatings per shift.</span></p>
         <div class="metric-src">Shaki et al. · Behavioral Sciences · 2024</div>
       </div>
       <div class="metric-card mc-pos-3 reveal reveal-delay-2">
-        <div class="metric-n">5</div>
+        <div class="metric-n" data-count="5" data-prefix="" data-suffix="">0</div>
         <div class="metric-h"><span class="vi">Khung giờ, tự đổi</span><span class="en">Auto mood blocks</span></div>
         <p class="metric-b"><span class="vi">Alive. biết khi nào cần chậm, khi nào cần nhanh — và tự điều chỉnh cả ngày.</span><span class="en">Alive. knows when to slow and when to pick up — adjusts automatically, all day.</span></p>
         <div class="metric-src" style="color:var(--accent-light);border-color:rgba(var(--accent-rgb),.2)"><span class="vi">Tính năng của Alive.</span><span class="en">Built into Alive.</span></div>
@@ -1388,7 +1418,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 </section>
 
 <!-- COMPARE (ruby tinted, generic competitor names) -->
-<section class="sec-compare">
+<section class="sec-compare spotlight-section" id="spotlightCompare">
   <div class="wrap">
     <div class="cp-intro reveal">
       <div class="kicker k-ruby"><span class="vi">So sánh</span><span class="en">Compare</span></div>
@@ -1480,7 +1510,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 </section>
 
 <!-- PRICING (sapphire tinted) -->
-<section class="sec-pricing" id="pricing">
+<section class="sec-pricing spotlight-section" id="pricing">
   <div class="wrap">
     <div class="pricing-head reveal">
       <div class="kicker k-sapphire"><span class="vi">Bảng giá</span><span class="en">Pricing</span></div>
@@ -1741,7 +1771,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
       <h2 class="cta-h"><span class="vi">Bật <em>Alive.</em><br>ngay hôm nay.</span><span class="en">Turn on <em>Alive.</em><br>today.</span></h2>
       <p class="cta-sub"><span class="vi">14 ngày miễn phí. Không cần thẻ tín dụng. Cài đặt trong 5 phút.</span><span class="en">14 days free. No credit card. 5-minute setup.</span></p>
       <div class="cta-row">
-        <a href="#" class="btn-cta"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span> <span class="arr">→</span></a>
+        <a href="#" class="btn-cta magnetic-btn"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span> <span class="arr">→</span></a>
         <a href="mailto:hello@alivemusic.asia" class="btn-cta-2"><span class="vi">Nhắn tin cho chúng tôi</span><span class="en">Talk to us</span></a>
       </div>
       <div class="cta-fine"><span class="vi">Chuỗi từ 10 quán trở lên? Nhắn email hello@alivemusic.asia</span><span class="en">Running 10+ venues? Email hello@alivemusic.asia</span></div>
@@ -2165,6 +2195,118 @@ setLang = function(l) {
   _origSetLang2(l);
   updateLeadPlaceholders();
 };
+
+// ═══ EFFECT 4 — Scroll progress bar ═══
+(function(){
+  const bar = document.getElementById('scrollProgress');
+  if (!bar) return;
+  function update(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (scrolled / max) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+})();
+
+// ═══ EFFECT 2 — Cursor spotlight on dark sections ═══
+(function(){
+  if (window.matchMedia('(hover:none)').matches) return;
+  document.querySelectorAll('.spotlight-section').forEach(sec => {
+    sec.addEventListener('mousemove', e => {
+      const rect = sec.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      sec.style.setProperty('--sx', x + '%');
+      sec.style.setProperty('--sy', y + '%');
+    }, {passive:true});
+  });
+})();
+
+// ═══ EFFECT 3 — Magnetic CTA buttons ═══
+(function(){
+  if (window.matchMedia('(hover:none)').matches) return;
+  const RADIUS = 60, STRENGTH = 0.35;
+  document.querySelectorAll('.magnetic-btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const rect = btn.getBoundingClientRect();
+      const relX = e.clientX - (rect.left + rect.width/2);
+      const relY = e.clientY - (rect.top + rect.height/2);
+      const dist = Math.sqrt(relX*relX + relY*relY);
+      if (dist < rect.width/2 + RADIUS) {
+        btn.style.transform = `translate(${relX*STRENGTH}px, ${relY*STRENGTH}px)`;
+      }
+    }, {passive:true});
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0,0)';
+    });
+  });
+})();
+
+// ═══ EFFECT 5 — Parallax depth on hero waveform + timeline ═══
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const hv = document.getElementById('parallaxHv');
+  const tl = document.getElementById('parallaxTl');
+  if (!hv && !tl) return;
+  let ticking = false;
+  function apply(){
+    const y = window.scrollY;
+    if (y < 1400) { // only near hero, cheap guard
+      if (hv) hv.style.translate = `0 ${Math.min(y*0.06, 40)}px`;
+      if (tl) tl.style.translate = `0 ${Math.min(y*0.03, 20)}px`;
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(apply); ticking = true; }
+  }, {passive:true});
+})();
+
+// ═══ EFFECT 1 — Animated counting numbers (Metrics) ═══
+(function(){
+  const els = document.querySelectorAll('.metric-n[data-count]');
+  if (!els.length) return;
+  const seen = new WeakSet();
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting || seen.has(entry.target)) return;
+      seen.add(entry.target);
+      const el = entry.target;
+      const target = parseFloat(el.dataset.count);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const duration = 1100;
+      const startTime = performance.now();
+      function tick(now){
+        const p = Math.min((now - startTime) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = Math.round(target * eased);
+        el.textContent = `${prefix}${val}${suffix}`;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = `${prefix}${target}${suffix}`;
+      }
+      requestAnimationFrame(tick);
+    });
+  }, {threshold:0.4});
+  els.forEach(el => obs.observe(el));
+})();
+
+// ═══ EFFECT 6 — Heading line-by-line reveal ═══
+(function(){
+  const targets = document.querySelectorAll('.hero-h1, .sec-h, .cta-h');
+  targets.forEach(heading => {
+    heading.querySelectorAll(':scope > .vi, :scope > .en').forEach(span => {
+      const html = span.innerHTML;
+      if (!/<br\s*\/?>/i.test(html)) return;
+      const parts = html.split(/<br\s*\/?>/i);
+      span.innerHTML = parts.map(p => `<span class="line-reveal">${p}</span>`).join('');
+    });
+  });
+})();
 
 </script>
 <!-- GLASS TINT THEME SWITCHER -->
