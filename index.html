@@ -372,6 +372,17 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .cp-no{color:rgba(255,113,133,.7)}
 .cp-meh{color:var(--hint)}
 
+/* Compare mobile card stack */
+.cp-mobile{display:none;flex-direction:column;gap:10px}
+.cp-mobile-card{border-radius:18px;overflow:hidden;border:1px solid var(--border-s);background:rgba(255,255,255,.025)}
+.cp-mobile-card.alive{border-color:rgba(123,31,162,.4);background:rgba(123,31,162,.08)}
+.cp-mobile-head{padding:14px 18px;font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.cp-mobile-card.alive .cp-mobile-head{color:var(--plum-light);background:rgba(123,31,162,.1);border-color:rgba(123,31,162,.25)}
+.cp-mobile-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px 18px;border-bottom:1px solid var(--border);align-items:center}
+.cp-mobile-row:last-child{border-bottom:none}
+.cp-mobile-label{color:var(--muted);font-weight:500;font-size:12px}
+.cp-mobile-val{text-align:right;font-weight:600;font-size:12px;white-space:nowrap}
+
 /* ─── PRICING — featured plan with strong glow ─── */
 .pricing-head{text-align:center;max-width:640px;margin:0 auto 64px}
 .pricing-head .kicker{justify-content:center}
@@ -460,9 +471,13 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .mp-body{grid-template-columns:1fr;gap:24px;padding:24px}
   .how-intro{grid-template-columns:1fr;gap:24px}
   .how-steps{grid-template-columns:1fr}
-  .cp-row{grid-template-columns:1fr 1fr;font-size:12px}
-  .cp-row > .cp-cell:nth-child(n+3){display:none}
-  .cp-row.head{display:none}
+@media(max-width:960px){
+  .cp-table{display:none}
+  .cp-mobile{display:flex;flex-direction:column;gap:10px}
+}
+@media(min-width:961px){
+  .cp-mobile{display:none}
+}
   .pricing-grid{grid-template-columns:1fr}
   .faq-grid{grid-template-columns:1fr;gap:24px}
   .cta-wrap{padding:48px 20px}
@@ -625,7 +640,11 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <section class="sec-hero">
   <div class="wrap">
     <div class="hero">
-      <div class="hero-eyebrow reveal"><span class="hero-eyebrow-dot"></span><span class="vi">ĐANG PHÁT TRỰC TIẾP · MIDDAY PULSE · QUẬN 1, HCM</span><span class="en">LIVE · MIDDAY PULSE · DISTRICT 1, HCMC</span></div>
+      <div class="hero-eyebrow reveal">
+        <span class="hero-eyebrow-dot"></span>
+        <span class="vi">ĐANG PHÁT · MIDDAY PULSE · Q1, HCM</span>
+        <span class="en">LIVE · MIDDAY PULSE · HCMC</span>
+      </div>
 
       <h1 class="hero-h1 reveal reveal-delay-1">
         <span class="vi">Nơi âm nhạc<br><em>tạo dấu ấn.</em></span>
@@ -1209,7 +1228,36 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
         <div class="cp-cell"><span class="vi">Khoảng 4.6 triệu + mua thiết bị riêng</span><span class="en">~₫4.6M + hardware</span></div>
         <div class="cp-cell us"><span class="cp-yes">✓</span>&nbsp;<span class="vi">✓ Từ 2.99 triệu — gói đơn giản nhất</span><span class="en">From ₫2.99M</span></div>
       </div>
+    </div><!-- end cp-table -->
+
+    <!-- COMPARE MOBILE — card stack -->
+    <div class="cp-mobile">
+      <div class="cp-mobile-card">
+        <div class="cp-mobile-head"><span class="vi">Nhạc lậu (Spotify / YouTube / USB)</span><span class="en">Pirated music</span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Bản quyền thương mại</span><span class="en">Commercial license</span></span><span class="cp-mobile-val cp-no">✗ <span class="vi">Không</span><span class="en">No</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Kho nhạc quốc tế</span><span class="en">Intl. catalog</span></span><span class="cp-mobile-val cp-meh">— <span class="vi">Không ổn định</span><span class="en">Mixed</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Tự chuyển mood theo giờ</span><span class="en">Auto mood shift</span></span><span class="cp-mobile-val cp-no">✗ <span class="vi">Không</span><span class="en">No</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Quản lý nhiều chi nhánh</span><span class="en">Multi-location</span></span><span class="cp-mobile-val cp-no">✗ <span class="vi">Không</span><span class="en">No</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Chi phí / năm</span><span class="en">Cost / year</span></span><span class="cp-mobile-val" style="color:var(--ruby-light);font-size:11px"><span class="vi">Nguy cơ bị phạt cao</span><span class="en">High fine risk</span></span></div>
+      </div>
+      <div class="cp-mobile-card">
+        <div class="cp-mobile-head"><span class="vi">Dịch vụ nội địa</span><span class="en">Local incumbents</span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Bản quyền thương mại</span><span class="en">Commercial license</span></span><span class="cp-mobile-val cp-yes">✓ <span class="vi">Có (nhạc VN)</span><span class="en">Yes (VN)</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Kho nhạc quốc tế</span><span class="en">Intl. catalog</span></span><span class="cp-mobile-val cp-no">✗ <span class="vi">Nghèo nàn</span><span class="en">Limited</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Tự chuyển mood theo giờ</span><span class="en">Auto mood shift</span></span><span class="cp-mobile-val cp-no">✗ <span class="vi">Không</span><span class="en">No</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Quản lý nhiều chi nhánh</span><span class="en">Multi-location</span></span><span class="cp-mobile-val cp-no">✗ <span class="vi">Không</span><span class="en">No</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Chi phí / năm</span><span class="en">Cost / year</span></span><span class="cp-mobile-val" style="color:var(--muted);font-size:11px">~4.6tr + <span class="vi">thiết bị</span><span class="en">hardware</span></span></div>
+      </div>
+      <div class="cp-mobile-card alive">
+        <div class="cp-mobile-head">✦ Alive.</div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Bản quyền thương mại</span><span class="en">Commercial license</span></span><span class="cp-mobile-val cp-yes">✓ <span class="vi">Quốc tế · 40k+</span><span class="en">Intl · 40k+</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Kho nhạc quốc tế</span><span class="en">Intl. catalog</span></span><span class="cp-mobile-val cp-yes">✓ <span class="vi">Phong phú</span><span class="en">Strong</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Tự chuyển mood theo giờ</span><span class="en">Auto mood shift</span></span><span class="cp-mobile-val cp-yes">✓ 5 <span class="vi">khung giờ</span><span class="en">blocks</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Quản lý nhiều chi nhánh</span><span class="en">Multi-location</span></span><span class="cp-mobile-val cp-yes">✓ <span class="vi">Một dashboard</span><span class="en">One dashboard</span></span></div>
+        <div class="cp-mobile-row"><span class="cp-mobile-label"><span class="vi">Chi phí / năm</span><span class="en">Cost / year</span></span><span class="cp-mobile-val cp-yes"><span class="vi">Từ 2.99 triệu</span><span class="en">From ₫2.99M</span></span></div>
+      </div>
     </div>
+
   </div>
 </section>
 
