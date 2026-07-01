@@ -285,6 +285,10 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 @media(hover:none){.hero-cursor-glow{display:none}}
 .sec-hero .wrap{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){.hero-wave-canvas{opacity:.4}}
+/* Lazy-render below-the-fold sections — skip layout/paint until near viewport */
+.sec-problem,.sec-metrics,.sec-product,.sec-how,.sec-compare,.sec-pricing,.sec-faq,.sec-lead,.cta-final{
+  content-visibility:auto;contain-intrinsic-size:auto 900px;
+}
 .sec-problem{background:linear-gradient(180deg,transparent 0%,rgba(180,83,9,.06) 50%,transparent 100%);padding:64px 0;position:relative}
 .sec-problem::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,83,9,.4),transparent)}
 .sec-problem::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,83,9,.3),transparent)}
