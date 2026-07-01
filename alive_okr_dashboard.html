@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="vi" data-quarter="q1">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alive. — OKR Roadmap Năm 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#7B1FA2; --plum-2:#9333EA; --plum-light:#C084FC;
+  --sapphire:#1E40AF; --sapphire-2:#3B82F6; --sapphire-light:#93C5FD;
+  --emerald:#059669; --emerald-2:#10B981; --emerald-light:#34D399;
+  --gold:#B45309; --gold-2:#D97706; --gold-light:#F59E0B;
+  --ruby:#9F1239; --ruby-2:#BE123C; --ruby-light:#FB7185;
+  --bg:#0A0512; --bg2:#120724; --bg3:#1A0E2E;
+  --text:#F5F1FA; --muted:#B9AFC9; --hint:#8A7FA0; --faint:#4A3F5E;
+  --border:rgba(192,132,252,0.16); --border-s:rgba(192,132,252,0.28);
+  --glass:rgba(255,255,255,0.03); --glass-s:rgba(255,255,255,0.06);
+  --fd:'Cormorant Garamond',serif; --fb:'DM Sans',sans-serif; --fm:'DM Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --q-color: var(--plum-light); --q-color2: var(--plum-2);
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--fb);
+  line-height:1.5;
+  min-height:100vh;
+  padding-bottom:80px;
+}
+body::before{
+  content:'';
+  position:fixed; inset:0;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -5%, rgba(123,31,162,0.22), transparent 60%),
+    radial-gradient(ellipse 800px 500px at 90% 10%, rgba(30,64,175,0.16), transparent 60%),
+    radial-gradient(ellipse 700px 600px at 50% 100%, rgba(5,150,105,0.10), transparent 60%);
+  pointer-events:none; z-index:0;
+}
+.wrap{ position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:0 28px; }
+
+/* ===== HERO ===== */
+.hero{ padding:64px 0 40px; text-align:center; }
+.eyebrow{
+  font-family:var(--fm); font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+  color:var(--plum-light); margin-bottom:18px; display:flex; align-items:center; justify-content:center; gap:10px;
+}
+.eyebrow::before, .eyebrow::after{ content:''; width:28px; height:1px; background:var(--border-s); }
+h1.brand{
+  font-family:var(--fd); font-weight:600; font-size:clamp(42px,7vw,68px);
+  letter-spacing:0.01em;
+  background:linear-gradient(135deg,#C084FC 0%,#9333EA 30%,#3B82F6 65%,#10B981 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  line-height:1.05;
+}
+.hero h2{
+  font-family:var(--fd); font-weight:500; font-size:clamp(20px,3vw,28px);
+  color:var(--text); margin-top:6px;
+}
+.hero p{
+  font-family:var(--fb); color:var(--muted); font-size:15px; max-width:560px;
+  margin:16px auto 0; font-weight:400;
+}
+
+/* ===== WAVEFORM QUARTER SELECTOR ===== */
+.railwrap{ margin:44px 0 8px; }
+.rail{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:14px;
+}
+.qbtn{
+  position:relative; background:var(--glass); border:1px solid var(--border);
+  border-radius:16px; padding:20px 18px 18px; cursor:pointer; text-align:left;
+  transition:all .35s var(--ease); overflow:hidden;
+}
+.qbtn:hover{ border-color:var(--border-s); background:var(--glass-s); transform:translateY(-2px); }
+.qbtn .qnum{ font-family:var(--fm); font-size:11px; color:var(--hint); letter-spacing:0.1em; }
+.qbtn .qtitle{ font-family:var(--fd); font-weight:600; font-size:24px; margin-top:4px; color:var(--text); }
+.qbtn .qtheme{ font-family:var(--fb); font-size:12.5px; color:var(--muted); margin-top:3px; }
+.qbtn .qbars{ display:flex; gap:3px; align-items:flex-end; height:22px; margin-top:14px; }
+.qbtn .qbars span{ flex:1; background:var(--faint); border-radius:2px; transition:background .3s; }
+.qbtn[data-q="q1"] .qbars span{ height:40%; } .qbtn[data-q="q1"] .qbars span:nth-child(2){height:70%;} .qbtn[data-q="q1"] .qbars span:nth-child(3){height:50%;} .qbtn[data-q="q1"] .qbars span:nth-child(4){height:90%;} .qbtn[data-q="q1"] .qbars span:nth-child(5){height:35%;}
+.qbtn[data-q="q2"] .qbars span{ height:55%; } .qbtn[data-q="q2"] .qbars span:nth-child(2){height:35%;} .qbtn[data-q="q2"] .qbars span:nth-child(3){height:80%;} .qbtn[data-q="q2"] .qbars span:nth-child(4){height:50%;} .qbtn[data-q="q2"] .qbars span:nth-child(5){height:65%;}
+.qbtn[data-q="q3"] .qbars span{ height:70%; } .qbtn[data-q="q3"] .qbars span:nth-child(2){height:90%;} .qbtn[data-q="q3"] .qbars span:nth-child(3){height:45%;} .qbtn[data-q="q3"] .qbars span:nth-child(4){height:75%;} .qbtn[data-q="q3"] .qbars span:nth-child(5){height:55%;}
+.qbtn[data-q="q4"] .qbars span{ height:60%; } .qbtn[data-q="q4"] .qbars span:nth-child(2){height:85%;} .qbtn[data-q="q4"] .qbars span:nth-child(3){height:95%;} .qbtn[data-q="q4"] .qbars span:nth-child(4){height:70%;} .qbtn[data-q="q4"] .qbars span:nth-child(5){height:50%;}
+.qbtn[data-q="q1"].active, .qbtn[data-q="q1"]:hover{ border-color:rgba(192,132,252,0.5); }
+.qbtn[data-q="q2"].active, .qbtn[data-q="q2"]:hover{ border-color:rgba(147,197,253,0.5); }
+.qbtn[data-q="q3"].active, .qbtn[data-q="q3"]:hover{ border-color:rgba(52,211,153,0.5); }
+.qbtn[data-q="q4"].active, .qbtn[data-q="q4"]:hover{ border-color:rgba(245,158,11,0.5); }
+.qbtn[data-q="q1"].active .qbars span{ background:var(--plum-light); }
+.qbtn[data-q="q2"].active .qbars span{ background:var(--sapphire-light); }
+.qbtn[data-q="q3"].active .qbars span{ background:var(--emerald-light); }
+.qbtn[data-q="q4"].active .qbars span{ background:var(--gold-light); }
+.qbtn.active{ background:var(--glass-s); }
+.qbtn .qcheck{
+  position:absolute; top:16px; right:16px; font-family:var(--fm); font-size:10px;
+  color:var(--hint); opacity:0; transition:opacity .3s;
+}
+.qbtn.active .qcheck{ opacity:1; }
+
+/* ===== PANELS ===== */
+.panel{ display:none; animation:fadein .5s var(--ease); }
+.panel.active{ display:block; }
+@keyframes fadein{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+.panel-head{ margin:52px 0 28px; display:flex; align-items:baseline; gap:18px; flex-wrap:wrap; }
+.panel-head .ptag{
+  font-family:var(--fm); font-size:12px; letter-spacing:0.08em; padding:5px 12px;
+  border-radius:20px; border:1px solid var(--border-s); color:var(--q-color);
+}
+.panel-head h3{ font-family:var(--fd); font-weight:600; font-size:34px; }
+.panel-head .subtitle{ font-family:var(--fb); font-size:14px; color:var(--muted); width:100%; margin-top:2px; max-width:680px; }
+
+/* ===== OKR CARDS ===== */
+.okrgrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+@media(max-width:780px){ .okrgrid{ grid-template-columns:1fr; } .rail{ grid-template-columns:repeat(2,1fr); } }
+
+.okrcard{
+  background:var(--glass); border:1px solid var(--border); border-radius:18px;
+  padding:24px 24px 20px; position:relative; overflow:hidden;
+  transition:border-color .3s, transform .3s;
+}
+.okrcard:hover{ border-color:var(--border-s); transform:translateY(-3px); }
+.okrcard::before{
+  content:''; position:absolute; top:0; left:0; width:3px; height:100%;
+  background:var(--q-color2);
+}
+.okrcard .olabel{
+  font-family:var(--fm); font-size:10.5px; letter-spacing:0.14em; color:var(--q-color); text-transform:uppercase;
+}
+.okrcard h4{
+  font-family:var(--fd); font-weight:600; font-size:19px; margin:8px 0 14px; line-height:1.3; color:var(--text);
+}
+.krlist{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+.krlist li{
+  display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--muted); line-height:1.45;
+}
+.krbox{
+  flex:none; width:16px; height:16px; border-radius:4px; border:1.5px solid var(--faint);
+  margin-top:2px; transition:border-color .2s;
+}
+.krlist li:hover .krbox{ border-color:var(--q-color); }
+.krlist li:hover{ color:var(--text); }
+
+/* ===== TIMELINE STRIP ===== */
+.tl{ margin-top:8px; display:flex; gap:2px; }
+.tl span{ flex:1; height:5px; border-radius:3px; background:var(--faint); }
+.tl span.done{ background:var(--q-color2); }
+
+/* ===== METRICS OVERVIEW (year table) ===== */
+.overview-section{ margin-top:80px; }
+.overview-head{ text-align:center; margin-bottom:36px; }
+.overview-head .eyebrow{ margin-bottom:14px; }
+.overview-head h3{ font-family:var(--fd); font-weight:600; font-size:32px; }
+
+.metrics-table{ width:100%; border-collapse:collapse; overflow:hidden; border-radius:16px; border:1px solid var(--border); }
+.metrics-table thead th{
+  background:var(--glass-s); font-family:var(--fm); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--hint); text-align:left; padding:14px 18px; font-weight:500; border-bottom:1px solid var(--border);
+}
+.metrics-table tbody td{
+  padding:16px 18px; font-family:var(--fb); font-size:14px; border-bottom:1px solid var(--border);
+  color:var(--muted);
+}
+.metrics-table tbody tr:last-child td{ border-bottom:none; }
+.metrics-table td.label{ color:var(--text); font-weight:500; }
+.metrics-table td.num{ font-family:var(--fm); color:var(--text); }
+.metrics-table th.qh1{ color:var(--plum-light); } .metrics-table th.qh2{ color:var(--sapphire-light); }
+.metrics-table th.qh3{ color:var(--emerald-light); } .metrics-table th.qh4{ color:var(--gold-light); }
+
+.notebar{
+  margin-top:20px; padding:14px 18px; border-radius:12px; border:1px solid var(--border);
+  background:var(--glass); display:flex; gap:12px; align-items:flex-start;
+}
+.notebar .dot{ flex:none; width:6px; height:6px; border-radius:50%; background:var(--gold-light); margin-top:6px; }
+.notebar p{ font-family:var(--fb); font-size:12.5px; color:var(--hint); line-height:1.55; }
+
+/* ===== GATE CONDITIONS ===== */
+.gate{
+  margin-top:20px; padding:16px 20px; border-radius:14px; background:var(--glass);
+  border:1px dashed var(--border-s); font-family:var(--fb); font-size:13px; color:var(--muted); line-height:1.6;
+}
+.gate b{ color:var(--text); font-family:var(--fm); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; display:block; margin-bottom:6px; }
+
+/* ===== FOOTER ===== */
+footer{ text-align:center; margin-top:90px; padding-top:28px; border-top:1px solid var(--border); }
+footer p{ font-family:var(--fm); font-size:11px; color:var(--faint); letter-spacing:0.04em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Roadmap vận hành</div>
+    <h1 class="brand">ALIVE.</h1>
+    <h2>OKR Roadmap — Năm 1</h2>
+    <p>4 quý · 16 Objective · 48 Key Result — từ Build đến Foundation cho Năm 2. Bấm vào từng quý để xem chi tiết.</p>
+  </div>
+
+  <div class="railwrap">
+    <div class="rail">
+      <button class="qbtn active" data-q="q1" onclick="showQ('q1')">
+        <div class="qnum">Q1 · Tháng 1–3</div>
+        <div class="qtitle">Build</div>
+        <div class="qtheme">→ Pilot</div>
+        <div class="qbars"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="qcheck">● đang xem</div>
+      </button>
+      <button class="qbtn" data-q="q2" onclick="showQ('q2')">
+        <div class="qnum">Q2 · Tháng 4–6</div>
+        <div class="qtitle">Validate</div>
+        <div class="qtheme">Mô hình lặp lại được</div>
+        <div class="qbars"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="qcheck">● đang xem</div>
+      </button>
+      <button class="qbtn" data-q="q3" onclick="showQ('q3')">
+        <div class="qnum">Q3 · Tháng 7–9</div>
+        <div class="qtitle">Scale</div>
+        <div class="qtheme">Mở rộng có kiểm soát</div>
+        <div class="qbars"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="qcheck">● đang xem</div>
+      </button>
+      <button class="qbtn" data-q="q4" onclick="showQ('q4')">
+        <div class="qnum">Q4 · Tháng 10–12</div>
+        <div class="qtitle">Foundation</div>
+        <div class="qtheme">Sẵn sàng cho Năm 2</div>
+        <div class="qbars"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="qcheck">● đang xem</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= Q1 ================= -->
+  <div class="panel active" id="panel-q1">
+    <div class="panel-head">
+      <span class="ptag">Quý 1</span>
+      <h3>Build → Pilot</h3>
+      <div class="subtitle">Hoàn thiện sản phẩm core, chốt đối tác nhạc, chạy pilot 2–3 venue thật để có bằng chứng đầu tiên.</div>
+    </div>
+    <div class="okrgrid">
+      <div class="okrcard">
+        <div class="olabel">Objective A</div>
+        <h4>Sản phẩm sẵn sàng cho pilot</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>4 hạng mục HQ Control (Playlist Editor, Staff Approve, Volume từ xa, Schedule lock) hoàn thành & kiểm thử</li>
+          <li><span class="krbox"></span>Backend Player: đối tác đã ký hoặc quyết định tự xây trước ngày 45</li>
+          <li><span class="krbox"></span>Zero lỗi nghiêm trọng trong 7 ngày liên tục trước khi venue đầu tiên go-live</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective B</div>
+        <h4>Đối tác & nền tảng pháp lý vững</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Hợp đồng Epidemic Sound ký chính thức trước ngày 30</li>
+          <li><span class="krbox"></span>Nâng cấp gói stream API trước khi venue pilot đầu tiên vận hành</li>
+          <li><span class="krbox"></span>100% venue pilot có giấy phép biểu diễn công cộng hợp lệ</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective C</div>
+        <h4>Tìm và chốt đúng venue pilot</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>2–3 venue ký hợp đồng pilot trước ngày 60</li>
+          <li><span class="krbox"></span>100% venue thuộc phân khúc ưu tiên F&B/Hospitality</li>
+          <li><span class="krbox"></span>Tối thiểu 1 testimonial mỗi venue trước ngày 85</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective D</div>
+        <h4>Hệ thống đo lường & vận hành nội bộ</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Bảng theo dõi công việc chung cập nhật hằng tuần từ tuần 2</li>
+          <li><span class="krbox"></span>100% quyết định cần đồng thuận 100% được ghi văn bản</li>
+          <li><span class="krbox"></span>Báo cáo cuối quý sẵn sàng làm input cho OKR Q2</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gate"><b>Điều kiện chuyển sang Q2</b>2–3 venue pilot đang vận hành ổn định · hợp đồng Epidemic Sound đã ký · HQ Control hoàn thành đầy đủ.</div>
+  </div>
+
+  <!-- ================= Q2 ================= -->
+  <div class="panel" id="panel-q2">
+    <div class="panel-head">
+      <span class="ptag">Quý 2</span>
+      <h3>Validate</h3>
+      <div class="subtitle">Chứng minh mô hình bán hàng và onboarding có thể lặp lại — không phụ thuộc một cá nhân, có bằng chứng ROI thật từ pilot.</div>
+    </div>
+    <div class="okrgrid">
+      <div class="okrcard">
+        <div class="olabel">Objective A</div>
+        <h4>Mô hình bán hàng chuẩn hóa</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Playbook bán hàng bằng văn bản hoàn thành trước tuần 4</li>
+          <li><span class="krbox"></span>Tỷ lệ chuyển đổi demo → ký ≥ 30%</li>
+          <li><span class="krbox"></span>Thời gian demo đến ký ≤ 14 ngày (Starter/Growth)</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective B</div>
+        <h4>Onboarding venue chuẩn hóa</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Checklist onboarding tự động hoàn thành trước tuần 4</li>
+          <li><span class="krbox"></span>100% venue ký trong Q2 được onboard trong 48 giờ</li>
+          <li><span class="krbox"></span>Zero ticket lỗi setup trong 7 ngày đầu sau onboarding</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective C</div>
+        <h4>Bằng chứng ROI thực tế từ pilot</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>≥ 2 venue pilot Q1 cung cấp số liệu doanh thu trước/sau</li>
+          <li><span class="krbox"></span>1 case study hoàn chỉnh sẵn sàng trước tuần 10</li>
+          <li><span class="krbox"></span>NPS trung bình ≥ 7/10</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective D</div>
+        <h4>Tài chính ổn định và có thể dự đoán</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>MRR cuối Q2 đạt mục tiêu dự phóng (~3,3M đ)</li>
+          <li><span class="krbox"></span>Tỷ lệ gia hạn venue pilot Q1 sau 3 tháng ≥ 80%</li>
+          <li><span class="krbox"></span>Chi phí vận hành không vượt ngân sách quá 15%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gate"><b>Điều kiện chuyển sang Q3</b>Đạt ≥ 0.7/1.0 trên toàn bộ KR của Q2 · có dữ liệu ROI từ ít nhất 2 venue pilot.</div>
+  </div>
+
+  <!-- ================= Q3 ================= -->
+  <div class="panel" id="panel-q3">
+    <div class="panel-head">
+      <span class="ptag">Quý 3</span>
+      <h3>Controlled Scale</h3>
+      <div class="subtitle">Dịch trọng tâm sang trục Big Biz (exclusivity), mở phân khúc lifestyle thứ hai, tăng trưởng có kiểm soát.</div>
+    </div>
+    <div class="okrgrid">
+      <div class="okrcard">
+        <div class="olabel">Objective A</div>
+        <h4>Khai thác trục Big Biz (exclusivity)</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>2 chuỗi Big Biz ký gói Growth/Chain trước cuối Q3</li>
+          <li><span class="krbox"></span>100% Big Biz ký trong Q3 có Brand Sound Profile riêng</li>
+          <li><span class="krbox"></span>ARPU Big Biz cao hơn ≥ 2x nhóm Small Biz</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective B</div>
+        <h4>Mở rộng phân khúc lifestyle thứ hai</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Xác nhận phân khúc mới trước tuần 2 (đồng thuận 3/4)</li>
+          <li><span class="krbox"></span>3–5 venue phân khúc mới ký và vận hành</li>
+          <li><span class="krbox"></span>NPS phân khúc mới ≥ 7/10</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective C</div>
+        <h4>Tăng trưởng doanh thu mạnh</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Tổng venue đang dùng cuối Q3 đạt 20–25</li>
+          <li><span class="krbox"></span>Churn rate ≤ 8%</li>
+          <li><span class="krbox"></span>Tỷ lệ upsell ≥ 15% tổng venue</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective D</div>
+        <h4>Hệ thống vận hành không nghẽn</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Uptime Player ≥ 99.5% toàn bộ venue</li>
+          <li><span class="krbox"></span>Phản hồi hỗ trợ ≤ 4 giờ, chatbot xử lý ≥ 60% ticket</li>
+          <li><span class="krbox"></span>Đánh giá năng lực team trước cuối Q3 — khởi động tuyển dụng nếu &gt;80% tải</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gate"><b>Điều kiện chuyển sang Q4</b>Unit economics dương (mỗi venue có lãi sau chi phí trực tiếp) · ít nhất 1 Big Biz đã tiếp cận thành công.</div>
+  </div>
+
+  <!-- ================= Q4 ================= -->
+  <div class="panel" id="panel-q4">
+    <div class="panel-head">
+      <span class="ptag">Quý 4</span>
+      <h3>Foundation cho Năm 2</h3>
+      <div class="subtitle">Củng cố vận hành ổn định, chuẩn bị nền kỹ thuật cho ALM 2, đóng Năm 1 ở vị trí vững chắc cho chiến lược Năm 2.</div>
+    </div>
+    <div class="okrgrid">
+      <div class="okrcard">
+        <div class="olabel">Objective A</div>
+        <h4>Củng cố vận hành ổn định</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Churn rate ≤ 5% trong Q4</li>
+          <li><span class="krbox"></span>Uptime Player ≥ 99.8% toàn quý</li>
+          <li><span class="krbox"></span>100% ticket xử lý trong 4 giờ, không tăng nhân sự</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective B</div>
+        <h4>Chuẩn bị nền kỹ thuật cho ALM 2</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Product Brief ALM 2 hoàn thành trước tuần 8</li>
+          <li><span class="krbox"></span>Technical Assessment hoàn thành (chi phí, timeline, dependency)</li>
+          <li><span class="krbox"></span>Quyết định build/partner/buy thông qua đồng thuận 100%</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective C</div>
+        <h4>Đạt mục tiêu tài chính Năm 1</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>MRR cuối Q4 đạt mục tiêu (~25–30M đ), cover chi phí cố định</li>
+          <li><span class="krbox"></span>Tổng doanh thu Năm 1 đạt ≥ 70% dự phóng</li>
+          <li><span class="krbox"></span>Cohort retention (dùng ≥ 6 tháng) ≥ 70%</li>
+        </ul>
+      </div>
+      <div class="okrcard">
+        <div class="olabel">Objective D</div>
+        <h4>Chiến lược Năm 2 rõ ràng</h4>
+        <ul class="krlist">
+          <li><span class="krbox"></span>Year 2 Strategic Plan hoàn thành trước tuần 10</li>
+          <li><span class="krbox"></span>Quyết định nhân sự Năm 2 thông qua đồng thuận 100%</li>
+          <li><span class="krbox"></span>Hợp đồng đối tác chính (ES, backend) gia hạn/tái đàm phán rõ ràng</li>
+        </ul>
+      </div>
+    </div>
+    <div class="gate"><b>Kết thúc Năm 1</b>ARR mục tiêu ~300–360M đ (kịch bản base case) · nền tảng vận hành sẵn sàng bước vào Năm 2 không phải xây lại từ đầu.</div>
+  </div>
+
+  <!-- ================= YEAR OVERVIEW ================= -->
+  <div class="overview-section">
+    <div class="overview-head">
+      <div class="eyebrow">Tổng hợp cả năm</div>
+      <h3>Quỹ đạo tăng trưởng dự kiến</h3>
+    </div>
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Chỉ số</th>
+          <th class="qh1">Q1</th>
+          <th class="qh2">Q2</th>
+          <th class="qh3">Q3</th>
+          <th class="qh4">Q4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">Venue đang dùng (cuối quý)</td>
+          <td class="num">2–3</td>
+          <td class="num">9–11</td>
+          <td class="num">22–28</td>
+          <td class="num">30–40</td>
+        </tr>
+        <tr>
+          <td class="label">MRR cuối quý</td>
+          <td class="num">~1M đ</td>
+          <td class="num">~3,3M đ</td>
+          <td class="num">~14–18M đ</td>
+          <td class="num">~25–30M đ</td>
+        </tr>
+        <tr>
+          <td class="label">Trọng tâm thị trường</td>
+          <td class="num">Small Biz</td>
+          <td class="num">Small Biz</td>
+          <td class="num">+ Big Biz</td>
+          <td class="num">+ Enterprise</td>
+        </tr>
+        <tr>
+          <td class="label">Churn rate mục tiêu</td>
+          <td class="num">—</td>
+          <td class="num">≤ 10%</td>
+          <td class="num">≤ 8%</td>
+          <td class="num">≤ 5%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="notebar">
+      <div class="dot"></div>
+      <p>Số liệu MRR/venue là giả định dựa trên kịch bản base case, chưa phải cam kết — cần đối chiếu với dữ liệu thực tế mỗi cuối quý trước khi cụ thể hóa quý tiếp theo. Chi tiết đầy đủ và các kịch bản thấp/cao xem trong tài liệu "Q2-Q3-Q4 Detailed Playbook".</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>ALIVE. — OKR ROADMAP NĂM 1 · TÀI LIỆU NỘI BỘ · KHÔNG GÁN NGƯỜI CỤ THỂ, CHIA THEO WORKSTREAM</p>
+  </footer>
+
+</div>
+
+<script>
+function showQ(q){
+  document.querySelectorAll('.qbtn').forEach(b => b.classList.toggle('active', b.dataset.q === q));
+  document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + q));
+  document.documentElement.dataset.quarter = q;
+  const colors = {
+    q1: ['#C084FC','#9333EA'],
+    q2: ['#93C5FD','#3B82F6'],
+    q3: ['#34D399','#10B981'],
+    q4: ['#F59E0B','#D97706'],
+  };
+  document.documentElement.style.setProperty('--q-color', colors[q][0]);
+  document.documentElement.style.setProperty('--q-color2', colors[q][1]);
+}
+</script>
+</body>
+</html>
