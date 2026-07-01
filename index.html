@@ -413,14 +413,15 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
 /* ─── HOW STEPS — vertical connector ─── */
 .how-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:32px;align-items:end}
-.how-steps{display:flex;flex-direction:column;gap:0;position:relative}
-.how-steps::before{content:'';position:absolute;left:23px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,var(--plum-light),var(--sapphire-2),var(--emerald-light));opacity:.28}
-.step-frame{display:grid;grid-template-columns:48px 1fr;gap:24px;align-items:start;padding:22px 0;border-bottom:1px solid var(--border)}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative}
+.how-steps::before{display:none}
+.step-frame{display:flex;flex-direction:column;gap:12px;align-items:start;padding:24px;border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.02);transition:all .25s var(--ease)}
+.step-frame:hover{background:rgba(255,255,255,.04);border-color:var(--border-s)}
 .step-frame:last-child{border-bottom:none;padding-bottom:0}
 .step-frame:first-child{padding-top:0}
 .step-n-wrap{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:rgba(var(--accent-rgb),.12);border:1px solid rgba(var(--accent-rgb),.28);flex-shrink:0;position:relative;z-index:1}
 .step-n{font-family:var(--fd);font-size:21px;font-weight:500;letter-spacing:-.5px;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.step-content{padding-top:4px}
+.step-content{margin-top:2px}
 .step-h{font-family:var(--fd);font-size:22px;font-weight:500;letter-spacing:-.5px;line-height:1.12;margin-bottom:10px}
 .step-b{font-size:13.5px;color:var(--muted);line-height:1.6;font-weight:500;max-width:540px}
 .step-meta{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:6px 14px;border-radius:40px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:10.5px;color:var(--hint);font-family:var(--fm);letter-spacing:.3px;font-weight:500}
@@ -742,7 +743,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
 /* ═══ EFFECT 6 — Heading line-by-line reveal ═══ */
 .line-reveal{display:block;opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal.visible .line-reveal{opacity:1;transform:none}
+.lines-in .line-reveal{opacity:1;transform:none}
 .line-reveal:nth-child(1){transition-delay:.05s}
 .line-reveal:nth-child(2){transition-delay:.16s}
 .line-reveal:nth-child(3){transition-delay:.27s}
@@ -1029,7 +1030,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   <div class="wrap">
     <div class="metrics-head reveal">
       <div class="kicker k-emerald"><span class="vi">Bằng chứng</span><span class="en">Evidence</span></div>
-      <h2 class="sec-h"><span class="vi">Mở đúng nhạc không chỉ <em>nghe hay</em>.<br>Nó còn ảnh hưởng đến doanh thu.</span><span class="en">The right music doesn't just <em>sound better</em>.<br>It moves the numbers.</span></h2>
+      <h2 class="sec-h"><span class="vi">Mở đúng nhạc không chỉ <em style="white-space:nowrap">nghe hay</em>.<br>Nó còn ảnh hưởng đến doanh thu.</span><span class="en">The right music doesn't just <em>sound better</em>.<br>It moves the numbers.</span></h2>
       <p class="sec-lede"><span class="vi">Hàng chục năm nghiên cứu cho thấy nhạc nền không phải trang trí — đây là một biến số vận hành tác động trực tiếp đến hành vi khách hàng.</span><span class="en">Decades of research show background music isn't decoration — it's an operational variable that directly affects customer behavior.</span></p>
     </div>
 
@@ -1079,7 +1080,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   <div class="wrap">
     <div class="product-intro reveal">
       <div class="kicker k-plum"><span class="vi">Sản phẩm</span><span class="en">The product</span></div>
-      <h2 class="sec-h"><span class="vi">Ba giao diện.<br>Một <em>hệ thống</em>.</span><span class="en">Three screens.<br>One <em>system</em>.</span></h2>
+      <h2 class="sec-h"><span class="vi">Ba giao diện. Một <em>hệ thống</em>.</span><span class="en">Three screens. One <em>system</em>.</span></h2>
       <p class="sec-lede"><span class="vi">Bạn thiết lập lịch một lần trên Dashboard. Từ đó hệ thống tự chạy. Nhân viên ở quán chỉ nhìn màn hình Player — không cần đụng gì thêm. Tất cả chi nhánh đều đồng bộ.</span><span class="en">Owners set the schedule once on Dashboard. The system runs itself. Staff just see the Player. Every venue stays in sync.</span></p>
     </div>
 
@@ -2306,6 +2307,16 @@ setLang = function(l) {
       span.innerHTML = parts.map(p => `<span class="line-reveal">${p}</span>`).join('');
     });
   });
+  // Dedicated observer — independent of the generic .reveal system
+  const lineObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('lines-in');
+        lineObs.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.1, rootMargin:'0px 0px -10% 0px'});
+  targets.forEach(heading => lineObs.observe(heading));
 })();
 
 </script>
