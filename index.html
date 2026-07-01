@@ -607,16 +607,16 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .law-list{gap:10px}
   .law-item{grid-template-columns:76px 1fr;gap:10px;font-size:12px;padding-bottom:9px}
   .product-views{grid-template-columns:1fr;gap:16px}
-  .view-tabs{position:static;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:16px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,#000 88%,transparent 100%)}
-  .view-tabs::-webkit-scrollbar{display:none}
-  .view-tab{flex-shrink:0;width:82%;min-width:0;scroll-snap-align:start;border-left:none;border-bottom:2px solid transparent;border-right:1px solid var(--border)}
+  .view-tabs{position:static;flex-direction:row;border-radius:14px}
+  .view-tab{flex:1;min-width:0;padding:12px 8px;text-align:center;border-left:none;border-bottom:none;border-right:1px solid var(--border)}
   .view-tab:last-child{border-right:none}
-  .view-tab.active{border-left-color:transparent;border-bottom-color:var(--plum-2)}
+  .view-tab.active{border-left-color:transparent;border-bottom:2px solid var(--accent-2)}
+  .view-tab-num{font-size:9px;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .view-tab-name{font-size:15px;margin-bottom:0}
+  .view-tab-sub{display:none}
   .view-dots{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;position:relative}
   .view-dot{width:6px;height:6px;border-radius:50%;background:var(--border-s);transition:all .25s var(--ease)}
   .view-dot.active{background:var(--accent-2);width:20px;border-radius:4px}
-  .view-swipe-hint{position:absolute;right:0;font-size:10px;color:var(--hint);font-family:var(--fm);font-weight:600;letter-spacing:.3px;display:flex;align-items:center;gap:4px;animation:swipehint 2.2s ease-in-out 1s 3}
-  @keyframes swipehint{0%,100%{opacity:.6;transform:translateX(0)}50%{opacity:1;transform:translateX(4px)}}
   .mp-body{grid-template-columns:1fr;gap:20px;padding:20px;min-height:0}
   .sc-body{padding:18px;min-height:0}
   .db-body{padding:18px;min-height:0}
@@ -1159,12 +1159,11 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
         </button>
       </div>
 
-      <!-- Mobile dot indicator + swipe hint -->
+      <!-- Mobile dot indicator — shows auto-rotate progress -->
       <div class="view-dots" id="viewDots">
         <span class="view-dot active" data-dot="player"></span>
         <span class="view-dot" data-dot="schedule"></span>
         <span class="view-dot" data-dot="dashboard"></span>
-        <span class="view-swipe-hint"><span class="vi">Vuốt để xem thêm</span><span class="en">Swipe for more</span> →</span>
       </div>
 
       <div class="view-content">
@@ -1256,14 +1255,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
                 <div class="sc-head-title"><span class="vi">Lịch phát · tuần này</span><span class="en">Schedule · this week</span></div>
                 <div class="sc-head-meta"><span class="vi">do HQ khoá · cập nhật 3 ngày trước</span><span class="en">locked by HQ · updated 3 days ago</span></div>
               </div>
-              <div class="sc-days">
-                <div class="sc-day"><span class="vi">CN</span><span class="en">SUN</span></div>
-                <div class="sc-day on"><span class="vi">T2</span><span class="en">MON</span></div>
-                <div class="sc-day"><span class="vi">T3</span><span class="en">TUE</span></div>
-                <div class="sc-day"><span class="vi">T4</span><span class="en">WED</span></div>
-                <div class="sc-day"><span class="vi">T5</span><span class="en">THU</span></div>
-                <div class="sc-day"><span class="vi">T6</span><span class="en">FRI</span></div>
-                <div class="sc-day"><span class="vi">T7</span><span class="en">SAT</span></div>
+              <div class="sc-days" id="scDays">
+                <div class="sc-day" data-day="0"><span class="vi">CN</span><span class="en">SUN</span></div>
+                <div class="sc-day" data-day="1"><span class="vi">T2</span><span class="en">MON</span></div>
+                <div class="sc-day" data-day="2"><span class="vi">T3</span><span class="en">TUE</span></div>
+                <div class="sc-day" data-day="3"><span class="vi">T4</span><span class="en">WED</span></div>
+                <div class="sc-day" data-day="4"><span class="vi">T5</span><span class="en">THU</span></div>
+                <div class="sc-day" data-day="5"><span class="vi">T6</span><span class="en">FRI</span></div>
+                <div class="sc-day" data-day="6"><span class="vi">T7</span><span class="en">SAT</span></div>
               </div>
               <div class="sc-grid">
                 <div class="sc-row" data-daypart="morning">
@@ -1911,40 +1910,45 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 40);
 }, {passive: true});
 
+// Product view tabs — click to switch + auto-rotate when idle
+const productViews = ['player', 'schedule', 'dashboard'];
+let productViewIndex = 0;
+let productAutoTimer = null;
+
+function switchProductView(view) {
+  document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t.dataset.view === view));
+  document.querySelectorAll('.view-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === view));
+  document.querySelectorAll('.view-dot').forEach(d => d.classList.toggle('active', d.dataset.dot === view));
+  productViewIndex = productViews.indexOf(view);
+}
+
+function startProductAutoRotate() {
+  if (productAutoTimer) clearInterval(productAutoTimer);
+  productAutoTimer = setInterval(() => {
+    productViewIndex = (productViewIndex + 1) % productViews.length;
+    switchProductView(productViews[productViewIndex]);
+  }, 4500);
+}
+
 document.querySelectorAll('.view-tab').forEach(tab => {
   tab.addEventListener('click', () => {
-    const view = tab.dataset.view;
-    document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t === tab));
-    document.querySelectorAll('.view-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === view));
-    document.querySelectorAll('.view-dot').forEach(d => d.classList.toggle('active', d.dataset.dot === view));
-    const hint = document.querySelector('.view-swipe-hint');
-    if (hint) hint.style.display = 'none';
-    tab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'start'});
+    switchProductView(tab.dataset.view);
+    startProductAutoRotate(); // reset timer, keep rotating from here
   });
 });
 
-// Sync dots when user scrolls tabs manually on mobile (swipe)
-const viewTabsEl = document.querySelector('.view-tabs');
-if (viewTabsEl) {
-  let scrollTimeout;
-  viewTabsEl.addEventListener('scroll', () => {
-    const hint = document.querySelector('.view-swipe-hint');
-    if (hint) hint.style.display = 'none';
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      const tabs = Array.from(document.querySelectorAll('.view-tab'));
-      const containerLeft = viewTabsEl.scrollLeft;
-      let closest = tabs[0], closestDist = Infinity;
-      tabs.forEach(t => {
-        const dist = Math.abs(t.offsetLeft - containerLeft);
-        if (dist < closestDist) { closestDist = dist; closest = t; }
-      });
-      const view = closest.dataset.view;
-      document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t === closest));
-      document.querySelectorAll('.view-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === view));
-      document.querySelectorAll('.view-dot').forEach(d => d.classList.toggle('active', d.dataset.dot === view));
-    }, 100);
-  }, {passive:true});
+startProductAutoRotate();
+
+// Pause auto-rotate when the product section isn't visible
+const productSection = document.getElementById('product');
+if (productSection) {
+  const productVisObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) startProductAutoRotate();
+      else if (productAutoTimer) { clearInterval(productAutoTimer); productAutoTimer = null; }
+    });
+  }, {threshold:0.2});
+  productVisObs.observe(productSection);
 }
 
 document.querySelectorAll('.faq-item').forEach(item => {
@@ -2128,6 +2132,20 @@ function applyDaypart(dp) {
   });
 }
 
+function getVietnamWeekday() {
+  const map = {Sun:0, Mon:1, Tue:2, Wed:3, Thu:4, Fri:5, Sat:6};
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Ho_Chi_Minh', weekday: 'short'
+  }).formatToParts(new Date());
+  return map[parts.find(p => p.type === 'weekday').value];
+}
+let currentWeekday = null;
+function applyScheduleDay(day) {
+  document.querySelectorAll('#scDays .sc-day').forEach(el => {
+    el.classList.toggle('on', parseInt(el.dataset.day, 10) === day);
+  });
+}
+
 function updateClock() {
   const { h, m } = getVietnamTime();
   const clockEl = document.getElementById('heroClock');
@@ -2136,6 +2154,11 @@ function updateClock() {
   if (dp.id !== currentDaypartId) {
     currentDaypartId = dp.id;
     applyDaypart(dp);
+  }
+  const wd = getVietnamWeekday();
+  if (wd !== currentWeekday) {
+    currentWeekday = wd;
+    applyScheduleDay(wd);
   }
 }
 updateClock();
