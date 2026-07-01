@@ -165,15 +165,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .value-h{font-family:var(--fd);font-size:24px;font-weight:500;letter-spacing:-.5px;margin-bottom:10px}
 .value-b{font-size:14px;color:var(--muted);line-height:1.65;font-weight:500}
 
-.team-intro{max-width:640px;margin:0 auto 60px;text-align:center}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:100px}
-.team-card{padding:32px 24px;border-radius:24px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--border-s);text-align:center}
-.team-avatar{width:72px;height:72px;border-radius:50%;margin:0 auto 16px;
-  background:var(--aurora);display:flex;align-items:center;justify-content:center;
-  font-family:var(--fd);font-size:28px;font-weight:500;color:#fff}
-.team-name{font-family:var(--fd);font-size:22px;font-weight:500;letter-spacing:-.3px;margin-bottom:4px}
-.team-role{font-size:12px;color:var(--plum-light);font-family:var(--fm);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
-.team-bio{font-size:13px;color:var(--muted);line-height:1.6;font-weight:500}
+.team-intro{max-width:640px;margin:0 auto 56px;text-align:center}
+.team-block{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:100px}
+.team-pillar{padding:32px 28px;border-radius:24px;background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--border-s);transition:all .25s}
+.team-pillar:hover{transform:translateY(-3px);border-color:rgba(192,132,252,.3)}
+.team-pillar-icon{width:48px;height:48px;border-radius:14px;margin-bottom:18px;display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(123,31,162,.12);border:1px solid rgba(123,31,162,.22)}
+.team-pillar-role{font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum-light);margin-bottom:10px}
+.team-pillar-h{font-family:var(--fd);font-size:22px;font-weight:500;letter-spacing:-.4px;margin-bottom:10px;line-height:1.1}
+.team-pillar-b{font-size:13px;color:var(--muted);line-height:1.65;font-weight:500}
 
 .mission-wrap{padding:64px;border-radius:32px;background:linear-gradient(160deg,rgba(123,31,162,.16),rgba(30,64,175,.1),rgba(5,150,105,.08));border:1px solid var(--border-s);text-align:center;margin-bottom:100px;position:relative;overflow:hidden}
 .mission-wrap::before{content:'';position:absolute;inset:-20%;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(123,31,162,.15) 0%,transparent 65%);pointer-events:none}
@@ -191,12 +190,12 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
 @media(max-width:960px){
   .about-grid,.about-grid.rev{grid-template-columns:1fr;direction:ltr}
-  .values-grid,.team-grid{grid-template-columns:1fr 1fr}
+  .values-grid,.team-block{grid-template-columns:1fr 1fr}
   .contact-grid{grid-template-columns:1fr}
   .mission-wrap{padding:40px 24px}
 }
 @media(max-width:600px){
-  .values-grid,.team-grid{grid-template-columns:1fr}
+  .values-grid,.team-block{grid-template-columns:1fr}
 }
 
 </style>
@@ -293,26 +292,27 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
     <!-- Team -->
     <div class="team-intro">
       <div class="kicker k-sapphire" style="justify-content:center;display:flex;margin-bottom:20px"><span class="vi">Đội ngũ</span><span class="en">Team</span></div>
-      <h2 class="sec-h" style="text-align:center;font-size:clamp(32px,4vw,52px)"><span class="vi">Những người xây <em>Alive.</em></span><span class="en">The people <em>behind Alive.</em></span></h2>
+      <h2 class="sec-h" style="text-align:center;font-size:clamp(32px,4vw,52px)"><span class="vi">Nhóm người <em>xây Alive.</em></span><span class="en">The group <em>behind Alive.</em></span></h2>
+      <p style="font-size:16px;color:var(--muted);line-height:1.7;font-weight:500;margin-top:4px"><span class="vi">Alive. được xây bởi một nhóm nhỏ có nền tảng từ vận hành F&B, kỹ thuật phần mềm, và âm nhạc thương mại. Chúng tôi không xây Alive. như một sản phẩm công nghệ — mà như một giải pháp vận hành thực tế cho ngành.</span><span class="en">Alive. is built by a small team with backgrounds spanning F&B operations, software engineering, and commercial music. We didn't build Alive. as a tech product — but as a practical operational solution for the industry.</span></p>
     </div>
-    <div class="team-grid">
-      <div class="team-card">
-        <div class="team-avatar">A</div>
-        <div class="team-name"><span class="vi">[Tên Founder]</span><span class="en">[Founder Name]</span></div>
-        <div class="team-role">Co-founder & CEO</div>
-        <p class="team-bio"><span class="vi">Xuất thân từ vận hành F&B và product. Từng quản lý chuỗi 12 địa điểm trước khi nhận ra thị trường nhạc nền thương mại đang bị bỏ trống.</span><span class="en">Background in F&B operations and product. Previously managed a 12-location chain before spotting the gap in commercial background music.</span></p>
+    <div class="team-block">
+      <div class="team-pillar">
+        <div class="team-pillar-icon">🏪</div>
+        <div class="team-pillar-role"><span class="vi">Vận hành & Chiến lược</span><span class="en">Operations & Strategy</span></div>
+        <div class="team-pillar-h"><span class="vi">Hiểu chuỗi F&B từ bên trong</span><span class="en">F&B chains from the inside</span></div>
+        <p class="team-pillar-b"><span class="vi">Nhóm sáng lập có kinh nghiệm trực tiếp quản lý chuỗi nhiều địa điểm — đủ để biết hệ thống nhạc nội địa hiện tại đang giải quyết sai vấn đề.</span><span class="en">Our founding team has direct experience managing multi-location chains — enough to know existing local music systems are solving the wrong problem.</span></p>
       </div>
-      <div class="team-card">
-        <div class="team-avatar">B</div>
-        <div class="team-name"><span class="vi">[Tên Co-founder]</span><span class="en">[Co-founder Name]</span></div>
-        <div class="team-role">Co-founder & CTO</div>
-        <p class="team-bio"><span class="vi">Kỹ sư phần mềm với 8 năm xây dựng SaaS. Phụ trách toàn bộ hệ thống kỹ thuật và tích hợp với các dịch vụ bên ngoài.</span><span class="en">Software engineer with 8 years building SaaS. Responsible for all technical infrastructure and API integrations.</span></p>
+      <div class="team-pillar">
+        <div class="team-pillar-icon">⚙️</div>
+        <div class="team-pillar-role"><span class="vi">Kỹ thuật & Sản phẩm</span><span class="en">Engineering & Product</span></div>
+        <div class="team-pillar-h"><span class="vi">SaaS xây cho hạ tầng thực</span><span class="en">SaaS built for real infrastructure</span></div>
+        <p class="team-pillar-b"><span class="vi">Kiến trúc kỹ thuật của Alive. được thiết kế cho môi trường thực tế: mạng không ổn định, thiết bị đa dạng, và yêu cầu vận hành 24/7 không cần giám sát.</span><span class="en">Alive.'s technical architecture is designed for real-world conditions: unstable networks, mixed hardware, and 24/7 unattended operation requirements.</span></p>
       </div>
-      <div class="team-card">
-        <div class="team-avatar">C</div>
-        <div class="team-name"><span class="vi">[Tên Head of Music]</span><span class="en">[Head of Music Name]</span></div>
-        <div class="team-role">Head of Music & Curation</div>
-        <p class="team-bio"><span class="vi">Nhạc sĩ và người tuyển nhạc với hơn 10 năm trong lĩnh vực âm nhạc thương mại. Người xây hệ thống phân loại tâm trạng và định hình âm thanh của Alive.</span><span class="en">Musician and curator with 10+ years in commercial music. Built Alive.'s entire mood classification and brand sound system.</span></p>
+      <div class="team-pillar">
+        <div class="team-pillar-icon">🎵</div>
+        <div class="team-pillar-role"><span class="vi">Âm nhạc & Biên tập</span><span class="en">Music & Curation</span></div>
+        <div class="team-pillar-h"><span class="vi">Hệ thống mood được xây từ đầu</span><span class="en">Mood system built from scratch</span></div>
+        <p class="team-pillar-b"><span class="vi">Hệ thống phân loại tâm trạng, BPM, và lịch phát của Alive. không phải dùng sẵn — được thiết kế riêng bởi người có nền tảng âm nhạc thương mại thực sự.</span><span class="en">Alive.'s mood, BPM, and scheduling system wasn't off-the-shelf — it was purpose-built by someone with real commercial music background.</span></p>
       </div>
     </div>
 
