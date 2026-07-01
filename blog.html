@@ -131,13 +131,8 @@ section{position:relative;z-index:1}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;
-  background:rgba(10,5,18,.7);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--border);transition:opacity .45s var(--ease),background .3s}
-nav.scrolled{background:rgba(10,5,18,.94)}
-@media(hover:hover){
-  nav.scrolled{opacity:.38}
-  nav.scrolled:hover{opacity:1}
-}
+nav{position:relative;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,5,18,.7);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--border)}
 .nav-logo{font-family:var(--fd);font-weight:500;font-size:26px;letter-spacing:-.6px;color:var(--text);text-decoration:none;display:inline-flex;align-items:baseline}
 .nav-logo span{background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .nav-mid{display:flex;align-items:center;gap:28px}
@@ -197,62 +192,111 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .f-grid{grid-template-columns:1fr}
 }
 
-/* Page-specific — Editorial style */
+/* Page-specific — Online Newspaper style */
 
-.blog-hero{padding:140px 0 48px;position:relative;z-index:1}
+.blog-hero{padding:56px 0 40px;position:relative;z-index:1}
 .blog-hero .sec-lede{max-width:520px}
 
-/* Featured — one prominent card */
-.blog-featured{margin-bottom:8px}
-.blog-featured-card{display:grid;grid-template-columns:1fr 1.15fr;gap:0;border-radius:20px;overflow:hidden;border:1px solid rgba(var(--accent-rgb),.28);background:rgba(255,255,255,.03);transition:all .3s var(--ease)}
-.blog-featured-card:hover{border-color:rgba(var(--accent-rgb),.5);box-shadow:0 20px 48px rgba(0,0,0,.35)}
-.blog-featured-img{position:relative;min-height:280px;overflow:hidden;background:linear-gradient(160deg,rgba(180,83,9,.22),rgba(159,18,57,.14))}
-.blog-featured-svg{position:absolute;inset:0;width:100%;height:100%}
-.blog-featured-body{padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
-.blog-featured-title{font-family:var(--fd);font-weight:500;letter-spacing:-1px;line-height:1.15;margin-bottom:14px;font-size:clamp(22px,2.4vw,30px)}
-.blog-featured-excerpt{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:20px;font-weight:500}
+/* ═══ Featured by topic — dark zone, 3 cards, 1 per category ═══ */
+.featured-label{font-family:var(--fm);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--hint);font-weight:700;margin-bottom:20px}
+.featured-topics{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:56px}
+.ftopic-card{border-radius:18px;overflow:hidden;border:1px solid var(--border-s);border-top:4px solid var(--gold-light);background:rgba(255,255,255,.04);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:all .3s var(--ease)}
+.ftopic-card.cat-music{border-top-color:var(--plum-light)}
+.ftopic-card.cat-business{border-top-color:var(--sapphire-light)}
+.ftopic-card:hover{transform:translateY(-5px);border-color:rgba(var(--accent-rgb),.4);box-shadow:0 20px 44px rgba(0,0,0,.4)}
+.ftopic-img{aspect-ratio:16/10;position:relative;overflow:hidden}
+.ftopic-img svg{width:100%;height:100%;display:block}
+.ftopic-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.ftopic-title{font-family:var(--fd);font-size:21px;font-weight:500;letter-spacing:-.4px;line-height:1.25;margin:10px 0 auto}
+.ftopic-meta{font-size:10.5px;color:var(--hint);font-family:var(--fm);margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;justify-content:space-between}
 
-/* Editorial list — compact rows, not boxy cards */
-.blog-list{display:flex;flex-direction:column;padding:8px 0 88px;content-visibility:auto;contain-intrinsic-size:auto 1200px}
-.blog-row{display:grid;grid-template-columns:128px 1fr;gap:24px;padding:26px 0;border-top:1px solid var(--border);align-items:center;transition:padding .3s var(--ease);text-decoration:none;color:inherit}
-.blog-list .blog-row:last-child{border-bottom:1px solid var(--border)}
-.blog-row:hover{padding-left:6px}
-.blog-row-thumb{aspect-ratio:1;border-radius:12px;overflow:hidden;position:relative;flex-shrink:0}
-.blog-row-thumb svg{position:absolute;inset:0;width:100%;height:100%}
-.blog-row-body{min-width:0}
-.blog-row-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.blog-row-title{font-family:var(--fd);font-weight:500;letter-spacing:-.4px;line-height:1.25;margin-bottom:6px;font-size:18px;transition:color .2s}
-.blog-row:hover .blog-row-title{color:var(--accent-light)}
-.blog-row-excerpt{font-size:13px;color:var(--muted);line-height:1.6;font-weight:500;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.blog-row-meta{font-size:11px;color:var(--hint);font-family:var(--fm);font-weight:500;display:flex;gap:10px;align-items:center}
+/* ═══ Filter bar — transition zone ═══ */
+.filter-bar{position:sticky;top:0;z-index:40;padding:16px 0;background:var(--bg);border-bottom:1px solid var(--border-s);transition:background .3s}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.filter-tab{padding:8px 18px;border-radius:40px;border:1px solid var(--border-s);background:var(--glass);color:var(--muted);font-family:var(--fb);font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s var(--ease)}
+.filter-tab:hover{color:var(--text);border-color:rgba(var(--accent-rgb),.35)}
+.filter-tab.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border-color:transparent}
 
-.blog-tag{display:inline-flex;align-items:center;padding:3px 11px;border-radius:20px;font-family:var(--fm);font-size:9.5px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;width:fit-content}
-.tag-law{background:rgba(180,83,9,.16);color:var(--gold-light);border:1px solid rgba(180,83,9,.3)}
-.tag-business{background:rgba(30,64,175,.16);color:var(--sapphire-light);border:1px solid rgba(30,64,175,.3)}
-.tag-music{background:rgba(123,31,162,.16);color:var(--plum-light);border:1px solid rgba(123,31,162,.3)}
-.tag-tech{background:rgba(5,150,105,.16);color:var(--emerald-light);border:1px solid rgba(5,150,105,.3)}
+/* ═══ Light zone — everything below filter bar ═══ */
+.light-zone{background:#FDFBF8;position:relative;z-index:1}
+.light-zone .filter-bar{background:#FDFBF8;border-color:rgba(29,22,38,.1)}
+.light-zone .filter-tab{border-color:rgba(29,22,38,.14);background:rgba(29,22,38,.03);color:rgba(29,22,38,.6)}
+.light-zone .filter-tab:hover{color:#1D1626;border-color:rgba(123,31,162,.3)}
 
-.blog-coming{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.06);border:1px solid var(--border);font-size:10px;color:var(--hint);font-family:var(--fm);font-weight:600;letter-spacing:.4px}
-.blog-read-time{display:flex;align-items:center;gap:5px}
-.blog-read-link{color:var(--accent-light);font-weight:600;text-decoration:none;border-bottom:1px solid rgba(var(--accent-rgb),.4)}
+/* News grid — dark cards floating on light bg */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:36px 0 8px}
+.news-card{border-radius:18px;overflow:hidden;background:#170B29;color:#F8F4FF;text-decoration:none;display:flex;flex-direction:column;transition:all .3s var(--ease);box-shadow:0 10px 26px rgba(29,22,38,.14);border-top:4px solid var(--gold-light)}
+.news-card.cat-music{border-top-color:var(--plum-light)}
+.news-card.cat-business{border-top-color:var(--sapphire-light)}
+.news-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(29,22,38,.24)}
+.news-card-img{aspect-ratio:16/10;position:relative;overflow:hidden}
+.news-card-img svg{width:100%;height:100%;display:block}
+.news-card-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.news-card-title{font-family:var(--fd);font-size:19px;font-weight:500;letter-spacing:-.4px;line-height:1.25;color:#F8F4FF;margin:10px 0 8px}
+.news-card-excerpt{font-size:12.5px;color:rgba(248,244,255,.6);line-height:1.6;font-weight:500;margin-bottom:14px;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-card-meta{font-size:10.5px;color:rgba(248,244,255,.4);font-family:var(--fm);font-weight:500;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
+.news-card-link{color:#C084FC;font-weight:600}
+.news-card.is-coming{opacity:.6}
+.news-card.is-coming:hover{transform:none;box-shadow:0 10px 26px rgba(29,22,38,.14)}
 
-.blog-cta{padding:56px;border-radius:32px;background:linear-gradient(160deg,rgba(123,31,162,.14),rgba(30,64,175,.08));border:1px solid var(--border-s);text-align:center;position:relative;z-index:1;margin-bottom:72px;content-visibility:auto;contain-intrinsic-size:auto 400px}
-.blog-cta h2{font-family:var(--fd);font-size:clamp(26px,3.6vw,44px);font-weight:500;letter-spacing:-1.3px;margin-bottom:14px}
+.blog-tag{display:inline-flex;align-items:center;gap:5px;padding:5px 13px;border-radius:20px;font-family:var(--fm);font-size:10.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;width:fit-content}
+.blog-tag::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.tag-law{background:rgba(180,83,9,.16);color:var(--gold-light);border:1px solid rgba(180,83,9,.35)}
+.tag-law::before{background:var(--gold-light)}
+.tag-business{background:rgba(30,64,175,.16);color:var(--sapphire-light);border:1px solid rgba(30,64,175,.35)}
+.tag-business::before{background:var(--sapphire-light)}
+.tag-music{background:rgba(123,31,162,.16);color:var(--plum-light);border:1px solid rgba(123,31,162,.35)}
+.tag-music::before{background:var(--plum-light)}
+.tag-tech{background:rgba(5,150,105,.16);color:var(--emerald-light);border:1px solid rgba(5,150,105,.35)}
+.tag-tech::before{background:var(--emerald-light)}
+.light-zone .blog-tag{opacity:1;font-weight:700}
+
+/* Subscribe CTA — light zone variant */
+.blog-cta{padding:52px;border-radius:28px;background:linear-gradient(155deg,rgba(123,31,162,.07),rgba(37,99,235,.05));border:1px solid rgba(29,22,38,.1);text-align:center;position:relative;z-index:1;margin:56px 0 72px;content-visibility:auto;contain-intrinsic-size:auto 380px}
+.blog-cta h2{font-family:var(--fd);font-size:clamp(24px,3.4vw,40px);font-weight:500;letter-spacing:-1.2px;margin-bottom:14px;color:#1D1626}
 .blog-cta h2 em{font-style:italic;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.blog-cta p{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 26px;line-height:1.65;font-weight:500}
+.blog-cta p{font-size:14.5px;color:rgba(29,22,38,.62);max-width:460px;margin:0 auto 24px;line-height:1.6;font-weight:500}
 .blog-subscribe{display:flex;gap:10px;max-width:420px;margin:0 auto}
-.blog-subscribe input{flex:1;padding:13px 16px;border-radius:40px;background:rgba(0,0,0,.25);border:1px solid var(--border-s);color:var(--text);font-family:var(--fb);font-size:14px;outline:none;transition:all .2s}
-.blog-subscribe input:focus{border-color:rgba(var(--accent-rgb),.55);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.15)}
+.blog-subscribe input{flex:1;padding:13px 16px;border-radius:40px;background:#fff;border:1px solid rgba(29,22,38,.16);color:#1D1626;font-family:var(--fb);font-size:14px;outline:none;transition:all .2s}
+.blog-subscribe input::placeholder{color:rgba(29,22,38,.4)}
+.blog-subscribe input:focus{border-color:rgba(var(--accent-rgb),.55);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.12)}
 .blog-subscribe button{padding:13px 24px;border-radius:40px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;border:none;font-family:var(--fb);font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
 .blog-subscribe button:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(var(--accent-rgb),.5)}
+
+/* Light-zone footer */
+.light-zone footer{background:#F4EFE6;border-top:1px solid rgba(29,22,38,.1)}
+.light-zone .f-col h4{color:rgba(29,22,38,.45)}
+.light-zone .f-col a{color:rgba(29,22,38,.65)}
+.light-zone .f-col a:hover{color:#1D1626}
+.light-zone .f-brand-logo{color:#1D1626}
+.light-zone .f-brand p{color:rgba(29,22,38,.62)}
+.light-zone .f-brand-meta{color:rgba(29,22,38,.45)}
+.light-zone .f-bottom{color:rgba(29,22,38,.45);border-color:rgba(29,22,38,.1)}
+
 @media(max-width:960px){
-  .blog-featured-card{grid-template-columns:1fr}
-  .blog-featured-img{min-height:200px}
-  .blog-row{grid-template-columns:88px 1fr;gap:16px}
+  .featured-topics{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:14px;padding-bottom:20px;-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent 100%);mask-image:linear-gradient(90deg,#000 90%,transparent 100%)}
+  .featured-topics::-webkit-scrollbar{display:none}
+  .ftopic-card{flex:0 0 78%;scroll-snap-align:start}
+  .ftopic-img{aspect-ratio:16/9}
+  .news-grid{grid-template-columns:1fr 1fr;gap:14px}
   .blog-subscribe{flex-direction:column}
 }
 @media(max-width:600px){
-  .blog-cta{padding:40px 24px}
+  .ftopic-card{flex:0 0 84%}
+  .news-grid{grid-template-columns:1fr;gap:10px}
+  .news-card{flex-direction:row;align-items:stretch;border-top:none;border-left:4px solid var(--gold-light)}
+  .news-card.cat-music{border-left-color:var(--plum-light);border-top-color:transparent}
+  .news-card.cat-business{border-left-color:var(--sapphire-light);border-top-color:transparent}
+  .news-card-img{width:88px;aspect-ratio:1;flex-shrink:0}
+  .news-card-body{padding:12px 14px;justify-content:center}
+  .news-card-title{font-size:14.5px;margin:2px 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .news-card-excerpt{display:none}
+  .news-card-meta{padding-top:0;border-top:none;font-size:10px}
+  .blog-tag{font-size:8.5px;padding:2px 9px}
+  .blog-tag::before{width:5px;height:5px}
+  .blog-cta{padding:36px 22px}
+  .filter-tabs{overflow-x:auto;flex-wrap:nowrap;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,#000 88%,transparent 100%)}
+  .filter-tab{flex-shrink:0}
 }
 
 </style>
@@ -283,169 +327,318 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
     <h1 class="sec-h reveal reveal-delay-1"><span class="vi">Kiến thức về<br><em>âm nhạc thương mại.</em></span><span class="en">Insights on<br><em>commercial music.</em></span></h1>
     <p class="sec-lede reveal reveal-delay-2"><span class="vi">Bản quyền âm nhạc, tâm lý khách hàng, và cách âm nhạc phát triển thương hiệu. Dành cho chủ quán và người quản lý chuỗi F&B tại Việt Nam.</span><span class="en">Copyright law, customer psychology, and how music shapes brands. Written for commercial space operators in Vietnam.</span></p>
   </div>
+
+  <div class="featured-label reveal"><span class="vi">Nổi bật theo chủ đề</span><span class="en">Featured by topic</span></div>
+  <div class="featured-topics">
+
+    <a href="blog-luat-ban-quyen-2026.html" class="ftopic-card reveal">
+      <div class="ftopic-img">
+        <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="iclaw0" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#BE123C"/></linearGradient></defs>
+          <rect width="200" height="130" fill="#0F0620"/>
+          <g stroke="url(#iclaw0)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+            <path d="M40 50 L100 22 L160 50"/>
+            <line x1="35" y1="50" x2="165" y2="50"/>
+            <line x1="48" y1="50" x2="48" y2="88"/>
+            <line x1="76" y1="50" x2="76" y2="88"/>
+            <line x1="124" y1="50" x2="124" y2="88"/>
+            <line x1="152" y1="50" x2="152" y2="88"/>
+            <line x1="30" y1="95" x2="170" y2="95"/>
+            <line x1="100" y1="58" x2="100" y2="80"/>
+            <line x1="80" y1="65" x2="120" y2="65"/>
+            <path d="M80 65 L70 78 Q80 85 90 78 Z" stroke-width="2"/>
+            <path d="M120 65 L110 78 Q120 85 130 78 Z" stroke-width="2"/>
+          </g>
+        </svg>
+      </div>
+      <div class="ftopic-body">
+        <span class="blog-tag tag-law"><span class="vi">Pháp lý</span><span class="en">Legal</span></span>
+        <h3 class="ftopic-title"><span class="vi">Luật bản quyền âm nhạc 2026: Những điều chủ quán cần biết</span><span class="en">Vietnam's 2026 Music Copyright Law explained</span></h3>
+        <div class="ftopic-meta">
+          <span>⏱ <span class="vi">8 phút</span><span class="en">8 min</span></span>
+          <span class="vi">Đọc bài →</span><span class="en">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="blog-bpm-doanh-thu.html" class="ftopic-card cat-music reveal reveal-delay-1">
+      <div class="ftopic-img">
+        <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="icbpm1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient></defs>
+          <rect width="200" height="130" fill="#0F0620"/>
+          <g stroke="url(#icbpm1)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+            <path d="M78 95 L90 30 L110 30 L122 95 Z"/>
+            <line x1="70" y1="95" x2="130" y2="95"/>
+            <line x1="100" y1="88" x2="118" y2="38"/>
+            <circle cx="118" cy="38" r="4" fill="url(#icbpm1)" stroke="none"/>
+            <circle cx="100" cy="88" r="3" fill="url(#icbpm1)" stroke="none"/>
+          </g>
+          <g fill="url(#icbpm1)" opacity="0.55">
+            <rect x="35" y="80" width="8" height="16" rx="3"/>
+            <rect x="50" y="68" width="8" height="28" rx="3"/>
+            <rect x="142" y="72" width="8" height="24" rx="3"/>
+            <rect x="157" y="82" width="8" height="14" rx="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="ftopic-body">
+        <span class="blog-tag tag-music"><span class="vi">Tâm lý & Âm nhạc</span><span class="en">Psychology</span></span>
+        <h3 class="ftopic-title"><span class="vi">BPM và doanh thu: Khoa học đằng sau nhạc nền cafe</span><span class="en">BPM and revenue: the science of cafe music</span></h3>
+        <div class="ftopic-meta">
+          <span>⏱ <span class="vi">6 phút</span><span class="en">6 min</span></span>
+          <span class="vi">Đọc bài →</span><span class="en">Read →</span>
+        </div>
+      </div>
+    </a>
+
+    <a href="blog-brand-sound.html" class="ftopic-card cat-business reveal reveal-delay-2">
+      <div class="ftopic-img">
+        <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="icbrand2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#34D399"/></linearGradient></defs>
+          <rect width="200" height="130" fill="#0F0620"/>
+          <g stroke="url(#icbrand2)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+            <path d="M30 70 L30 95 L58 95 L58 70"/>
+            <path d="M25 70 L44 52 L63 70"/>
+            <path d="M86 70 L86 95 L114 95 L114 70"/>
+            <path d="M81 70 L100 52 L119 70"/>
+            <path d="M142 70 L142 95 L170 95 L170 70"/>
+            <path d="M137 70 L156 52 L175 70"/>
+          </g>
+          <path d="M30 40 Q65 20 100 40 T170 40" stroke="url(#icbrand2)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+          <g fill="url(#icbrand2)" opacity="0.9">
+            <circle cx="44" cy="35" r="3.5"/>
+            <circle cx="100" cy="32" r="3.5"/>
+            <circle cx="156" cy="35" r="3.5"/>
+          </g>
+        </svg>
+      </div>
+      <div class="ftopic-body">
+        <span class="blog-tag tag-business"><span class="vi">Vận hành & Kinh doanh</span><span class="en">Business</span></span>
+        <h3 class="ftopic-title"><span class="vi">Brand Sound là gì và tại sao chuỗi F&B cần nó</span><span class="en">What is Brand Sound and why chains need it</span></h3>
+        <div class="ftopic-meta">
+          <span>⏱ <span class="vi">7 phút</span><span class="en">7 min</span></span>
+          <span class="vi">Đọc bài →</span><span class="en">Read →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
 </div>
 
-<div class="wrap">
-
-  <!-- Featured article -->
-  <div class="blog-featured">
-    <a href="blog-luat-ban-quyen-2026.html" class="blog-featured-card reveal" style="text-decoration:none;color:inherit">
-      <div class="blog-featured-img">
-        <svg class="blog-featured-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <defs><linearGradient id="gLaw" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#BE123C"/></linearGradient></defs>
-          <rect width="200" height="200" fill="#1A0E33"/>
-          <g stroke="url(#gLaw)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
-            <line x1="100" y1="40" x2="100" y2="150"/>
-            <line x1="55" y1="60" x2="145" y2="60"/>
-            <path d="M55 60 L35 100 Q55 115 75 100 Z"/>
-            <path d="M145 60 L125 100 Q145 115 165 100 Z"/>
-            <line x1="35" y1="100" x2="75" y2="100"/>
-            <line x1="125" y1="100" x2="165" y2="100"/>
-            <rect x="75" y="150" width="50" height="8" rx="3"/>
-          </g>
-        </svg>
-      </div>
-      <div class="blog-featured-body">
-        <div class="blog-tag tag-law" style="margin-bottom:16px"><span class="vi">Pháp lý · Nổi bật</span><span class="en">Legal · Featured</span></div>
-        <h2 class="blog-featured-title"><span class="vi">Luật bản quyền âm nhạc 2026 tại Việt Nam: Những điều chủ quán cần biết ngay</span><span class="en">Vietnam's 2026 Music Copyright Law: What venue owners need to know now</span></h2>
-        <p class="blog-featured-excerpt"><span class="vi">Nghị định 341, Luật SHTT sửa đổi, và chiến dịch kiểm tra toàn quốc đang buộc các doanh nghiệp F&B phải nhìn lại cách dùng nhạc. Bài này phân tích từng thay đổi và ý nghĩa thực tế với quán bạn.</span><span class="en">Decree 341, the amended IP Law, and the nationwide enforcement campaign are changing how F&B businesses must approach background music.</span></p>
-        <div class="blog-row-meta">
-          <span class="blog-read-time">⏱ <span class="vi">8 phút đọc</span><span class="en">8 min read</span></span>
-          <span>·</span>
-          <span class="blog-read-link"><span class="vi">Đọc bài viết</span><span class="en">Read article</span> →</span>
-        </div>
-      </div>
-    </a>
+<div class="filter-bar">
+  <div class="wrap">
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all"><span class="vi">Tất cả</span><span class="en">All</span></button>
+      <button class="filter-tab" data-filter="law"><span class="vi">Pháp lý</span><span class="en">Legal</span></button>
+      <button class="filter-tab" data-filter="music"><span class="vi">Tâm lý & Âm nhạc</span><span class="en">Psychology & Music</span></button>
+      <button class="filter-tab" data-filter="business"><span class="vi">Vận hành & Kinh doanh</span><span class="en">Business</span></button>
+    </div>
   </div>
+</div>
 
-  <!-- Editorial list -->
-  <div class="blog-list">
+<div class="light-zone">
+  <div class="wrap">
+    <div class="news-grid" id="newsGrid">
 
-    <a href="blog-bpm-doanh-thu.html" class="blog-row reveal">
-      <div class="blog-row-thumb">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <defs><linearGradient id="gBpm" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient></defs>
-          <rect width="200" height="200" fill="#1A0E33"/>
-          <g fill="url(#gBpm)" opacity="0.9">
-            <rect x="40" y="110" width="14" height="50" rx="6"/>
-            <rect x="64" y="80" width="14" height="80" rx="6"/>
-            <rect x="88" y="60" width="14" height="100" rx="6"/>
-            <rect x="112" y="90" width="14" height="70" rx="6"/>
-            <rect x="136" y="70" width="14" height="90" rx="6"/>
-            <rect x="160" y="105" width="14" height="55" rx="6"/>
+      <a href="blog-luat-ban-quyen-2026.html" class="news-card reveal" data-category="law">
+        <div class="news-card-img">
+          <svg viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="iclaw3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#BE123C"/></linearGradient></defs>
+          <rect width="200" height="125" fill="#0F0620"/>
+          <g stroke="url(#iclaw3)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+            <path d="M40 50 L100 22 L160 50"/>
+            <line x1="35" y1="50" x2="165" y2="50"/>
+            <line x1="48" y1="50" x2="48" y2="88"/>
+            <line x1="76" y1="50" x2="76" y2="88"/>
+            <line x1="124" y1="50" x2="124" y2="88"/>
+            <line x1="152" y1="50" x2="152" y2="88"/>
+            <line x1="30" y1="95" x2="170" y2="95"/>
+            <line x1="100" y1="58" x2="100" y2="80"/>
+            <line x1="80" y1="65" x2="120" y2="65"/>
+            <path d="M80 65 L70 78 Q80 85 90 78 Z" stroke-width="2"/>
+            <path d="M120 65 L110 78 Q120 85 130 78 Z" stroke-width="2"/>
           </g>
         </svg>
-      </div>
-      <div class="blog-row-body">
-        <div class="blog-row-top">
+        </div>
+        <div class="news-card-body">
+          <span class="blog-tag tag-law"><span class="vi">Pháp lý</span><span class="en">Legal</span></span>
+          <h3 class="news-card-title"><span class="vi">Luật bản quyền âm nhạc 2026 tại Việt Nam</span><span class="en">Vietnam's 2026 Music Copyright Law</span></h3>
+          <p class="news-card-excerpt"><span class="vi">Nghị định 341 và chiến dịch thanh tra toàn quốc đang thay đổi cách F&B dùng nhạc.</span><span class="en">Decree 341 and nationwide enforcement are changing how F&B uses music.</span></p>
+          <div class="news-card-meta">
+            <span>⏱ <span class="vi">8 phút đọc</span><span class="en">8 min read</span></span>
+            <span class="news-card-link"><span class="vi">Đọc →</span><span class="en">Read →</span></span>
+          </div>
+        </div>
+      </a>
+
+      <a href="blog-bpm-doanh-thu.html" class="news-card cat-music reveal reveal-delay-1" data-category="music">
+        <div class="news-card-img">
+          <svg viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="icbpm4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient></defs>
+          <rect width="200" height="125" fill="#0F0620"/>
+          <g stroke="url(#icbpm4)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+            <path d="M78 95 L90 30 L110 30 L122 95 Z"/>
+            <line x1="70" y1="95" x2="130" y2="95"/>
+            <line x1="100" y1="88" x2="118" y2="38"/>
+            <circle cx="118" cy="38" r="4" fill="url(#icbpm4)" stroke="none"/>
+            <circle cx="100" cy="88" r="3" fill="url(#icbpm4)" stroke="none"/>
+          </g>
+          <g fill="url(#icbpm4)" opacity="0.55">
+            <rect x="35" y="80" width="8" height="16" rx="3"/>
+            <rect x="50" y="68" width="8" height="28" rx="3"/>
+            <rect x="142" y="72" width="8" height="24" rx="3"/>
+            <rect x="157" y="82" width="8" height="14" rx="3"/>
+          </g>
+        </svg>
+        </div>
+        <div class="news-card-body">
           <span class="blog-tag tag-music"><span class="vi">Tâm lý & Âm nhạc</span><span class="en">Psychology</span></span>
+          <h3 class="news-card-title"><span class="vi">BPM và doanh thu: Khoa học đằng sau nhạc nền cafe</span><span class="en">BPM and revenue: the science of cafe music</span></h3>
+          <p class="news-card-excerpt"><span class="vi">Milliman (1986) đến nay: tempo nhạc ảnh hưởng trực tiếp đến doanh thu.</span><span class="en">Milliman (1986) onward: tempo directly affects revenue.</span></p>
+          <div class="news-card-meta">
+            <span>⏱ <span class="vi">6 phút đọc</span><span class="en">6 min read</span></span>
+            <span class="news-card-link"><span class="vi">Đọc →</span><span class="en">Read →</span></span>
+          </div>
         </div>
-        <h2 class="blog-row-title"><span class="vi">BPM và doanh thu: Khoa học đằng sau nhạc nền cafe</span><span class="en">BPM and revenue: The science behind cafe background music</span></h2>
-        <p class="blog-row-excerpt"><span class="vi">Hàng chục năm nghiên cứu — từ Milliman (1986) đến Behavioral Sciences (2024) — chỉ ra rằng tempo nhạc ảnh hưởng trực tiếp đến thời gian khách ngồi, số món gọi thêm, và mức chi tiêu.</span><span class="en">Research from Milliman (1986) to Behavioral Sciences (2024) shows music tempo directly affects dwell time and spending.</span></p>
-        <div class="blog-row-meta">
-          <span class="blog-read-time">⏱ <span class="vi">6 phút đọc</span><span class="en">6 min read</span></span>
-          <span>·</span>
-          <span class="blog-read-link"><span class="vi">Đọc bài viết</span><span class="en">Read article</span> →</span>
-        </div>
-      </div>
-    </a>
+      </a>
 
-    <a href="blog-brand-sound.html" class="blog-row reveal reveal-delay-1">
-      <div class="blog-row-thumb">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <defs><linearGradient id="gStore" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#34D399"/></linearGradient></defs>
-          <rect width="200" height="200" fill="#1A0E33"/>
-          <g stroke="url(#gStore)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
-            <path d="M50 90 L50 150 L150 150 L150 90"/>
-            <path d="M40 90 L50 55 L150 55 L160 90 Z"/>
-            <line x1="40" y1="90" x2="160" y2="90"/>
-            <rect x="90" y="115" width="20" height="35"/>
-            <path d="M120 100 Q135 110 120 125" opacity="0.7"/>
-            <path d="M128 92 Q150 108 128 132" opacity="0.5"/>
+      <a href="blog-brand-sound.html" class="news-card cat-business reveal reveal-delay-2" data-category="business">
+        <div class="news-card-img">
+          <svg viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="icbrand5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#34D399"/></linearGradient></defs>
+          <rect width="200" height="125" fill="#0F0620"/>
+          <g stroke="url(#icbrand5)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+            <path d="M30 70 L30 95 L58 95 L58 70"/>
+            <path d="M25 70 L44 52 L63 70"/>
+            <path d="M86 70 L86 95 L114 95 L114 70"/>
+            <path d="M81 70 L100 52 L119 70"/>
+            <path d="M142 70 L142 95 L170 95 L170 70"/>
+            <path d="M137 70 L156 52 L175 70"/>
+          </g>
+          <path d="M30 40 Q65 20 100 40 T170 40" stroke="url(#icbrand5)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+          <g fill="url(#icbrand5)" opacity="0.9">
+            <circle cx="44" cy="35" r="3.5"/>
+            <circle cx="100" cy="32" r="3.5"/>
+            <circle cx="156" cy="35" r="3.5"/>
           </g>
         </svg>
-      </div>
-      <div class="blog-row-body">
-        <div class="blog-row-top">
-          <span class="blog-tag tag-business"><span class="vi">Vận hành chuỗi</span><span class="en">Chain ops</span></span>
         </div>
-        <h2 class="blog-row-title"><span class="vi">Brand Sound là gì và tại sao chuỗi F&B cần nó</span><span class="en">What is Brand Sound and why F&B chains need it</span></h2>
-        <p class="blog-row-excerpt"><span class="vi">McDonald's, Starbucks, Apple Store — tất cả đều có âm thanh thương hiệu riêng, và đó không phải ngẫu nhiên. Bài này giải thích vì sao âm nhạc là yếu tố thương hiệu bị bỏ qua nhiều nhất ở Việt Nam.</span><span class="en">McDonald's, Starbucks, and Apple Store all have distinct brand sounds — not by accident.</span></p>
-        <div class="blog-row-meta">
-          <span class="blog-read-time">⏱ <span class="vi">7 phút đọc</span><span class="en">7 min read</span></span>
-          <span>·</span>
-          <span class="blog-read-link"><span class="vi">Đọc bài viết</span><span class="en">Read article</span> →</span>
+        <div class="news-card-body">
+          <span class="blog-tag tag-business"><span class="vi">Vận hành & Kinh doanh</span><span class="en">Business</span></span>
+          <h3 class="news-card-title"><span class="vi">Brand Sound là gì và tại sao chuỗi F&B cần nó</span><span class="en">What is Brand Sound, and why chains need it</span></h3>
+          <p class="news-card-excerpt"><span class="vi">Sonic branding không còn là sân chơi riêng của tập đoàn toàn cầu.</span><span class="en">Sonic branding isn't just for global corporations anymore.</span></p>
+          <div class="news-card-meta">
+            <span>⏱ <span class="vi">7 phút đọc</span><span class="en">7 min read</span></span>
+            <span class="news-card-link"><span class="vi">Đọc →</span><span class="en">Read →</span></span>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
 
-    <div class="blog-row reveal reveal-delay-2">
-      <div class="blog-row-thumb">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <defs><linearGradient id="gChart" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34D399"/><stop offset="100%" stop-color="#60A5FA"/></linearGradient></defs>
-          <rect width="200" height="200" fill="#1A0E33"/>
-          <g opacity="0.9">
-            <rect x="50" y="120" width="20" height="30" rx="4" fill="url(#gChart)"/>
-            <rect x="80" y="95" width="20" height="55" rx="4" fill="url(#gChart)"/>
-            <rect x="110" y="70" width="20" height="80" rx="4" fill="url(#gChart)"/>
-            <path d="M55 115 L90 90 L120 65 L145 55" stroke="url(#gChart)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-            <circle cx="145" cy="55" r="4" fill="url(#gChart)"/>
+      <div class="news-card cat-business is-coming reveal" data-category="business">
+        <div class="news-card-img">
+          <svg viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="icsurvey6" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34D399"/><stop offset="100%" stop-color="#60A5FA"/></linearGradient></defs>
+          <rect width="200" height="125" fill="#0F0620"/>
+          <g stroke="url(#icsurvey6)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+            <rect x="60" y="28" width="66" height="82" rx="6"/>
+            <rect x="82" y="22" width="22" height="12" rx="4"/>
+            <path d="M72 52 L78 58 L90 44"/>
+            <line x1="98" y1="52" x2="116" y2="52"/>
+            <path d="M72 70 L78 76 L90 62"/>
+            <line x1="98" y1="70" x2="116" y2="70"/>
+            <path d="M72 88 L78 94 L90 80"/>
+            <line x1="98" y1="88" x2="116" y2="88"/>
+          </g>
+          <g stroke="url(#icsurvey6)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.95">
+            <circle cx="146" cy="88" r="14"/>
+            <line x1="156" y1="98" x2="168" y2="110"/>
           </g>
         </svg>
-      </div>
-      <div class="blog-row-body">
-        <div class="blog-row-top">
+        </div>
+        <div class="news-card-body">
           <span class="blog-tag tag-business"><span class="vi">Nghiên cứu thị trường</span><span class="en">Market research</span></span>
-        </div>
-        <h2 class="blog-row-title"><span class="vi">Khảo sát 200 quán cafe tại TP.HCM: Thực trạng nhạc nền thương mại 2026</span><span class="en">Survey of 200 cafes in HCMC: Commercial background music reality 2026</span></h2>
-        <p class="blog-row-excerpt"><span class="vi">Alive. khảo sát 200 chủ quán cafe tại TP.HCM về thực trạng nhạc nền. Kết quả: 87% đang vi phạm bản quyền mà không hay.</span><span class="en">Alive. surveyed 200 cafe owners in HCMC about background music practices.</span></p>
-        <div class="blog-row-meta">
-          <span class="blog-read-time">⏱ <span class="vi">7 phút đọc</span><span class="en">7 min read</span></span>
-          <span>·</span>
-          <span class="blog-coming">✦ <span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          <h3 class="news-card-title"><span class="vi">Khảo sát 200 quán cafe tại TP.HCM: Thực trạng 2026</span><span class="en">Survey of 200 HCMC cafes: 2026 reality</span></h3>
+          <p class="news-card-excerpt"><span class="vi">87% quán đang vi phạm bản quyền mà không hay biết.</span><span class="en">87% of venues unknowingly infringe copyright.</span></p>
+          <div class="news-card-meta">
+            <span>⏱ <span class="vi">7 phút đọc</span><span class="en">7 min read</span></span>
+            <span class="blog-coming">✦ <span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="blog-row reveal reveal-delay-3">
-      <div class="blog-row-thumb">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <defs><linearGradient id="gMic" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#FB7185"/></linearGradient></defs>
-          <rect width="200" height="200" fill="#1A0E33"/>
-          <g stroke="url(#gMic)" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
-            <rect x="85" y="45" width="30" height="60" rx="15"/>
-            <path d="M65 95 Q65 130 100 130 Q135 130 135 95"/>
-            <line x1="100" y1="130" x2="100" y2="155"/>
-            <line x1="80" y1="155" x2="120" y2="155"/>
+      <div class="news-card cat-music is-coming reveal reveal-delay-1" data-category="music">
+        <div class="news-card-img">
+          <svg viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="icinterview7" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#C084FC"/><stop offset="100%" stop-color="#FB7185"/></linearGradient></defs>
+          <rect width="200" height="125" fill="#0F0620"/>
+          <g stroke="url(#icinterview7)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9">
+            <path d="M28 32 h68 a8 8 0 0 1 8 8 v26 a8 8 0 0 1 -8 8 h-46 l-14 14 v-14 h-8 a8 8 0 0 1 -8 -8 v-26 a8 8 0 0 1 8 -8 Z"/>
+            <path d="M96 55 h68 a8 8 0 0 1 8 8 v26 a8 8 0 0 1 -8 8 h-8 v14 l-14 -14 h-46 a8 8 0 0 1 -8 -8 v-26 a8 8 0 0 1 8 -8 Z"/>
+          </g>
+          <g fill="url(#icinterview7)" opacity="0.85">
+            <circle cx="48" cy="52" r="3"/>
+            <circle cx="62" cy="52" r="3"/>
+            <circle cx="76" cy="52" r="3"/>
+            <circle cx="130" cy="75" r="3"/>
+            <circle cx="144" cy="75" r="3"/>
+            <circle cx="158" cy="75" r="3"/>
           </g>
         </svg>
-      </div>
-      <div class="blog-row-body">
-        <div class="blog-row-top">
+        </div>
+        <div class="news-card-body">
           <span class="blog-tag tag-music"><span class="vi">Interview</span><span class="en">Interview</span></span>
-        </div>
-        <h2 class="blog-row-title"><span class="vi">Chuyên gia âm nhạc thương mại: "Nhạc sai giờ còn tệ hơn không có nhạc"</span><span class="en">Commercial music expert: "Wrong music at the wrong time is worse than no music"</span></h2>
-        <p class="blog-row-excerpt"><span class="vi">Trò chuyện với một music director từng làm cho các chuỗi F&B lớn ở Đông Nam Á. Bài học rút ra từ 15 năm thiết kế âm thanh thương hiệu.</span><span class="en">In-depth interview with a music director who has worked with major F&B chains across Southeast Asia.</span></p>
-        <div class="blog-row-meta">
-          <span class="blog-read-time">⏱ <span class="vi">9 phút đọc</span><span class="en">9 min read</span></span>
-          <span>·</span>
-          <span class="blog-coming">✦ <span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          <h3 class="news-card-title"><span class="vi">"Nhạc sai giờ còn tệ hơn không có nhạc"</span><span class="en">"Wrong music is worse than no music"</span></h3>
+          <p class="news-card-excerpt"><span class="vi">Trò chuyện với music director 15 năm kinh nghiệm chuỗi F&B Đông Nam Á.</span><span class="en">Interview with a 15-year F&B music director in Southeast Asia.</span></p>
+          <div class="news-card-meta">
+            <span>⏱ <span class="vi">9 phút đọc</span><span class="en">9 min read</span></span>
+            <span class="blog-coming">✦ <span class="vi">Sắp ra mắt</span><span class="en">Coming soon</span></span>
+          </div>
         </div>
       </div>
+
     </div>
 
+    <!-- Subscribe CTA -->
+    <div class="blog-cta reveal">
+      <h2><span class="vi">Nhận bài viết mới<br><em>qua email.</em></span><span class="en">Get new articles<br><em>in your inbox.</em></span></h2>
+      <p><span class="vi">Mỗi tháng một bài — không spam, không quảng cáo. Chỉ có nội dung thực sự hữu ích về nhạc thương mại và vận hành không gian kinh doanh.</span><span class="en">One article per month — no spam, no ads. Just real knowledge about commercial music and venue operations.</span></p>
+      <div class="blog-subscribe">
+        <input type="email" placeholder="email@yourvenue.com" id="blog-email">
+        <button onclick="handleBlogSubscribe()"><span class="vi">Đăng ký</span><span class="en">Subscribe</span></button>
+      </div>
+      <p id="blog-sub-msg" style="margin-top:14px;font-size:13px;color:var(--emerald-2);display:none"><span class="vi">✓ Đăng ký thành công!</span><span class="en">✓ Subscribed successfully!</span></p>
+    </div>
   </div>
 
-  <!-- Subscribe CTA -->
-  <div class="blog-cta reveal">
-    <h2><span class="vi">Nhận bài viết mới<br><em>qua email.</em></span><span class="en">Get new articles<br><em>in your inbox.</em></span></h2>
-    <p><span class="vi">Mỗi tháng một bài — không spam, không quảng cáo. Chỉ có nội dung thực sự hữu ích về nhạc thương mại và vận hành không gian kinh doanh.</span><span class="en">One article per month — no spam, no ads. Just real knowledge about commercial music and venue operations.</span></p>
-    <div class="blog-subscribe">
-      <input type="email" placeholder="email@yourvenue.com" id="blog-email">
-      <button onclick="handleBlogSubscribe()"><span class="vi">Đăng ký</span><span class="en">Subscribe</span></button>
+  <footer>
+    <div class="wrap">
+      <div class="f-grid">
+        <div class="f-brand">
+          <div class="f-brand-logo">Alive<span>.</span></div>
+          <p><span class="vi">Âm nhạc bản quyền cho không gian kinh doanh tại Việt Nam.</span><span class="en">Licensed commercial music for Vietnamese business spaces.</span></p>
+          <div class="f-brand-meta">alivemusic.asia</div>
+        </div>
+        <div class="f-col">
+          <h4><span class="vi">Sản phẩm</span><span class="en">Product</span></h4>
+          <ul>
+            <li><a href="index.html#product"><span class="vi">Tính năng</span><span class="en">Features</span></a></li>
+            <li><a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h4><span class="vi">Công ty</span><span class="en">Company</span></h4>
+          <ul>
+            <li><a href="about.html"><span class="vi">Giới thiệu</span><span class="en">About</span></a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="mailto:hello@alivemusic.asia"><span class="vi">Liên hệ</span><span class="en">Contact</span></a></li>
+          </ul>
+        </div>
+        <div class="f-col">
+          <h4><span class="vi">Pháp lý</span><span class="en">Legal</span></h4>
+          <ul>
+            <li><a href="terms.html"><span class="vi">Điều khoản</span><span class="en">Terms</span></a></li>
+            <li><a href="privacy.html"><span class="vi">Bảo mật</span><span class="en">Privacy</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="f-bottom">
+        <div>© 2026 ALIVE. MUSIC CO., LTD · HO CHI MINH CITY, VIETNAM</div>
+        <div>HELLO@ALIVEMUSIC.ASIA</div>
+      </div>
     </div>
-    <p id="blog-sub-msg" style="margin-top:14px;font-size:13px;color:var(--emerald-light);display:none"><span class="vi">✓ Đăng ký thành công!</span><span class="en">✓ Subscribed successfully!</span></p>
-  </div>
+  </footer>
 </div>
 
 <script>
@@ -454,52 +647,12 @@ function handleBlogSubscribe() {
   if (!email || !email.includes('@')) return;
   document.getElementById('blog-sub-msg').style.display = 'block';
   document.getElementById('blog-email').value = '';
-  // TODO: POST to /api/subscribe when backend ready
   console.log('Blog subscribe:', email);
 }
 document.getElementById('blog-email').addEventListener('keydown', e => {
   if (e.key === 'Enter') handleBlogSubscribe();
 });
-</script>
 
-<footer>
-  <div class="wrap">
-    <div class="f-grid">
-      <div class="f-brand">
-        <div class="f-brand-logo">Alive<span>.</span></div>
-        <p><span class="vi">Âm nhạc bản quyền cho không gian kinh doanh tại Việt Nam.</span><span class="en">Licensed commercial music for Vietnamese business spaces.</span></p>
-        <div class="f-brand-meta">alivemusic.asia</div>
-      </div>
-      <div class="f-col">
-        <h4><span class="vi">Sản phẩm</span><span class="en">Product</span></h4>
-        <ul>
-          <li><a href="index.html#product"><span class="vi">Tính năng</span><span class="en">Features</span></a></li>
-          <li><a href="index.html#pricing"><span class="vi">Bảng giá</span><span class="en">Pricing</span></a></li>
-        </ul>
-      </div>
-      <div class="f-col">
-        <h4><span class="vi">Công ty</span><span class="en">Company</span></h4>
-        <ul>
-          <li><a href="about.html"><span class="vi">Giới thiệu</span><span class="en">About</span></a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="mailto:hello@alivemusic.asia"><span class="vi">Liên hệ</span><span class="en">Contact</span></a></li>
-        </ul>
-      </div>
-      <div class="f-col">
-        <h4><span class="vi">Pháp lý</span><span class="en">Legal</span></h4>
-        <ul>
-          <li><a href="terms.html"><span class="vi">Điều khoản</span><span class="en">Terms</span></a></li>
-          <li><a href="privacy.html"><span class="vi">Bảo mật</span><span class="en">Privacy</span></a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="f-bottom">
-      <div>© 2026 ALIVE. MUSIC CO., LTD · HO CHI MINH CITY, VIETNAM</div>
-      <div>HELLO@ALIVEMUSIC.ASIA</div>
-    </div>
-  </div>
-</footer>
-<script>
 function setLang(l){
   document.documentElement.setAttribute('data-lang',l);
   document.getElementById('btn-vi').classList.toggle('active',l==='vi');
@@ -508,9 +661,6 @@ function setLang(l){
 }
 try{const s=localStorage.getItem('alive-lang');if(s==='en'||s==='vi')setLang(s);}catch(e){}
 try{const g=localStorage.getItem('alive-glass');if(g&&['strong','plum','sapphire'].includes(g))document.documentElement.setAttribute('data-glass',g);}catch(e){}
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').classList.toggle('scrolled',scrollY>40);
-},{passive:true});
 
 // Scroll reveal
 const revealObserver = new IntersectionObserver((entries) => {
@@ -519,6 +669,50 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Filter tabs
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const filter = tab.dataset.filter;
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t === tab));
+    document.querySelectorAll('#newsGrid .news-card').forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.style.display = show ? '' : 'none';
+    });
+  });
+});
+
+// Auto-slide featured topics carousel (mobile/tablet only — desktop shows all 3 side by side)
+(function(){
+  const track = document.querySelector('.featured-topics');
+  if (!track) return;
+  const cards = Array.from(track.querySelectorAll('.ftopic-card'));
+  if (cards.length < 2) return;
+  let idx = 0;
+  let timer = null;
+
+  function goTo(i) {
+    idx = i;
+    const card = cards[idx];
+    track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+  }
+  function startAuto() {
+    if (timer) return;
+    timer = setInterval(() => goTo((idx + 1) % cards.length), 4200);
+  }
+  function stopAuto() {
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+  function syncMode() {
+    if (window.innerWidth <= 960) startAuto();
+    else stopAuto();
+  }
+  ['touchstart', 'mousedown', 'wheel'].forEach(evt =>
+    track.addEventListener(evt, stopAuto, { passive: true })
+  );
+  syncMode();
+  window.addEventListener('resize', syncMode);
+})();
 </script>
 </body>
 </html>
