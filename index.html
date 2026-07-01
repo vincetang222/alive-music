@@ -166,9 +166,6 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .trust-card{border-right:none;border-bottom:1px solid var(--border)}
   .trust-card:nth-child(odd){border-right:1px solid var(--border)}
   .trust-card:nth-last-child(-n+2){border-bottom:none}
-  .metrics-bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .metric-card-hero{grid-column:1/3;grid-row:auto}
-  .metric-card-hero .metric-n{font-size:64px}
   .how-steps::before{display:none}
   .step-frame{grid-template-columns:44px 1fr;gap:20px;padding:28px 0}
   .step-n-wrap{width:44px;height:44px}
@@ -309,6 +306,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .view-tab.active{border-left-color:var(--plum-2);background:rgba(123,31,162,.12);color:var(--text)}
 .view-tab-num{font-family:var(--fm);font-size:10px;color:var(--hint);letter-spacing:1.5px;margin-bottom:8px;font-weight:700}
 .view-tab.active .view-tab-num{color:var(--plum-light)}
+.view-dots{display:none}
 .view-tab-name{font-family:var(--fd);font-size:24px;font-weight:500;letter-spacing:-.5px;line-height:1.1;margin-bottom:4px}
 .view-tab-sub{font-size:12px;color:var(--muted);line-height:1.45;font-weight:500}
 
@@ -495,25 +493,29 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .tl-time{margin-top:0}
   .trust-row{grid-template-columns:1fr 1fr;gap:10px}
   .problem-layout{grid-template-columns:1fr;gap:40px}
-  .product-views{grid-template-columns:1fr;gap:32px}
-  .view-tabs{position:static;flex-direction:row;overflow-x:auto;scrollbar-width:none;border-radius:16px}
+  .product-views{grid-template-columns:1fr;gap:20px}
+  .view-tabs{position:static;flex-direction:row;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:16px;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent 100%);mask-image:linear-gradient(90deg,#000 88%,transparent 100%)}
   .view-tabs::-webkit-scrollbar{display:none}
-  .view-tab{flex-shrink:0;min-width:220px;border-left:none;border-bottom:2px solid transparent;border-right:1px solid var(--border)}
+  .view-tab{flex-shrink:0;width:82%;min-width:0;scroll-snap-align:start;border-left:none;border-bottom:2px solid transparent;border-right:1px solid var(--border)}
   .view-tab:last-child{border-right:none}
   .view-tab.active{border-left-color:transparent;border-bottom-color:var(--plum-2)}
+  .view-dots{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;position:relative}
+  .view-dot{width:6px;height:6px;border-radius:50%;background:var(--border-s);transition:all .25s var(--ease)}
+  .view-dot.active{background:var(--plum-2);width:20px;border-radius:4px}
+  .view-swipe-hint{position:absolute;right:0;font-size:10px;color:var(--hint);font-family:var(--fm);font-weight:600;letter-spacing:.3px;display:flex;align-items:center;gap:4px;animation:swipehint 2.2s ease-in-out 1s 3}
+  @keyframes swipehint{0%,100%{opacity:.6;transform:translateX(0)}50%{opacity:1;transform:translateX(4px)}}
   .mp-body{grid-template-columns:1fr;gap:24px;padding:24px}
   .how-intro{grid-template-columns:1fr;gap:24px}
   .how-steps{grid-template-columns:1fr}
-@media(max-width:960px){
   .cp-table{display:none}
   .cp-mobile{display:flex;flex-direction:column;gap:10px}
-}
-@media(min-width:961px){
-  .cp-mobile{display:none}
-}
   .pricing-grid{grid-template-columns:1fr}
   .faq-grid{grid-template-columns:1fr;gap:24px}
   .cta-wrap{padding:48px 20px}
+  .sec-problem,.sec-metrics,.sec-product,.sec-how,.sec-compare,.sec-pricing,.sec-faq,.sec-lead,.cta-final{padding:64px 0}
+}
+@media(min-width:961px){
+  .cp-mobile{display:none}
 }
 @media(max-width:600px){
   .hero-h1{font-size:clamp(48px,12vw,72px);letter-spacing:-2.5px}
@@ -558,6 +560,8 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .metric-card{padding:32px 28px;border-radius:22px;background:rgba(255,255,255,.04);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border-s);display:flex;flex-direction:column;gap:14px;transition:all .28s var(--ease);box-shadow:0 8px 28px rgba(0,0,0,.18)}
 .metric-card:hover{transform:translateY(-3px);border-color:rgba(52,211,153,.32);background:rgba(5,150,105,.06)}
 .metric-card-hero{grid-column:1;grid-row:1/3;background:linear-gradient(155deg,rgba(5,150,105,.16),rgba(30,64,175,.08));border-color:rgba(52,211,153,.38);box-shadow:0 16px 48px rgba(5,150,105,.18)}
+.mc-pos-2{grid-column:2}
+.mc-pos-3{grid-column:3}
 .metric-card-hero:hover{transform:translateY(-4px);box-shadow:0 24px 64px rgba(5,150,105,.24)}
 .metric-n{font-family:var(--fd);font-size:64px;font-weight:500;letter-spacing:-2.5px;line-height:.88;background:linear-gradient(135deg,var(--emerald-light),var(--emerald-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .metric-card-hero .metric-n{font-size:88px;letter-spacing:-3.5px}
@@ -608,10 +612,12 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .lead-success strong{color:var(--text);font-weight:600}
 
 @media(max-width:960px){
-  .metrics-grid{grid-template-columns:1fr 1fr}
   .lead-grid{grid-template-columns:1fr;gap:40px}
   .lead-form{padding:28px}
   .lead-row{grid-template-columns:1fr}
+  .metrics-bento{grid-template-columns:1fr;grid-template-rows:auto}
+  .metric-card-hero,.mc-pos-2,.mc-pos-3{grid-column:1;grid-row:auto}
+  .metric-card-hero .metric-n{font-size:64px}
 }
 @media(max-width:600px){
   .f-grid{grid-template-columns:1fr}
@@ -619,8 +625,6 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .trust-card{border-right:none;border-bottom:1px solid var(--border)}
   .trust-card:nth-child(odd){border-right:none}
   .trust-card:last-child{border-bottom:none}
-  .metrics-bento{grid-template-columns:1fr}
-  .metric-card-hero{grid-column:1}
 }
 </style>
 </head>
@@ -918,13 +922,13 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
         <p class="metric-b"><span class="vi">Khách ngồi lâu hơn khi phát nhạc tempo chậm — quan trọng với café, fine dining.</span><span class="en">Customers stay 11 minutes longer with slow-tempo music — critical for cafés and fine dining.</span></p>
         <div class="metric-src">Milliman · WKU · 1986</div>
       </div>
-      <div class="metric-card reveal reveal-delay-1" style="grid-column:2">
+      <div class="metric-card mc-pos-2 reveal reveal-delay-1">
         <div class="metric-n">−10%</div>
         <div class="metric-h"><span class="vi">Thời gian phục vụ</span><span class="en">Service time</span></div>
         <p class="metric-b"><span class="vi">Tempo nhanh giúp quay vòng bàn nhanh hơn vào giờ cao điểm — nhiều lượt phục vụ hơn mỗi ca.</span><span class="en">Faster tempo speeds table turnover at peak hours — more seatings per shift.</span></p>
         <div class="metric-src">Shaki et al. · Behavioral Sciences · 2024</div>
       </div>
-      <div class="metric-card reveal reveal-delay-2" style="grid-column:3">
+      <div class="metric-card mc-pos-3 reveal reveal-delay-2">
         <div class="metric-n">5</div>
         <div class="metric-h"><span class="vi">Khung giờ, tự đổi</span><span class="en">Auto mood blocks</span></div>
         <p class="metric-b"><span class="vi">Alive. biết khi nào cần chậm, khi nào cần nhanh — và tự điều chỉnh cả ngày.</span><span class="en">Alive. knows when to slow and when to pick up — adjusts automatically, all day.</span></p>
@@ -965,6 +969,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
           <div class="view-tab-name">Dashboard</div>
           <div class="view-tab-sub"><span class="vi">Theo dõi toàn bộ chi nhánh từ một màn hình</span><span class="en">Manage your whole chain from one screen</span></div>
         </button>
+      </div>
+
+      <!-- Mobile dot indicator + swipe hint -->
+      <div class="view-dots" id="viewDots">
+        <span class="view-dot active" data-dot="player"></span>
+        <span class="view-dot" data-dot="schedule"></span>
+        <span class="view-dot" data-dot="dashboard"></span>
+        <span class="view-swipe-hint"><span class="vi">Vuốt để xem thêm</span><span class="en">Swipe for more</span> →</span>
       </div>
 
       <div class="view-content">
@@ -1701,8 +1713,36 @@ document.querySelectorAll('.view-tab').forEach(tab => {
     const view = tab.dataset.view;
     document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t === tab));
     document.querySelectorAll('.view-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === view));
+    document.querySelectorAll('.view-dot').forEach(d => d.classList.toggle('active', d.dataset.dot === view));
+    const hint = document.querySelector('.view-swipe-hint');
+    if (hint) hint.style.display = 'none';
+    tab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'start'});
   });
 });
+
+// Sync dots when user scrolls tabs manually on mobile (swipe)
+const viewTabsEl = document.querySelector('.view-tabs');
+if (viewTabsEl) {
+  let scrollTimeout;
+  viewTabsEl.addEventListener('scroll', () => {
+    const hint = document.querySelector('.view-swipe-hint');
+    if (hint) hint.style.display = 'none';
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      const tabs = Array.from(document.querySelectorAll('.view-tab'));
+      const containerLeft = viewTabsEl.scrollLeft;
+      let closest = tabs[0], closestDist = Infinity;
+      tabs.forEach(t => {
+        const dist = Math.abs(t.offsetLeft - containerLeft);
+        if (dist < closestDist) { closestDist = dist; closest = t; }
+      });
+      const view = closest.dataset.view;
+      document.querySelectorAll('.view-tab').forEach(t => t.classList.toggle('active', t === closest));
+      document.querySelectorAll('.view-panel').forEach(p => p.classList.toggle('active', p.dataset.panel === view));
+      document.querySelectorAll('.view-dot').forEach(d => d.classList.toggle('active', d.dataset.dot === view));
+    }, 100);
+  }, {passive:true});
+}
 
 document.querySelectorAll('.faq-item').forEach(item => {
   item.querySelector('.faq-q').addEventListener('click', () => {
