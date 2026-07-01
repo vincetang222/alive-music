@@ -131,6 +131,16 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .nav-mid{display:none}
   .wrap,.wrap-narrow{padding:0 20px}
   .f-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .trust-row{grid-template-columns:1fr 1fr}
+  .trust-card{border-right:none;border-bottom:1px solid var(--border)}
+  .trust-card:nth-child(odd){border-right:1px solid var(--border)}
+  .trust-card:nth-last-child(-n+2){border-bottom:none}
+  .metrics-bento{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .metric-card-hero{grid-column:1/3;grid-row:auto}
+  .metric-card-hero .metric-n{font-size:64px}
+  .how-steps::before{display:none}
+  .step-frame{grid-template-columns:44px 1fr;gap:20px;padding:28px 0}
+  .step-n-wrap{width:44px;height:44px}
 }
 @media(max-width:600px){
   .f-grid{grid-template-columns:1fr}
@@ -142,6 +152,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
    INDEX-SPECIFIC STYLES
    Each section has distinct mood through tint + accent
    ═══════════════════════════════════════════════════ */
+
+/* ── Scroll reveal ── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 /* ─── SECTION BACKGROUNDS — distinct moods ─── */
 .sec-hero{position:relative;overflow:hidden}
@@ -213,17 +231,21 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .tl-block.now-playing::after{content:'';position:absolute;bottom:0;left:8px;right:8px;height:2px;background:var(--plum-2);border-radius:1px;animation:prog 18s linear infinite}
 @keyframes prog{0%{transform:scaleX(.05);transform-origin:left}100%{transform:scaleX(1);transform-origin:left}}
 
-/* ─── TRUST STRIP — with glass cards ─── */
-.trust{padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,.015)}
-.trust-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.trust-card{padding:24px;border-radius:18px;background:rgba(255,255,255,.03);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);text-align:center;transition:all .25s var(--ease)}
-.trust-card:hover{background:rgba(255,255,255,.06);border-color:var(--border-s);transform:translateY(-2px)}
-.trust-n{font-family:var(--fd);font-size:42px;font-weight:500;letter-spacing:-1.5px;line-height:1;margin-bottom:8px}
+/* ─── TRUST STRIP — asymmetric border layout ─── */
+.trust{padding:0;border-bottom:1px solid var(--border);background:rgba(255,255,255,.012)}
+.trust-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;border-top:1px solid var(--border)}
+.trust-card{padding:36px 32px;display:flex;flex-direction:column;gap:6px;border-right:1px solid var(--border);transition:background .25s var(--ease);position:relative}
+.trust-card:last-child{border-right:none}
+.trust-card:hover{background:rgba(255,255,255,.04)}
+.trust-card.featured{background:rgba(123,31,162,.06)}
+.trust-card.featured:hover{background:rgba(123,31,162,.1)}
+.trust-n{font-family:var(--fd);font-size:56px;font-weight:500;letter-spacing:-2.5px;line-height:.88;margin-bottom:6px}
 .trust-n.plum{background:linear-gradient(135deg,var(--plum-light),var(--plum-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .trust-n.sapphire{background:linear-gradient(135deg,var(--sapphire-light),var(--sapphire-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .trust-n.emerald{background:linear-gradient(135deg,var(--emerald-light),var(--emerald-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .trust-n.gold{background:linear-gradient(135deg,var(--gold-light),var(--gold-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.trust-l{font-size:12px;color:var(--muted);line-height:1.5;font-weight:500}
+.trust-l{font-size:13px;color:var(--muted);line-height:1.5;font-weight:500}
+.trust-sub{font-size:11px;color:var(--hint);font-family:var(--fm);margin-top:4px;letter-spacing:.3px}
 
 /* ─── PROBLEM — strong emphasis with red accent ─── */
 .problem-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start;margin-top:48px}
@@ -320,15 +342,19 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .panel-caption{font-size:14px;color:var(--muted);line-height:1.7;padding:0 6px;font-weight:500}
 .panel-caption strong{color:var(--text);font-weight:600}
 
-/* ─── HOW STEPS — glass cards with strong number ─── */
-.how-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:64px;align-items:end}
-.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative}
-.step-frame{padding:36px 32px;border-radius:24px;background:rgba(255,255,255,.04);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border-s);height:100%;display:flex;flex-direction:column;gap:14px;transition:all .25s var(--ease)}
-.step-frame:hover{background:rgba(255,255,255,.06);border-color:rgba(192,132,252,.3);transform:translateY(-4px)}
-.step-n{font-family:var(--fd);font-size:84px;font-weight:500;letter-spacing:-3px;line-height:.9;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:.95}
-.step-h{font-family:var(--fd);font-size:30px;font-weight:500;letter-spacing:-.8px;line-height:1.05}
-.step-b{font-size:14px;color:var(--muted);line-height:1.65;flex:1;font-weight:500}
-.step-meta{display:flex;align-items:center;gap:10px;padding-top:16px;border-top:1px solid var(--border);font-size:11px;color:var(--hint);font-family:var(--fm);letter-spacing:.3px;font-weight:500}
+/* ─── HOW STEPS — vertical connector ─── */
+.how-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:56px;align-items:end}
+.how-steps{display:flex;flex-direction:column;gap:0;position:relative}
+.how-steps::before{content:'';position:absolute;left:27px;top:24px;bottom:24px;width:1px;background:linear-gradient(180deg,var(--plum-light),var(--sapphire-2),var(--emerald-light));opacity:.28}
+.step-frame{display:grid;grid-template-columns:56px 1fr;gap:32px;align-items:start;padding:40px 0;border-bottom:1px solid var(--border)}
+.step-frame:last-child{border-bottom:none;padding-bottom:0}
+.step-frame:first-child{padding-top:0}
+.step-n-wrap{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(123,31,162,.12);border:1px solid rgba(123,31,162,.28);flex-shrink:0;position:relative;z-index:1}
+.step-n{font-family:var(--fd);font-size:26px;font-weight:500;letter-spacing:-.5px;background:var(--aurora);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.step-content{padding-top:10px}
+.step-h{font-family:var(--fd);font-size:28px;font-weight:500;letter-spacing:-.7px;line-height:1.08;margin-bottom:12px}
+.step-b{font-size:14px;color:var(--muted);line-height:1.7;font-weight:500;max-width:560px}
+.step-meta{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:8px 16px;border-radius:40px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:11px;color:var(--hint);font-family:var(--fm);letter-spacing:.3px;font-weight:500}
 .step-meta strong{color:var(--text);font-weight:700}
 
 /* ─── COMPARE TABLE — glass styled ─── */
@@ -475,17 +501,18 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .how-tab.active{background:linear-gradient(135deg,rgba(123,31,162,.3),rgba(30,64,175,.2));color:var(--text);box-shadow:0 2px 12px rgba(123,31,162,.25)}
 @media(max-width:600px){.how-toggle{flex-direction:column}.how-tab{padding:14px}}
 
-/* ─── METRICS SECTION (emerald tinted) ─── */
+/* ─── METRICS — bento grid ─── */
 .sec-metrics{background:linear-gradient(180deg,transparent 0%,rgba(5,150,105,.07) 50%,transparent 100%);padding:120px 0;position:relative}
 .sec-metrics::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(5,150,105,.4),transparent)}
 .sec-metrics::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(5,150,105,.3),transparent)}
 .metrics-head{max-width:720px;margin-bottom:56px}
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
-.metric-card{padding:32px 28px;border-radius:24px;background:rgba(255,255,255,.04);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border-s);display:flex;flex-direction:column;gap:14px;transition:all .25s var(--ease);box-shadow:0 12px 36px rgba(0,0,0,.2)}
-.metric-card:hover{transform:translateY(-4px);border-color:rgba(52,211,153,.35);background:rgba(5,150,105,.06)}
-.metric-card-featured{background:linear-gradient(160deg,rgba(5,150,105,.18),rgba(30,64,175,.1));border-color:rgba(52,211,153,.4);box-shadow:0 20px 48px rgba(5,150,105,.2)}
-.metric-n{font-family:var(--fd);font-size:64px;font-weight:500;letter-spacing:-2px;line-height:.9;background:linear-gradient(135deg,var(--emerald-light),var(--emerald-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.metric-card-featured .metric-n{background:linear-gradient(135deg,var(--emerald-light),var(--sapphire-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.metrics-bento{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:auto auto;gap:14px;margin-bottom:40px}
+.metric-card{padding:32px 28px;border-radius:22px;background:rgba(255,255,255,.04);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border-s);display:flex;flex-direction:column;gap:14px;transition:all .28s var(--ease);box-shadow:0 8px 28px rgba(0,0,0,.18)}
+.metric-card:hover{transform:translateY(-3px);border-color:rgba(52,211,153,.32);background:rgba(5,150,105,.06)}
+.metric-card-hero{grid-column:1;grid-row:1/3;background:linear-gradient(155deg,rgba(5,150,105,.16),rgba(30,64,175,.08));border-color:rgba(52,211,153,.38);box-shadow:0 16px 48px rgba(5,150,105,.18)}
+.metric-card-hero:hover{transform:translateY(-4px);box-shadow:0 24px 64px rgba(5,150,105,.24)}
+.metric-n{font-family:var(--fd);font-size:64px;font-weight:500;letter-spacing:-2.5px;line-height:.88;background:linear-gradient(135deg,var(--emerald-light),var(--emerald-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.metric-card-hero .metric-n{font-size:88px;letter-spacing:-3.5px}
 .metric-h{font-family:var(--fd);font-size:20px;font-weight:500;letter-spacing:-.4px;line-height:1.15}
 .metric-b{font-size:13px;color:var(--muted);line-height:1.6;flex:1;font-weight:500}
 .metric-src{font-family:var(--fm);font-size:10px;color:var(--hint);letter-spacing:.5px;padding-top:14px;border-top:1px solid var(--border);font-weight:600}
@@ -539,9 +566,13 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .lead-row{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  .metrics-grid{grid-template-columns:1fr}
-  .metric-n{font-size:52px}
-  .lead-form{padding:24px}
+  .f-grid{grid-template-columns:1fr}
+  .trust-row{grid-template-columns:1fr}
+  .trust-card{border-right:none;border-bottom:1px solid var(--border)}
+  .trust-card:nth-child(odd){border-right:none}
+  .trust-card:last-child{border-bottom:none}
+  .metrics-bento{grid-template-columns:1fr}
+  .metric-card-hero{grid-column:1}
 }
 </style>
 </head>
@@ -594,14 +625,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <section class="sec-hero">
   <div class="wrap">
     <div class="hero">
-      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span><span class="vi">ĐANG PHÁT TRỰC TIẾP · MIDDAY PULSE · QUẬN 1, HCM</span><span class="en">LIVE · MIDDAY PULSE · DISTRICT 1, HCMC</span></div>
+      <div class="hero-eyebrow reveal"><span class="hero-eyebrow-dot"></span><span class="vi">ĐANG PHÁT TRỰC TIẾP · MIDDAY PULSE · QUẬN 1, HCM</span><span class="en">LIVE · MIDDAY PULSE · DISTRICT 1, HCMC</span></div>
 
-      <h1 class="hero-h1">
+      <h1 class="hero-h1 reveal reveal-delay-1">
         <span class="vi">Nơi âm nhạc<br><em>tạo dấu ấn.</em></span>
         <span class="en">Say it<br><em>with sound.</em></span>
       </h1>
 
-      <div class="hero-grid">
+      <div class="hero-grid reveal reveal-delay-2">
         <p class="hero-lede">
           <span class="vi">Alive. mang nhạc bản quyền thương mại đến từng không gian của bạn. <strong>Được biên tập kỹ lưỡng, tự chuyển mood theo giờ, đồng bộ khắp chuỗi.</strong> Thiết lập một lần — chuẩn từ quán đầu đến quán cuối.</span>
           <span class="en">Alive. is a licensed music platform for commercial spaces. <strong>Professionally curated, auto-shifting by the hour, synced across every venue.</strong> Set it once — sounds right everywhere.</span>
@@ -613,7 +644,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
         </div>
       </div>
 
-      <div class="timeline">
+      <div class="timeline reveal reveal-delay-3">
         <div class="tl-label">
           <span class="vi">MỘT NGÀY TẠI QUÁN BẠN — 5 TÂM TRẠNG, TỰ CHUYỂN THEO GIỜ</span>
           <span class="en">A FULL DAY AT YOUR VENUE — 5 MOODS, AUTO-SHIFTING</span>
@@ -699,14 +730,15 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <!-- TRUST -->
 <div class="trust">
   <div class="wrap">
-    <div class="trust-row">
-      <div class="trust-card">
+    <div class="trust-row reveal">
+      <div class="trust-card featured">
         <div class="trust-n plum">700k+</div>
-        <div class="trust-l"><span class="vi">quán cafe, nhà hàng, khách sạn trên cả nước</span><span class="en">F&B venues across Vietnam</span></div>
+        <div class="trust-l"><span class="vi">cafe, nhà hàng, khách sạn trên cả nước Việt Nam</span><span class="en">F&B venues across Vietnam</span></div>
+        <div class="trust-sub"><span class="vi">thị trường mục tiêu của Alive.</span><span class="en">Alive.'s total addressable market</span></div>
       </div>
       <div class="trust-card">
         <div class="trust-n sapphire">40k+</div>
-        <div class="trust-l"><span class="vi">bài nhạc có bản quyền thương mại</span><span class="en">commercially-licensed tracks</span></div>
+        <div class="trust-l"><span class="vi">bài nhạc bản quyền thương mại</span><span class="en">commercially-licensed tracks</span></div>
       </div>
       <div class="trust-card">
         <div class="trust-n emerald">5'</div>
@@ -723,7 +755,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <!-- PROBLEM (gold tinted) -->
 <section class="sec-problem">
   <div class="wrap">
-    <div class="kicker k-gold"><span class="vi">Vấn đề</span><span class="en">The problem</span></div>
+    <div class="kicker k-gold reveal"><span class="vi">Vấn đề</span><span class="en">The problem</span></div>
     <h2 class="sec-h"><span class="vi">Quán bạn đang phát<br><em>nhạc lậu</em> mà không biết?</span><span class="en">Your venue may be playing<br><em>unlicensed music</em> right now.</span></h2>
     <p class="sec-lede"><span class="vi">Spotify, YouTube, USB nhạc — tất cả đều không được phép phát trong không gian kinh doanh. Bật cho khách nghe là vi phạm bản quyền. Từ năm 2026, điều này đã có chế tài thực sự.</span><span class="en">Spotify, YouTube, MP3 files — none are licensed for commercial use. Playing them for customers is copyright infringement. In 2026, this has real consequences.</span></p>
 
@@ -785,36 +817,42 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <!-- METRICS (emerald tinted) - "Music actually moves the numbers" -->
 <section class="sec-metrics">
   <div class="wrap">
-    <div class="metrics-head">
+    <div class="metrics-head reveal">
       <div class="kicker k-emerald"><span class="vi">Bằng chứng</span><span class="en">Evidence</span></div>
-      <h2 class="sec-h"><span class="vi">Đúng nhạc không chỉ <em>nghe hay</em>.<br>Nó còn ảnh hưởng đến doanh thu.</span><span class="en">The right music doesn't just <em>sound better</em>.<br>It moves the numbers.</span></h2>
+      <h2 class="sec-h"><span class="vi">Mở đúng nhạc không chỉ <em>nghe hay</em>.<br>Nó còn ảnh hưởng đến doanh thu.</span><span class="en">The right music doesn't just <em>sound better</em>.<br>It moves the numbers.</span></h2>
       <p class="sec-lede"><span class="vi">Hàng chục năm nghiên cứu cho thấy nhạc nền không phải trang trí — đây là một biến số vận hành tác động trực tiếp đến hành vi khách hàng.</span><span class="en">Decades of research show background music isn't decoration — it's an operational variable that directly affects customer behavior.</span></p>
     </div>
 
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-n">+40%</div>
-        <div class="metric-h"><span class="vi">Doanh thu đồ uống</span><span class="en">Beverage revenue</span></div>
-        <p class="metric-b"><span class="vi">Khách trong nhà hàng phát nhạc chậm gọi thêm trung bình 3 đồ uống mỗi bàn so với nhạc tempo nhanh.</span><span class="en">Diners in slow-tempo settings ordered an average of 3 more drinks per table than in fast-tempo settings.</span></p>
-        <div class="metric-src">Milliman · Journal of Consumer Research · 1986</div>
-      </div>
-      <div class="metric-card metric-card-featured">
+    <div class="metrics-bento">
+      <div class="metric-card metric-card-hero reveal">
         <div class="metric-n">+38%</div>
         <div class="metric-h"><span class="vi">Tổng doanh thu</span><span class="en">Total revenue</span></div>
         <p class="metric-b"><span class="vi">Khi nhạc phù hợp với cá tính thương hiệu thay vì playlist ngẫu nhiên — riêng tráng miệng và món phụ tăng mạnh hơn nữa.</span><span class="en">When music matches brand personality vs random playlists — desserts and sides see even higher lift.</span></p>
         <div class="metric-src">HUI Research · Daunfeldt et al. · 2017</div>
       </div>
-      <div class="metric-card">
+      <div class="metric-card reveal reveal-delay-1">
+        <div class="metric-n">+40%</div>
+        <div class="metric-h"><span class="vi">Doanh thu đồ uống</span><span class="en">Beverage revenue</span></div>
+        <p class="metric-b"><span class="vi">Khách trong nhà hàng phát nhạc chậm gọi thêm trung bình 3 đồ uống mỗi bàn so với nhạc tempo nhanh.</span><span class="en">Diners in slow-tempo settings ordered an average of 3 more drinks per table than in fast-tempo settings.</span></p>
+        <div class="metric-src">Milliman · JCR · 1986</div>
+      </div>
+      <div class="metric-card reveal reveal-delay-2">
         <div class="metric-n">+11′</div>
         <div class="metric-h"><span class="vi">Thời gian ngồi tại bàn</span><span class="en">Dwell time per table</span></div>
-        <p class="metric-b"><span class="vi">Khách ngồi lâu hơn 11 phút khi phát nhạc tempo chậm — quan trọng với café, fine dining, bar.</span><span class="en">Customers stay 11 minutes longer with slow-tempo music — critical for cafés, fine dining, bars.</span></p>
-        <div class="metric-src">Milliman · Western Kentucky University · 1986</div>
+        <p class="metric-b"><span class="vi">Khách ngồi lâu hơn khi phát nhạc tempo chậm — quan trọng với café, fine dining.</span><span class="en">Customers stay 11 minutes longer with slow-tempo music — critical for cafés and fine dining.</span></p>
+        <div class="metric-src">Milliman · WKU · 1986</div>
       </div>
-      <div class="metric-card">
+      <div class="metric-card reveal reveal-delay-1" style="grid-column:2">
         <div class="metric-n">−10%</div>
         <div class="metric-h"><span class="vi">Thời gian phục vụ</span><span class="en">Service time</span></div>
-        <p class="metric-b"><span class="vi">Tempo nhanh giúp quay vòng bàn nhanh hơn vào giờ cao điểm — đồng nghĩa nhiều lượt phục vụ hơn mỗi ca.</span><span class="en">Faster tempo speeds table turnover at peak hours — meaning more seatings per shift.</span></p>
+        <p class="metric-b"><span class="vi">Tempo nhanh giúp quay vòng bàn nhanh hơn vào giờ cao điểm — nhiều lượt phục vụ hơn mỗi ca.</span><span class="en">Faster tempo speeds table turnover at peak hours — more seatings per shift.</span></p>
         <div class="metric-src">Shaki et al. · Behavioral Sciences · 2024</div>
+      </div>
+      <div class="metric-card reveal reveal-delay-2" style="grid-column:3">
+        <div class="metric-n">5</div>
+        <div class="metric-h"><span class="vi">Khung giờ, tự đổi</span><span class="en">Auto mood blocks</span></div>
+        <p class="metric-b"><span class="vi">Alive. biết khi nào cần chậm, khi nào cần nhanh — và tự điều chỉnh cả ngày.</span><span class="en">Alive. knows when to slow and when to pick up — adjusts automatically, all day.</span></p>
+        <div class="metric-src" style="color:var(--plum-light);border-color:rgba(123,31,162,.2)"><span class="vi">Tính năng của Alive.</span><span class="en">Built into Alive.</span></div>
       </div>
     </div>
 
@@ -828,7 +866,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <!-- PRODUCT (plum tinted) -->
 <section class="sec-product" id="product">
   <div class="wrap">
-    <div class="product-intro">
+    <div class="product-intro reveal">
       <div class="kicker k-plum"><span class="vi">Sản phẩm</span><span class="en">The product</span></div>
       <h2 class="sec-h"><span class="vi">Ba giao diện.<br>Một <em>hệ thống</em>.</span><span class="en">Three screens.<br>One <em>system</em>.</span></h2>
       <p class="sec-lede"><span class="vi">Bạn thiết lập lịch một lần trên Dashboard. Từ đó hệ thống tự chạy. Nhân viên ở quán chỉ nhìn màn hình Player — không cần đụng gì thêm. Tất cả chi nhánh đều đồng bộ.</span><span class="en">Owners set the schedule once on Dashboard. The system runs itself. Staff just see the Player. Every venue stays in sync.</span></p>
@@ -1057,25 +1095,25 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
     <!-- WEB-BASED FLOW -->
     <div class="how-steps" id="how-web">
-      <div>
-        <div class="step-frame">
-          <div class="step-n">01</div>
+      <div class="step-frame reveal">
+        <div class="step-n-wrap"><span class="step-n">01</span></div>
+        <div class="step-content">
           <div class="step-h"><span class="vi">Chọn âm thanh cho thương hiệu</span><span class="en">Choose your brand sound</span></div>
           <p class="step-b"><span class="vi">Bạn cho Alive. biết quán mình theo phong cách nào — cà phê chuyên biệt, nhà hàng Á, quán bar sang tối. Đội tuyển nhạc của chúng tôi gợi ý 5 playlist phù hợp cho 5 khung giờ trong ngày.</span><span class="en">Tell us what your venue is like — specialty cafe, fine dining, dim-lit bar. Our curators suggest 5 collections for the 5 hours of your day.</span></p>
           <div class="step-meta">⏱ <strong>~10 <span class="vi">phút</span><span class="en">minutes</span></strong> · <span class="vi">qua video call hoặc tự làm trên app</span><span class="en">video call or self-serve online</span></div>
         </div>
       </div>
-      <div>
-        <div class="step-frame">
-          <div class="step-n">02</div>
+      <div class="step-frame reveal reveal-delay-1">
+        <div class="step-n-wrap"><span class="step-n">02</span></div>
+        <div class="step-content">
           <div class="step-h"><span class="vi">Mở trình duyệt — phát ngay</span><span class="en">Open browser — play instantly</span></div>
           <p class="step-b"><span class="vi">Không cần cài app, không cần thiết bị mới. Mở trình duyệt trên tablet, TV box, hay máy tính quầy sẵn có của quán — đăng nhập vào Alive. là nhạc chạy đúng lịch. Gắn vào ampli qua jack 3.5mm là xong.</span><span class="en">No new app, no new device. Open a browser on your existing tablet, TV box, or counter PC — log in to Alive. and music plays on schedule. Connect to your amp via 3.5mm jack and you're done.</span></p>
           <div class="step-meta">⏱ <strong>~5 <span class="vi">phút</span><span class="en">minutes</span></strong> · <span class="vi">dùng thiết bị sẵn có, không mua thêm</span><span class="en">uses existing devices, no extra hardware</span></div>
         </div>
       </div>
-      <div>
-        <div class="step-frame">
-          <div class="step-n">03</div>
+      <div class="step-frame reveal reveal-delay-2">
+        <div class="step-n-wrap"><span class="step-n">03</span></div>
+        <div class="step-content">
           <div class="step-h"><span class="vi">Để đó mà không cần lo</span><span class="en">Forget about it</span></div>
           <p class="step-b"><span class="vi">Nhạc tự chuyển theo giờ. Bài mới được cập nhật hàng tuần. Muốn điều chỉnh thì vào dashboard — không muốn cũng được, quán vẫn phát đúng chất brand suốt 365 ngày.</span><span class="en">Moods shift by the hour. New tracks roll in weekly. Open the dashboard when you want to tweak something — or don't, and your venue still sounds right 365 days a year.</span></p>
           <div class="step-meta">⏱ <strong>0 <span class="vi">phút mỗi tuần để duy trì</span><span class="en">minutes/week</span></strong> · <span class="vi">hoàn toàn tự động</span><span class="en">fully automatic</span></div>
@@ -1085,25 +1123,25 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
     <!-- ANDROID BOX FLOW (Chain) -->
     <div class="how-steps" id="how-box" style="display:none">
-      <div>
-        <div class="step-frame">
-          <div class="step-n">01</div>
+      <div class="step-frame reveal">
+        <div class="step-n-wrap"><span class="step-n">01</span></div>
+        <div class="step-content">
           <div class="step-h"><span class="vi">Thiết kế âm thanh toàn chuỗi</span><span class="en">Design your chain sound</span></div>
           <p class="step-b"><span class="vi">HQ làm việc với đội biên tập Alive. để xây dựng bộ playlist riêng cho thương hiệu — theo từng loại không gian, từng khung giờ, từng ngày trong tuần. Tất cả được khoá lại để đảm bảo nhất quán trên toàn hệ thống.</span><span class="en">HQ works with the Alive. curation team to build a custom playlist set for your brand — by space type, by hour, by day of week. All locked to ensure consistency across the chain.</span></p>
           <div class="step-meta">⏱ <strong>1–2 <span class="vi">buổi làm việc</span><span class="en">sessions</span></strong> · <span class="vi">chuyên gia Alive. đồng hành</span><span class="en">guided by Alive. team</span></div>
         </div>
       </div>
-      <div>
-        <div class="step-frame">
-          <div class="step-n">02</div>
+      <div class="step-frame reveal reveal-delay-1">
+        <div class="step-n-wrap"><span class="step-n">02</span></div>
+        <div class="step-content">
           <div class="step-h"><span class="vi">Giao Android Box — cắm là chạy</span><span class="en">Receive Android Box — plug and play</span></div>
           <p class="step-b"><span class="vi">Alive. giao Android Box đã cấu hình sẵn đến từng địa điểm. Nhân viên tại quán chỉ cần cắm vào ampli (3.5mm hoặc RCA) và bật điện — thiết bị tự kết nối và phát đúng lịch mà HQ đã duyệt. Không cần IT, không cần thợ kỹ thuật.</span><span class="en">Alive. delivers pre-configured Android Boxes to each location. Staff just plug into the amp (3.5mm or RCA) and power on — the device connects and plays the HQ-approved schedule. No IT, no technician needed.</span></p>
           <div class="step-meta">⏱ <strong>~5 <span class="vi">phút / địa điểm</span><span class="en">minutes / location</span></strong> · <span class="vi">cài sẵn, không cần cấu hình</span><span class="en">pre-configured, no setup</span></div>
         </div>
       </div>
-      <div>
-        <div class="step-frame">
-          <div class="step-n">03</div>
+      <div class="step-frame reveal reveal-delay-2">
+        <div class="step-n-wrap"><span class="step-n">03</span></div>
+        <div class="step-content">
           <div class="step-h"><span class="vi">HQ kiểm soát từ một màn hình</span><span class="en">HQ controls from one screen</span></div>
           <p class="step-b"><span class="vi">Toàn bộ thiết bị trong chuỗi được quản lý qua một dashboard duy nhất. HQ thấy trạng thái từng địa điểm theo thời gian thực, duyệt hoặc từ chối yêu cầu đổi nhạc từ nhân viên, cập nhật lịch cho toàn hệ thống chỉ bằng vài click.</span><span class="en">Every device in the chain is managed through one dashboard. HQ sees real-time status of each location, approves or rejects staff track requests, and updates the schedule chain-wide with a few clicks.</span></p>
           <div class="step-meta">⏱ <strong>0 <span class="vi">phút mỗi tuần để duy trì</span><span class="en">minutes/week</span></strong> · <span class="vi">tự vận hành sau khi thiết lập</span><span class="en">self-running after setup</span></div>
@@ -1116,7 +1154,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <!-- COMPARE (ruby tinted, generic competitor names) -->
 <section class="sec-compare">
   <div class="wrap">
-    <div class="cp-intro">
+    <div class="cp-intro reveal">
       <div class="kicker k-ruby"><span class="vi">So sánh</span><span class="en">Compare</span></div>
       <h2 class="sec-h"><span class="vi">Sự khác biệt<br><em>nói lên tất cả.</em></span><span class="en">A clear difference,<br>no <em>explanation</em> needed.</span></h2>
       <p class="sec-lede"><span class="vi">Nhạc bản quyền thì đơn vị nào cũng nói có. Điều khác biệt là Alive. được xây cho cách vận hành chuỗi hiện đại — không phải mô hình một quán từ hơn chục năm trước.</span><span class="en">Other licensed music tools were built for single stores in 2010. Alive. was built for how chains operate today.</span></p>
@@ -1178,7 +1216,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <!-- PRICING (sapphire tinted) -->
 <section class="sec-pricing" id="pricing">
   <div class="wrap">
-    <div class="pricing-head">
+    <div class="pricing-head reveal">
       <div class="kicker k-sapphire"><span class="vi">Bảng giá</span><span class="en">Pricing</span></div>
       <h2 class="sec-h"><span class="vi">Bắt đầu từ một quán.<br>Mở rộng <em>không giới hạn.</em></span><span class="en">Start small.<br>Scale <em>without limits.</em></span></h2>
       <p class="sec-lede"><span class="vi">Dùng thử 14 ngày, không cần thẻ tín dụng. Xong rồi chọn gói phù hợp — không ai ép bạn cả.</span><span class="en">14-day trial, no card required. Then pick the plan that fits your size.</span></p>
@@ -1433,7 +1471,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <section class="cta-final">
   <div class="wrap">
     <div class="cta-wrap">
-      <h2 class="cta-h"><span class="vi">Bật <em>Alive.</em><br>hôm nay.</span><span class="en">Turn on <em>Alive.</em><br>today.</span></h2>
+      <h2 class="cta-h"><span class="vi">Bật <em>Alive.</em><br>ngay hôm nay.</span><span class="en">Turn on <em>Alive.</em><br>today.</span></h2>
       <p class="cta-sub"><span class="vi">14 ngày miễn phí. Không cần thẻ tín dụng. Cài đặt trong 5 phút.</span><span class="en">14 days free. No credit card. 5-minute setup.</span></p>
       <div class="cta-row">
         <a href="#" class="btn-cta"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span> <span class="arr">→</span></a>
@@ -1575,9 +1613,23 @@ document.getElementById('mobileMenu').addEventListener('click', function(e) {
 // ─── HOW IT WORKS TABS ───
 function switchHow(type) {
   document.querySelectorAll('.how-tab').forEach(t => t.classList.toggle('active', t.dataset.how === type));
-  document.getElementById('how-web').style.display = type === 'web' ? 'grid' : 'none';
-  document.getElementById('how-box').style.display = type === 'box' ? 'grid' : 'none';
+  document.getElementById('how-web').style.display = type === 'web' ? 'flex' : 'none';
+  document.getElementById('how-web').style.flexDirection = 'column';
+  document.getElementById('how-box').style.display = type === 'box' ? 'flex' : 'none';
+  document.getElementById('how-box').style.flexDirection = 'column';
 }
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Init how-web as flex
+document.getElementById('how-web').style.display = 'flex';
+document.getElementById('how-web').style.flexDirection = 'column';
 
 // Sync mobile lang toggle with main toggle
 const origSetLang = setLang;
