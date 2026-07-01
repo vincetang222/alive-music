@@ -231,7 +231,9 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
 /* ─── HERO ─── */
 .hero{padding:140px 0 72px;position:relative}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:40px;background:rgba(123,31,162,.14);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(123,31,162,.32);font-size:11px;font-weight:700;color:var(--plum-light);letter-spacing:1.5px;margin-bottom:36px;font-family:var(--fm)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border-radius:40px;background:rgba(123,31,162,.14);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(123,31,162,.32);font-size:11px;font-weight:700;color:var(--plum-light);letter-spacing:1.5px;margin-bottom:36px;font-family:var(--fm);transition:background .5s var(--ease),border-color .5s var(--ease),color .5s var(--ease)}
+.hero-clock{font-variant-numeric:tabular-nums;letter-spacing:1px;font-weight:700}
+.eyebrow-sep{opacity:.4;font-weight:400}
 .hero-eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--emerald-2);animation:pulse 1.8s ease-in-out infinite;box-shadow:0 0 10px var(--emerald-2)}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
@@ -375,7 +377,11 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .sc-day{padding:6px 11px;border-radius:8px;font-size:10px;font-family:var(--fm);font-weight:700;color:var(--muted);background:var(--glass);border:1px solid var(--border);cursor:pointer;letter-spacing:.5px}
 .sc-day.on{background:rgba(123,31,162,.22);color:var(--plum-light);border-color:rgba(123,31,162,.4)}
 .sc-grid{display:flex;flex-direction:column;gap:6px}
-.sc-row{display:grid;grid-template-columns:64px 1fr 60px;gap:14px;padding:12px 16px;border-radius:12px;background:var(--glass);border:1px solid var(--border);align-items:center;transition:background .2s}
+.sc-row{display:grid;grid-template-columns:64px 1fr 60px;gap:14px;padding:12px 16px;border-radius:12px;background:var(--glass);border:1px solid var(--border);align-items:center;transition:all .4s var(--ease)}
+.sc-row-now{background:rgba(var(--accent-rgb),.12);border-color:rgba(var(--accent-rgb),.32)}
+.sc-row-now .sc-row-time{color:var(--accent-light)}
+.sc-now-badge{display:none;color:var(--accent-light);font-weight:600}
+.sc-row-now .sc-now-badge{display:inline}
 .sc-row:hover{background:rgba(255,255,255,.05)}
 .sc-row-time{font-family:var(--fm);font-size:11px;color:var(--hint);letter-spacing:.3px;font-weight:600}
 .sc-row-content{display:flex;align-items:center;gap:10px}
@@ -763,10 +769,12 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 <section class="sec-hero">
   <div class="wrap">
     <div class="hero">
-      <div class="hero-eyebrow reveal">
+      <div class="hero-eyebrow reveal" id="heroEyebrow">
         <span class="hero-eyebrow-dot"></span>
-        <span class="vi">ĐANG PHÁT · MIDDAY PULSE · 11:00–14:00 · Q1, HCM</span>
-        <span class="en">LIVE · MIDDAY PULSE · 11:00–14:00 · HCMC</span>
+        <span class="hero-clock" id="heroClock">--:--</span>
+        <span class="eyebrow-sep">·</span>
+        <span class="vi">ĐANG PHÁT · <span id="eyebrowDaypartVi">MIDDAY PULSE</span> · Q1, HCM</span>
+        <span class="en">LIVE · <span id="eyebrowDaypartEn">MIDDAY PULSE</span> · HCMC</span>
       </div>
 
       <h1 class="hero-h1 reveal reveal-delay-1">
@@ -790,8 +798,8 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
       <div class="hero-visualizer reveal reveal-delay-3">
         <div class="hv-top">
           <div class="hv-track">
-            <div class="hv-track-name">Glass Ceiling — Saga Berlin</div>
-            <div class="hv-track-meta">MIDDAY PULSE · 110 BPM · UPBEAT · POP</div>
+            <div class="hv-track-name" id="hvTrackName">Glass Ceiling — Saga Berlin</div>
+            <div class="hv-track-meta" id="hvTrackMeta">MIDDAY PULSE · 110 BPM · UPBEAT · POP</div>
           </div>
           <div class="hv-status"><span class="hv-status-dot"></span><span class="vi">ĐANG PHÁT</span><span class="en">LIVE</span></div>
         </div>
@@ -817,7 +825,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
           <span class="tl-now"><span class="tl-now-dot"></span><span class="vi">ĐANG PHÁT</span><span class="en">NOW PLAYING</span></span>
         </div>
         <div class="tl-track">
-          <div class="tl-block">
+          <div class="tl-block" data-daypart="morning">
             <div class="tl-time">07:00 → 11:00</div>
             <div class="tl-name">Morning Ritual</div>
             <div class="tl-mood">acoustic · warm · soft</div>
@@ -831,7 +839,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
             </div>
             <div class="tl-song">"Golden Hour Drive"</div>
           </div>
-          <div class="tl-block active now-playing">
+          <div class="tl-block" data-daypart="midday">
             <div class="tl-time">11:00 → 14:00</div>
             <div class="tl-name">Midday Pulse</div>
             <div class="tl-mood">upbeat · groove · bright</div>
@@ -845,7 +853,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
             </div>
             <div class="tl-song">"Glass Ceiling"</div>
           </div>
-          <div class="tl-block">
+          <div class="tl-block" data-daypart="afternoon">
             <div class="tl-time">14:00 → 17:00</div>
             <div class="tl-name">Afternoon Drift</div>
             <div class="tl-mood">chill · lo-fi · calm</div>
@@ -859,7 +867,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
             </div>
             <div class="tl-song">"Soft Static Rain"</div>
           </div>
-          <div class="tl-block">
+          <div class="tl-block" data-daypart="evening">
             <div class="tl-time">17:00 → 21:00</div>
             <div class="tl-name">Evening Glow</div>
             <div class="tl-mood">jazzy · warm · low-lit</div>
@@ -873,7 +881,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
             </div>
             <div class="tl-song">"Amber & Oak"</div>
           </div>
-          <div class="tl-block">
+          <div class="tl-block" data-daypart="late">
             <div class="tl-time"><span class="vi">21:00 → đóng cửa</span><span class="en">21:00 → close</span></div>
             <div class="tl-name">Late Hours</div>
             <div class="tl-mood">dark · ambient · deep</div>
@@ -1096,7 +1104,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
                   <circle cx="100" cy="100" r="5" fill="#0a0512"/>
                   <!-- Alive. text on label -->
                   <text x="100" y="97" text-anchor="middle" font-family="serif" font-size="9" font-weight="500" fill="rgba(248,244,255,.8)" letter-spacing="0.5">Alive.</text>
-                  <text x="100" y="109" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(248,244,255,.45)" letter-spacing="1.5">MIDDAY</text>
+                  <text x="100" y="109" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(248,244,255,.45)" letter-spacing="1.5" id="vinylLabel">MIDDAY</text>
                   <defs>
                     <radialGradient id="lblGrad" cx="40%" cy="35%">
                       <stop offset="0%" stop-color="#9333EA" stop-opacity=".9"/>
@@ -1106,13 +1114,13 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
                   </defs>
                 </svg>
                 <div class="mp-cover-meta">
-                  <div class="l">MIDDAY PULSE</div>
-                  <div class="n">Glass Ceiling</div>
+                  <div class="l" id="mpCoverLabel">MIDDAY PULSE</div>
+                  <div class="n" id="mpCoverSong">Glass Ceiling</div>
                 </div>
               </div>
               <div class="mp-info">
                 <div class="mp-block-tag" style="display:flex;align-items:center;justify-content:space-between;width:100%">
-                  <span style="display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:var(--plum-light)"></span>Midday Pulse · 11:00 – 14:00</span>
+                  <span style="display:flex;align-items:center;gap:6px" id="mpBlockTagText"><span style="width:6px;height:6px;border-radius:50%;background:var(--plum-light)" id="mpBlockDot"></span><span id="mpBlockTagLabel">Midday Pulse · 11:00 – 14:00</span></span>
                   <div class="mp-eq">
                     <span class="mp-eq-bar" style="--lo:3px;--hi:14px;--d:.6s;animation-delay:.0s"></span>
                     <span class="mp-eq-bar" style="--lo:5px;--hi:20px;--d:.5s;animation-delay:.1s"></span>
@@ -1124,8 +1132,8 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
                     <span class="mp-eq-bar" style="--lo:5px;--hi:16px;--d:.6s;animation-delay:.4s"></span>
                   </div>
                 </div>
-                <div class="mp-title">Glass Ceiling</div>
-                <div class="mp-artist">Saga Berlin · 110 BPM · Upbeat · Pop</div>
+                <div class="mp-title" id="mpTitle">Glass Ceiling</div>
+                <div class="mp-artist" id="mpArtist">Saga Berlin · 110 BPM · Upbeat · Pop</div>
                 <div>
                   <div class="mp-progress"><div class="mp-prog-fill"></div></div>
                   <div class="mp-times"><span>1:14</span><span>3:32</span></div>
@@ -1167,56 +1175,56 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
                 <div class="sc-day"><span class="vi">T7</span><span class="en">SAT</span></div>
               </div>
               <div class="sc-grid">
-                <div class="sc-row">
+                <div class="sc-row" data-daypart="morning">
                   <div class="sc-row-time">07–11</div>
                   <div class="sc-row-content">
                     <div class="sc-row-dot" style="background:var(--gold-light)"></div>
                     <div>
-                      <div class="sc-row-name">Morning Ritual</div>
+                      <div class="sc-row-name">Morning Ritual<span class="sc-now-badge"> · <span class="vi">ĐANG PHÁT</span><span class="en">NOW PLAYING</span></span></div>
                       <div class="sc-row-meta">acoustic · 82 BPM · 40 tracks</div>
                     </div>
                   </div>
                   <div class="sc-row-len">4h</div>
                 </div>
-                <div class="sc-row" style="background:rgba(123,31,162,.12);border-color:rgba(123,31,162,.32)">
-                  <div class="sc-row-time" style="color:var(--plum-light)">11–14</div>
+                <div class="sc-row sc-row-now" data-daypart="midday" id="scMiddayRow">
+                  <div class="sc-row-time">11–14</div>
                   <div class="sc-row-content">
                     <div class="sc-row-dot" style="background:var(--plum-light)"></div>
                     <div>
-                      <div class="sc-row-name">Midday Pulse · <span class="vi">ĐANG PHÁT</span><span class="en">NOW PLAYING</span></div>
+                      <div class="sc-row-name">Midday Pulse<span class="sc-now-badge"> · <span class="vi">ĐANG PHÁT</span><span class="en">NOW PLAYING</span></span></div>
                       <div class="sc-row-meta">upbeat · 108 BPM · 38 tracks</div>
                     </div>
                   </div>
                   <div class="sc-row-len">3h</div>
                 </div>
-                <div class="sc-row">
+                <div class="sc-row" data-daypart="afternoon">
                   <div class="sc-row-time">14–17</div>
                   <div class="sc-row-content">
                     <div class="sc-row-dot" style="background:var(--emerald-light)"></div>
                     <div>
-                      <div class="sc-row-name">Afternoon Drift</div>
+                      <div class="sc-row-name">Afternoon Drift<span class="sc-now-badge"> · <span class="vi">ĐANG PHÁT</span><span class="en">NOW PLAYING</span></span></div>
                       <div class="sc-row-meta">lo-fi · 76 BPM · 44 tracks</div>
                     </div>
                   </div>
                   <div class="sc-row-len">3h</div>
                 </div>
-                <div class="sc-row">
+                <div class="sc-row" data-daypart="evening">
                   <div class="sc-row-time">17–21</div>
                   <div class="sc-row-content">
                     <div class="sc-row-dot" style="background:var(--sapphire-light)"></div>
                     <div>
-                      <div class="sc-row-name">Evening Glow</div>
+                      <div class="sc-row-name">Evening Glow<span class="sc-now-badge"> · <span class="vi">ĐANG PHÁT</span><span class="en">NOW PLAYING</span></span></div>
                       <div class="sc-row-meta">jazz · 88 BPM · 42 tracks</div>
                     </div>
                   </div>
                   <div class="sc-row-len">4h</div>
                 </div>
-                <div class="sc-row">
+                <div class="sc-row" data-daypart="late">
                   <div class="sc-row-time">21–23</div>
                   <div class="sc-row-content">
                     <div class="sc-row-dot" style="background:var(--ruby-light)"></div>
                     <div>
-                      <div class="sc-row-name">Late Hours</div>
+                      <div class="sc-row-name">Late Hours<span class="sc-now-badge"> · <span class="vi">ĐANG PHÁT</span><span class="en">NOW PLAYING</span></span></div>
                       <div class="sc-row-meta">ambient · 70 BPM · 36 tracks</div>
                     </div>
                   </div>
@@ -1941,7 +1949,102 @@ function setupSwipeDots(rowEl, itemSelector, dotsEl){
   }, {passive:true});
 }
 
-// Setup swipe carousels
+// ═══ REAL-TIME DAYPART SYSTEM — clock + auto-sync hero/timeline/player/schedule ═══
+const DAYPARTS = [
+  { id:'morning',   start:7,  end:11, name:'Morning Ritual',  mood:'acoustic · warm · soft',   song:'Golden Hour Drive', artist:'Wilder Fields', bpm:82,  genre:'Acoustic', color:'gold',     vinylLabel:'MORNING' },
+  { id:'midday',    start:11, end:14, name:'Midday Pulse',    mood:'upbeat · groove · bright', song:'Glass Ceiling',     artist:'Saga Berlin',   bpm:110, genre:'Pop',      color:'plum',     vinylLabel:'MIDDAY' },
+  { id:'afternoon', start:14, end:17, name:'Afternoon Drift', mood:'chill · lo-fi · calm',     song:'Soft Static Rain',  artist:'Lunar Isle',    bpm:76,  genre:'Lo-fi',    color:'emerald',  vinylLabel:'AFTERNOON' },
+  { id:'evening',   start:17, end:21, name:'Evening Glow',    mood:'jazzy · warm · low-lit',   song:'Amber & Oak',       artist:'Nadine Cole',   bpm:88,  genre:'Jazz',     color:'sapphire', vinylLabel:'EVENING' },
+  { id:'late',      start:21, end:24, name:'Late Hours',      mood:'dark · ambient · deep',    song:'Midnight Drift',    artist:'Vale Noir',     bpm:70,  genre:'Ambient',  color:'ruby',     vinylLabel:'LATE' },
+];
+const DAYPART_COLOR_VARS = {
+  gold:     { light:'#F59E0B', rgb:'180,83,9'   },
+  plum:     { light:'#C084FC', rgb:'123,31,162' },
+  emerald:  { light:'#34D399', rgb:'5,150,105'  },
+  sapphire: { light:'#60A5FA', rgb:'30,64,175'  },
+  ruby:     { light:'#FB7185', rgb:'159,18,57'  },
+};
+
+function getVietnamTime() {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Ho_Chi_Minh', hour:'numeric', minute:'numeric', hour12:false
+  }).formatToParts(new Date());
+  return {
+    h: parseInt(parts.find(p => p.type === 'hour').value, 10) % 24,
+    m: parseInt(parts.find(p => p.type === 'minute').value, 10)
+  };
+}
+function getCurrentDaypart(hour) {
+  if (hour >= 21 || hour < 7) return DAYPARTS.find(d => d.id === 'late');
+  return DAYPARTS.find(d => hour >= d.start && hour < d.end) || DAYPARTS[1];
+}
+
+let currentDaypartId = null;
+function applyDaypart(dp) {
+  const cv = DAYPART_COLOR_VARS[dp.color];
+  const timeRange = dp.id === 'late' ? '21:00 – 07:00' : `${String(dp.start).padStart(2,'0')}:00 – ${String(dp.end).padStart(2,'0')}:00`;
+
+  // Hero eyebrow
+  const eyebrowVi = document.getElementById('eyebrowDaypartVi');
+  const eyebrowEn = document.getElementById('eyebrowDaypartEn');
+  if (eyebrowVi) eyebrowVi.textContent = dp.name.toUpperCase();
+  if (eyebrowEn) eyebrowEn.textContent = dp.name.toUpperCase();
+  const eyebrowWrap = document.getElementById('heroEyebrow');
+  if (eyebrowWrap) {
+    eyebrowWrap.style.background = `rgba(${cv.rgb},.14)`;
+    eyebrowWrap.style.borderColor = `rgba(${cv.rgb},.35)`;
+    eyebrowWrap.style.color = cv.light;
+  }
+
+  // Timeline — move active/now-playing highlight
+  document.querySelectorAll('.tl-block').forEach(block => {
+    const isNow = block.dataset.daypart === dp.id;
+    block.classList.toggle('active', isNow);
+    block.classList.toggle('now-playing', isNow);
+  });
+
+  // Hero waveform visualizer
+  const hvName = document.getElementById('hvTrackName');
+  const hvMeta = document.getElementById('hvTrackMeta');
+  if (hvName) hvName.textContent = `${dp.song} — ${dp.artist}`;
+  if (hvMeta) hvMeta.textContent = `${dp.name.toUpperCase()} · ${dp.bpm} BPM · ${dp.mood.toUpperCase()}`;
+
+  // Player mockup
+  const mpCoverLabel = document.getElementById('mpCoverLabel');
+  const mpCoverSong = document.getElementById('mpCoverSong');
+  const mpBlockDot = document.getElementById('mpBlockDot');
+  const mpBlockTagLabel = document.getElementById('mpBlockTagLabel');
+  const mpTitle = document.getElementById('mpTitle');
+  const mpArtist = document.getElementById('mpArtist');
+  const vinylLabel = document.getElementById('vinylLabel');
+  if (mpCoverLabel) mpCoverLabel.textContent = dp.name.toUpperCase();
+  if (mpCoverSong) mpCoverSong.textContent = dp.song;
+  if (mpBlockDot) mpBlockDot.style.background = cv.light;
+  if (mpBlockTagLabel) mpBlockTagLabel.textContent = `${dp.name} · ${timeRange}`;
+  if (mpTitle) mpTitle.textContent = dp.song;
+  if (mpArtist) mpArtist.textContent = `${dp.artist} · ${dp.bpm} BPM · ${dp.genre}`;
+  if (vinylLabel) vinylLabel.textContent = dp.vinylLabel;
+
+  // Schedule mockup — move NOW PLAYING highlight
+  document.querySelectorAll('.sc-row').forEach(row => {
+    row.classList.toggle('sc-row-now', row.dataset.daypart === dp.id);
+  });
+}
+
+function updateClock() {
+  const { h, m } = getVietnamTime();
+  const clockEl = document.getElementById('heroClock');
+  if (clockEl) clockEl.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+  const dp = getCurrentDaypart(h);
+  if (dp.id !== currentDaypartId) {
+    currentDaypartId = dp.id;
+    applyDaypart(dp);
+  }
+}
+updateClock();
+setInterval(updateClock, 1000 * 15);
+
+
 setupSwipeDots(document.querySelector('.tl-track'), '.tl-block', document.getElementById('tlDots'));
 setupSwipeDots(document.getElementById('whatNow'), '.wn-card', document.getElementById('wnDots'));
 setupSwipeDots(document.getElementById('metricsBento'), '.metric-card', document.getElementById('metricsDots'));
