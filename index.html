@@ -69,6 +69,37 @@ body{font-family:var(--fb);font-weight:500;background:var(--bg);color:var(--text
   animation:atmos 28s ease-in-out infinite alternate}
 @keyframes atmos{0%{transform:translate(0,0) scale(1)}100%{transform:translate(1.5%,1%) scale(1.03)}}
 
+/* ── HERO WAVEFORM VISUALIZER ── */
+.hero-visualizer{margin:36px 0 0;padding:24px 28px;border-radius:20px;background:rgba(255,255,255,.03);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid var(--border-s);display:flex;flex-direction:column;gap:14px;box-shadow:0 12px 40px rgba(0,0,0,.28)}
+.hv-top{display:flex;align-items:center;justify-content:space-between}
+.hv-track{display:flex;flex-direction:column;gap:3px}
+.hv-track-name{font-family:var(--fd);font-size:18px;font-weight:500;letter-spacing:-.4px;line-height:1}
+.hv-track-meta{font-size:11px;color:var(--muted);font-family:var(--fm);font-weight:500;letter-spacing:.3px}
+.hv-status{display:flex;align-items:center;gap:7px;padding:5px 12px;border-radius:40px;background:rgba(5,150,105,.12);border:1px solid rgba(5,150,105,.28);font-size:10px;font-weight:700;color:var(--emerald-light);font-family:var(--fm);letter-spacing:1.5px}
+.hv-status-dot{width:6px;height:6px;border-radius:50%;background:var(--emerald-2);animation:pulse 1.8s ease-in-out infinite;box-shadow:0 0 8px var(--emerald-2)}
+.hv-bars{display:flex;align-items:flex-end;gap:3px;height:48px}
+.hv-bar{border-radius:3px 3px 0 0;background:var(--aurora);flex-shrink:0;animation:hvbounce var(--spd,1.2s) ease-in-out infinite alternate;opacity:.85}
+@keyframes hvbounce{0%{height:var(--min,6px)}100%{height:var(--max,36px)}}
+.hv-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--border)}
+.hv-progress-wrap{flex:1;margin-right:16px}
+.hv-progress-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden}
+.hv-progress-fill{height:100%;width:34%;background:var(--aurora);border-radius:2px;animation:hvprog 18s linear infinite}
+@keyframes hvprog{0%{width:0%}100%{width:100%}}
+.hv-times{display:flex;justify-content:space-between;font-size:10px;color:var(--hint);font-family:var(--fm);margin-top:5px;letter-spacing:.3px}
+.hv-sys{display:flex;align-items:center;gap:12px}
+.hv-sys-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--hint);font-family:var(--fm);font-weight:600;letter-spacing:.3px}
+.hv-sys-dot{width:5px;height:5px;border-radius:50%}
+
+/* ── PLAYER EQUALIZER ── */
+.mp-eq{display:flex;align-items:flex-end;gap:2.5px;height:22px;margin-left:auto}
+.mp-eq-bar{width:3px;border-radius:2px;background:linear-gradient(180deg,var(--plum-light),var(--plum-2));animation:eqb var(--d,.8s) ease-in-out infinite alternate}
+@keyframes eqb{0%{height:var(--lo,3px)}100%{height:var(--hi,16px)}}
+.mp-sys-row{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;background:rgba(5,150,105,.06);border:1px solid rgba(5,150,105,.2);margin-top:10px}
+.mp-sys-dot{width:7px;height:7px;border-radius:50%;background:var(--emerald-2);box-shadow:0 0 8px var(--emerald-2);animation:pulse 1.8s ease-in-out infinite;flex-shrink:0}
+.mp-sys-text{font-size:11px;color:var(--emerald-light);font-family:var(--fm);font-weight:700;letter-spacing:.5px;flex:1}
+.mp-sys-sub{font-size:10px;color:var(--hint);font-family:var(--fm);font-weight:500;letter-spacing:.3px}
+
+
 section{position:relative;z-index:1}
 .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
 .wrap-narrow{max-width:760px;margin:0 auto;padding:0 32px}
@@ -294,6 +325,8 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 .mp-body{padding:32px;display:grid;grid-template-columns:1fr 1.1fr;gap:32px;align-items:center;min-height:340px}
 .mp-cover{aspect-ratio:1;border-radius:16px;background:var(--aurora-2);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:24px;box-shadow:0 12px 40px rgba(123,31,162,.5)}
 .mp-cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 100% 70% at 30% 100%,rgba(0,0,0,.45) 0%,transparent 70%)}
+.mp-vinyl{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);width:72%;aspect-ratio:1;animation:vinylspin 3s linear infinite;opacity:.55;pointer-events:none}
+@keyframes vinylspin{from{transform:translate(-50%,-54%) rotate(0deg)}to{transform:translate(-50%,-54%) rotate(360deg)}}
 .mp-cover-meta{position:relative;color:#fff}
 .mp-cover-meta .l{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.75;margin-bottom:6px;font-family:var(--fm);font-weight:700}
 .mp-cover-meta .n{font-family:var(--fd);font-size:22px;font-weight:500;letter-spacing:-.5px;line-height:1.1}
@@ -663,7 +696,31 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
         </div>
       </div>
 
-      <div class="timeline reveal reveal-delay-3">
+      <!-- HERO WAVEFORM VISUALIZER -->
+      <div class="hero-visualizer reveal reveal-delay-3">
+        <div class="hv-top">
+          <div class="hv-track">
+            <div class="hv-track-name">Glass Ceiling — Saga Berlin</div>
+            <div class="hv-track-meta">MIDDAY PULSE · 110 BPM · UPBEAT · POP</div>
+          </div>
+          <div class="hv-status"><span class="hv-status-dot"></span><span class="vi">ĐANG PHÁT</span><span class="en">LIVE</span></div>
+        </div>
+        <div class="hv-bars" id="hvBars">
+          <!-- bars rendered by JS -->
+        </div>
+        <div class="hv-footer">
+          <div class="hv-progress-wrap">
+            <div class="hv-progress-bar"><div class="hv-progress-fill"></div></div>
+            <div class="hv-times"><span>1:14</span><span>3:32</span></div>
+          </div>
+          <div class="hv-sys">
+            <div class="hv-sys-item"><span class="hv-sys-dot" style="background:var(--emerald-2)"></span><span class="vi">6 quán online</span><span class="en">6 venues live</span></div>
+            <div class="hv-sys-item"><span class="hv-sys-dot" style="background:var(--plum-light)"></span><span class="vi">Lịch đồng bộ</span><span class="en">Schedule synced</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline reveal reveal-delay-4">
         <div class="tl-label">
           <span class="vi">MỘT NGÀY TẠI QUÁN BẠN — 5 TÂM TRẠNG, TỰ CHUYỂN THEO GIỜ</span>
           <span class="en">A FULL DAY AT YOUR VENUE — 5 MOODS, AUTO-SHIFTING</span>
@@ -919,13 +976,53 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
             </div>
             <div class="mp-body">
               <div class="mp-cover">
+                <!-- Vinyl record quay -->
+                <svg class="mp-vinyl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Outer disc -->
+                  <circle cx="100" cy="100" r="98" fill="#0a0512" opacity="0.92"/>
+                  <!-- Grooves -->
+                  <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                  <circle cx="100" cy="100" r="74" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <circle cx="100" cy="100" r="66" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                  <circle cx="100" cy="100" r="58" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+                  <circle cx="100" cy="100" r="50" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+                  <!-- Label area -->
+                  <circle cx="100" cy="100" r="32" fill="url(#lblGrad)"/>
+                  <!-- Aurora shimmer on label -->
+                  <circle cx="100" cy="100" r="28" fill="none" stroke="rgba(192,132,252,.3)" stroke-width="1.5"/>
+                  <!-- Center hole -->
+                  <circle cx="100" cy="100" r="5" fill="#0a0512"/>
+                  <!-- Alive. text on label -->
+                  <text x="100" y="97" text-anchor="middle" font-family="serif" font-size="9" font-weight="500" fill="rgba(248,244,255,.8)" letter-spacing="0.5">Alive.</text>
+                  <text x="100" y="109" text-anchor="middle" font-family="monospace" font-size="6" fill="rgba(248,244,255,.45)" letter-spacing="1.5">MIDDAY</text>
+                  <defs>
+                    <radialGradient id="lblGrad" cx="40%" cy="35%">
+                      <stop offset="0%" stop-color="#9333EA" stop-opacity=".9"/>
+                      <stop offset="60%" stop-color="#3B82F6" stop-opacity=".8"/>
+                      <stop offset="100%" stop-color="#10B981" stop-opacity=".7"/>
+                    </radialGradient>
+                  </defs>
+                </svg>
                 <div class="mp-cover-meta">
                   <div class="l">MIDDAY PULSE</div>
                   <div class="n">Glass Ceiling</div>
                 </div>
               </div>
               <div class="mp-info">
-                <div class="mp-block-tag"><span style="width:6px;height:6px;border-radius:50%;background:var(--plum-light)"></span>Midday Pulse · 11:00 – 14:00</div>
+                <div class="mp-block-tag" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+                  <span style="display:flex;align-items:center;gap:6px"><span style="width:6px;height:6px;border-radius:50%;background:var(--plum-light)"></span>Midday Pulse · 11:00 – 14:00</span>
+                  <div class="mp-eq">
+                    <span class="mp-eq-bar" style="--lo:3px;--hi:14px;--d:.6s;animation-delay:.0s"></span>
+                    <span class="mp-eq-bar" style="--lo:5px;--hi:20px;--d:.5s;animation-delay:.1s"></span>
+                    <span class="mp-eq-bar" style="--lo:2px;--hi:16px;--d:.7s;animation-delay:.15s"></span>
+                    <span class="mp-eq-bar" style="--lo:6px;--hi:22px;--d:.45s;animation-delay:.2s"></span>
+                    <span class="mp-eq-bar" style="--lo:3px;--hi:18px;--d:.65s;animation-delay:.25s"></span>
+                    <span class="mp-eq-bar" style="--lo:4px;--hi:14px;--d:.55s;animation-delay:.3s"></span>
+                    <span class="mp-eq-bar" style="--lo:2px;--hi:20px;--d:.7s;animation-delay:.35s"></span>
+                    <span class="mp-eq-bar" style="--lo:5px;--hi:16px;--d:.6s;animation-delay:.4s"></span>
+                  </div>
+                </div>
                 <div class="mp-title">Glass Ceiling</div>
                 <div class="mp-artist">Saga Berlin · 110 BPM · Upbeat · Pop</div>
                 <div>
@@ -936,6 +1033,11 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
                   <div class="mp-b">⏮</div>
                   <div class="mp-b play">⏸</div>
                   <div class="mp-b">⏭</div>
+                </div>
+                <div class="mp-sys-row">
+                  <span class="mp-sys-dot"></span>
+                  <span class="mp-sys-text"><span class="vi">Hệ thống đang chạy</span><span class="en">System running</span></span>
+                  <span class="mp-sys-sub"><span class="vi">Đồng bộ · 6 quán · HQ khoá lịch</span><span class="en">Synced · 6 venues · HQ schedule locked</span></span>
                 </div>
               </div>
             </div>
@@ -1667,7 +1769,26 @@ function switchHow(type) {
   document.getElementById('how-box').style.flexDirection = 'column';
 }
 
-// Scroll reveal
+// Hero waveform bars — render dynamically
+(function(){
+  const container = document.getElementById('hvBars');
+  if (!container) return;
+  const COUNT = 52;
+  const colors = ['#C084FC','#9333EA','#3B82F6','#10B981'];
+  for (let i = 0; i < COUNT; i++) {
+    const bar = document.createElement('span');
+    const minH = 4 + Math.random() * 8;
+    const maxH = 18 + Math.random() * 30;
+    const spd = (0.5 + Math.random() * 0.8).toFixed(2);
+    const delay = (Math.random() * 0.6).toFixed(2);
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    bar.style.cssText = `display:inline-block;width:4px;border-radius:3px 3px 0 0;background:${color};opacity:.75;animation:hvbounce ${spd}s ease-in-out ${delay}s infinite alternate;--min:${minH}px;--max:${maxH}px;height:${minH}px;flex-shrink:0`;
+    bar.classList.add('hv-bar');
+    container.appendChild(bar);
+  }
+})();
+
+
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
