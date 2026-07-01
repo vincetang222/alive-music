@@ -3,8 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alive. — Nơi âm nhạc tạo dấu ấn</title>
-<meta name="description" content="Nền tảng âm nhạc bản quyền cho cafe, nhà hàng, khách sạn tại Việt Nam. Cài một lần — chuẩn mọi nơi.">
+<title>Alive. — Nơi âm nhạc tạo dấu ấn | Nhạc bản quyền cho quán cafe, nhà hàng</title>
+<meta name="description" content="Nền tảng âm nhạc bản quyền cho cafe, nhà hàng, khách sạn tại Việt Nam. Tự chuyển mood theo giờ, đồng bộ mọi chi nhánh. Dùng thử 14 ngày miễn phí.">
+<meta name="keywords" content="nhạc bản quyền, nhạc quán cafe, nhạc thương mại, background music Vietnam, nhạc nhà hàng, licensed music venue">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A0512">
+<link rel="canonical" href="https://alivemusic.asia/">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alive.">
+<meta property="og:title" content="Alive. — Nơi âm nhạc tạo dấu ấn">
+<meta property="og:description" content="Nền tảng âm nhạc bản quyền cho cafe, nhà hàng, khách sạn tại Việt Nam. Tự chuyển mood theo giờ, đồng bộ mọi chi nhánh.">
+<meta property="og:image" content="https://alivemusic.asia/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://alivemusic.asia/">
+<meta property="og:locale" content="vi_VN">
+<meta property="og:locale:alternate" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Alive. — Nơi âm nhạc tạo dấu ấn">
+<meta name="twitter:description" content="Nền tảng âm nhạc bản quyền cho cafe, nhà hàng, khách sạn tại Việt Nam. Dùng thử 14 ngày miễn phí.">
+<meta name="twitter:image" content="https://alivemusic.asia/og-image.jpg">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Alive.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Nền tảng âm nhạc bản quyền cho cafe, nhà hàng, khách sạn tại Việt Nam. Tự chuyển mood theo giờ, đồng bộ mọi chi nhánh.",
+  "url": "https://alivemusic.asia/",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "VND",
+    "lowPrice": "299000",
+    "offerCount": "3"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Alive. Music Co., Ltd.",
+    "url": "https://alivemusic.asia/",
+    "email": "hello@alivemusic.asia",
+    "areaServed": "VN"
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Be+Vietnam+Pro:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -83,6 +138,7 @@
 }
 
 html{scroll-behavior:smooth}
+:focus-visible{outline:2px solid var(--accent-light);outline-offset:2px;border-radius:4px}
 body{font-family:var(--fb);font-weight:500;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6;min-height:100vh}
 
 [data-lang="vi"] .en{display:none}
@@ -824,7 +880,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
         </p>
         <div class="hero-actions">
           <a href="#pricing" class="btn-cta magnetic-btn"><span class="vi">Dùng thử 14 ngày miễn phí</span><span class="en">Start 14-day free trial</span> <span class="arr">→</span></a>
-          <a href="https://alive-music.vercel.app/alive_with_es.html" class="btn-cta-2"><span class="vi">Xem demo trực tiếp</span><span class="en">See the live demo</span></a>
+          <a href="https://alive-music.vercel.app/alive_with_es.html" target="_blank" rel="noopener noreferrer" class="btn-cta-2"><span class="vi">Xem demo trực tiếp</span><span class="en">See the live demo</span></a>
           <span class="hero-microcopy"><span class="vi">Không cần thẻ tín dụng. Huỷ bất cứ lúc nào.</span><span class="en">No card needed. Cancel anytime.</span></span>
         </div>
       </div>
@@ -1529,7 +1585,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
           <span class="plan-price-p">k / <span class="vi">tháng</span><span class="en">month</span></span>
         </div>
         <div class="plan-billing"><span class="vi">Hoặc 2.990k/năm — tiết kiệm được 2 tháng tiền</span><span class="en">Or ₫2,990k/year — save 2 months</span></div>
-        <a href="#" class="plan-cta plan-cta-ghost"><span class="vi">Dùng thử 14 ngày</span><span class="en">Start 14-day trial</span></a>
+        <a href="#lead" class="plan-cta plan-cta-ghost"><span class="vi">Dùng thử 14 ngày</span><span class="en">Start 14-day trial</span></a>
         <div class="plan-feats">
           <div class="plan-feat"><span class="vi">1 địa điểm · 1 thiết bị Alive.</span><span class="en">1 venue · 1 Alive. device</span></div>
           <div class="plan-feat"><span class="vi">40.000+ bài nhạc có bản quyền</span><span class="en">40,000+ licensed tracks</span></div>
@@ -1550,7 +1606,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
           <span class="plan-price-p">k / <span class="vi">tháng</span><span class="en">month</span></span>
         </div>
         <div class="plan-billing"><span class="vi">Hoặc 4.990k/năm — tiết kiệm được 2 tháng tiền</span><span class="en">Or ₫4,990k/year — save 2 months</span></div>
-        <a href="#" class="plan-cta plan-cta-primary"><span class="vi">Dùng thử 14 ngày</span><span class="en">Start 14-day trial</span></a>
+        <a href="#lead" class="plan-cta plan-cta-primary"><span class="vi">Dùng thử 14 ngày</span><span class="en">Start 14-day trial</span></a>
         <div class="plan-feats">
           <div class="plan-feat"><span class="vi">Tối đa 5 địa điểm</span><span class="en">Up to 5 venues</span></div>
           <div class="plan-feat"><span class="vi">Tất cả tính năng của gói Starter</span><span class="en">Everything in Starter</span></div>
@@ -1652,7 +1708,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 </section>
 
 <!-- LEAD FORM (gold tinted) - inline capture before final CTA -->
-<section class="sec-lead">
+<section class="sec-lead" id="lead">
   <div class="wrap">
     <div class="lead-grid">
       <div class="lead-left">
@@ -1772,7 +1828,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
       <h2 class="cta-h"><span class="vi">Bật <em>Alive.</em><br>ngay hôm nay.</span><span class="en">Turn on <em>Alive.</em><br>today.</span></h2>
       <p class="cta-sub"><span class="vi">14 ngày miễn phí. Không cần thẻ tín dụng. Cài đặt trong 5 phút.</span><span class="en">14 days free. No credit card. 5-minute setup.</span></p>
       <div class="cta-row">
-        <a href="#" class="btn-cta magnetic-btn"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span> <span class="arr">→</span></a>
+        <a href="#lead" class="btn-cta magnetic-btn"><span class="vi">Dùng thử ngay</span><span class="en">Start free trial</span> <span class="arr">→</span></a>
         <a href="mailto:hello@alivemusic.asia" class="btn-cta-2"><span class="vi">Nhắn tin cho chúng tôi</span><span class="en">Talk to us</span></a>
       </div>
       <div class="cta-fine"><span class="vi">Chuỗi từ 10 quán trở lên? Nhắn email hello@alivemusic.asia</span><span class="en">Running 10+ venues? Email hello@alivemusic.asia</span></div>
@@ -2322,9 +2378,9 @@ setLang = function(l) {
 </script>
 <!-- GLASS TINT THEME SWITCHER -->
 <div class="theme-switcher" role="group" aria-label="Glass tint theme">
-  <button class="theme-dot t-strong active" data-glass="strong" title="Glass mạnh" onclick="setGlassTheme('strong')"></button>
-  <button class="theme-dot t-plum" data-glass="plum" title="Plum tinted" onclick="setGlassTheme('plum')"></button>
-  <button class="theme-dot t-sapphire" data-glass="sapphire" title="Sapphire tinted" onclick="setGlassTheme('sapphire')"></button>
+  <button class="theme-dot t-strong active" data-glass="strong" title="Glass mạnh" aria-label="Theme: Glass mạnh" onclick="setGlassTheme('strong')"></button>
+  <button class="theme-dot t-plum" data-glass="plum" title="Plum tinted" aria-label="Theme: Plum" onclick="setGlassTheme('plum')"></button>
+  <button class="theme-dot t-sapphire" data-glass="sapphire" title="Sapphire tinted" aria-label="Theme: Sapphire" onclick="setGlassTheme('sapphire')"></button>
 </div>
 
 </body>
