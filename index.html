@@ -274,6 +274,11 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
 /* ─── SECTION BACKGROUNDS — distinct moods ─── */
 .sec-hero{position:relative;overflow:hidden}
+.hero-wave-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85;pointer-events:none}
+.hero-wave-fade{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,5,18,.15) 0%,transparent 30%,transparent 55%,var(--bg) 100%)}
+.sec-hero .wrap{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){.hero-wave-canvas{opacity:.4}}
 .sec-problem{background:linear-gradient(180deg,transparent 0%,rgba(180,83,9,.06) 50%,transparent 100%);padding:64px 0;position:relative}
 .sec-problem::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,83,9,.4),transparent)}
 .sec-problem::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(180,83,9,.3),transparent)}
@@ -858,6 +863,8 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
 
 <!-- HERO -->
 <section class="sec-hero">
+  <canvas id="heroWaveCanvas" class="hero-wave-canvas"></canvas>
+  <div class="hero-wave-fade"></div>
   <div class="wrap">
     <div class="hero">
       <div class="hero-eyebrow reveal" id="heroEyebrow">
@@ -2163,6 +2170,62 @@ function updateClock() {
 }
 updateClock();
 setInterval(updateClock, 1000 * 15);
+
+// ═══ HERO WAVE CANVAS — layered flowing waveform ocean, aurora gradient ═══
+(function(){
+  const canvas = document.getElementById('heroWaveCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W, H, dpr;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Layered waves: color, amplitude ratio, frequency, speed, y-position ratio, opacity, glow
+  const layers = [
+    { color:'124,58,237',  ampR:.045, freq:1.35, speed:.0032, yR:.42, alpha:.16, width:1.5, glow:14 },
+    { color:'59,130,246',  ampR:.06,  freq:1.05, speed:.0022, yR:.56, alpha:.20, width:2,   glow:18 },
+    { color:'16,185,129',  ampR:.05,  freq:1.7,  speed:.0040, yR:.68, alpha:.16, width:1.5, glow:14 },
+    { color:'192,132,252', ampR:.075, freq:.85,  speed:.0018, yR:.62, alpha:.26, width:2.5, glow:22 },
+  ];
+
+  let t = 0;
+  function drawWave(layer){
+    const amp = H * layer.ampR;
+    const baseY = H * layer.yR;
+    ctx.beginPath();
+    for (let x = 0; x <= W; x += 6) {
+      const angle = (x / W) * Math.PI * 2 * layer.freq + t * layer.speed * 60;
+      const envelope = .55 + .45 * Math.sin((x / W) * Math.PI); // taper at edges
+      const y = baseY + Math.sin(angle) * amp * envelope + Math.sin(angle * 0.5 + t*0.002) * amp * 0.3;
+      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = `rgba(${layer.color},${layer.alpha})`;
+    ctx.lineWidth = layer.width;
+    ctx.shadowColor = `rgba(${layer.color},.55)`;
+    ctx.shadowBlur = layer.glow;
+    ctx.stroke();
+  }
+
+  function frame(){
+    ctx.clearRect(0, 0, W, H);
+    layers.forEach(drawWave);
+    t += 1;
+    if (!reduceMotion) requestAnimationFrame(frame);
+  }
+  frame();
+})();
 
 
 setupSwipeDots(document.querySelector('.tl-track'), '.tl-block', document.getElementById('tlDots'));
