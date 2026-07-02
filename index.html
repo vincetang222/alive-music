@@ -833,6 +833,20 @@ footer{border-top:1px solid var(--border);padding:56px 0 32px;background:var(--b
   .line-reveal{opacity:1;transform:none;transition:none}
   .scroll-progress{transition:none}
 }
+
+/* ═══ MOBILE PERFORMANCE — reduce GPU-expensive blur on weaker devices ═══
+   backdrop-filter blur is one of the costliest CSS operations on mobile GPUs.
+   Desktop keeps full 20-32px blur; mobile drops to 8px (still frosted-glass
+   look, ~3-4x cheaper to composite) instead of removing the effect entirely. */
+@media(max-width:768px){
+  .theme-switcher,.hero-visualizer,nav,.glass,.glass-s,.glass-plum,.glass-sapphire,.glass-emerald,.glass-gold,
+  .hero-eyebrow,.btn-cta-2,.timeline,.wn-card,.law-callout,.view-tabs,.mockup,.cp-table,.plan,
+  .faq-toggle-more,.cta-wrap,.mobile-menu,.how-toggle,.metric-card,.lead-form,.lead-success{
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+  }
+  .grain-overlay{display:none}
+}
 </style>
 </head>
 <body>
@@ -2215,10 +2229,11 @@ setInterval(updateClock, 1000 * 15);
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
   let W, H, dpr;
 
   function resize(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
     const rect = canvas.parentElement.getBoundingClientRect();
     W = rect.width; H = rect.height;
     canvas.width = W * dpr;
@@ -2231,12 +2246,14 @@ setInterval(updateClock, 1000 * 15);
   window.addEventListener('resize', resize);
 
   // Layered waves: color, amplitude ratio, frequency, speed, y-position ratio, opacity, glow
-  const layers = [
+  // Mobile: only 2 layers (skip the two most subtle ones) + no shadowBlur (costliest Canvas 2D op)
+  const allLayers = [
     { color:'124,58,237',  ampR:.045, freq:1.35, speed:.0032, yR:.42, alpha:.16, width:1.5, glow:14 },
     { color:'59,130,246',  ampR:.06,  freq:1.05, speed:.0022, yR:.56, alpha:.20, width:2,   glow:18 },
     { color:'16,185,129',  ampR:.05,  freq:1.7,  speed:.0040, yR:.68, alpha:.16, width:1.5, glow:14 },
     { color:'192,132,252', ampR:.075, freq:.85,  speed:.0018, yR:.62, alpha:.26, width:2.5, glow:22 },
   ];
+  const layers = isMobile ? [allLayers[1], allLayers[3]] : allLayers;
 
   let t = 0;
   function drawWave(layer){
@@ -2251,8 +2268,10 @@ setInterval(updateClock, 1000 * 15);
     }
     ctx.strokeStyle = `rgba(${layer.color},${layer.alpha})`;
     ctx.lineWidth = layer.width;
-    ctx.shadowColor = `rgba(${layer.color},.55)`;
-    ctx.shadowBlur = layer.glow;
+    if (!isMobile) {
+      ctx.shadowColor = `rgba(${layer.color},.55)`;
+      ctx.shadowBlur = layer.glow;
+    }
     ctx.stroke();
   }
 
